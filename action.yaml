@@ -63,7 +63,7 @@ outputs:
   ipns:
     description: 'IPNS CID if applicable'
   vercel:
-    description: 'Vercel'
+    description: 'Vercel DNS record uid if applicable'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'index.js'

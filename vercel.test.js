@@ -9,7 +9,7 @@ const options = {
   timeout: 1000,
   verbose: true,
   vercelDomain: "kota-yata.com",
-  vercelToken: "" // your vercel token (DO NOT PUSH YOUR CODE WITH YOUR TOKEN!!)
+  vercelToken: "6WHvUh9ohTBBHxnzBIdUKTRi" // your vercel token (DO NOT PUSH YOUR CODE WITH YOUR TOKEN!!)
 };
 
 uploader.upload({ ...options });

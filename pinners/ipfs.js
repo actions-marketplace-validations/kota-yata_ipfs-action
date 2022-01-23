@@ -38,8 +38,8 @@ module.exports = {
 
     let vercel = '';
     if (vercelDomain && vercelToken) {
-      await Vercel.changeDNS(cid);
-      vercel = 'Vercel DNS update Success';
+      const response = await Vercel.changeDNS(cid, vercelDomain, vercelToken);
+      vercel = response;
     }
 
     return {
