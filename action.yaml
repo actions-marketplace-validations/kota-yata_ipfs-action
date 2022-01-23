@@ -1,8 +1,8 @@
-name: 'Upload to IPFS'
-description: 'The GitHub Action allows uploading DApps or content to IPFS. It supports IPFS, Pinata, Infura pinning services.'
+name: 'IPFS-Pinning-DNSlink'
+description: 'GitHub Action for uploading files to IPFS. Supports Pinata, Infura pinning service, and dnslink publishing to Vercel DNS for options. Forked from aquiladev/ipfs-action'
 branding:
-  icon: 'upload-cloud'
-  color: 'green'
+  icon: 'box'
+  color: 'yellow'
 inputs:
   path:
     description: 'Directory path to upload'
