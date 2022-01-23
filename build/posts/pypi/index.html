@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KOTA YATAGAI | 八谷航太</title>
+    <title>Pythonで円周率を求めてみる</title><meta name="description" content="確率的モデルで実際に計算してみる。図も描いてみちゃう" data-svelte="svelte-189on1m"><meta property="og:url" content="https://kota-yata.com" data-svelte="svelte-189on1m"><meta property="og:title" content="Pythonで円周率を求めてみる" data-svelte="svelte-189on1m"><meta property="og:image" content="https://kota-yata.com/media/pypi.webp" data-svelte="svelte-189on1m"><meta property="og:description" content="確率的モデルで実際に計算してみる。図も描いてみちゃう" data-svelte="svelte-189on1m"><meta name="twitter:card" content="summary_large_image" data-svelte="svelte-189on1m"><meta name="twitter:site" content="@kota_yata" data-svelte="svelte-189on1m">
+
+		
+
+		<link rel="modulepreload" href="/_app/start-daaae108.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-495f2134.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-be316660.js">
+		<link rel="modulepreload" href="/_app/chunks/index-6747d163.js">
+		<link rel="modulepreload" href="/_app/pages/posts/_path_.svelte-2d94d26d.js">
+		<link rel="modulepreload" href="/_app/chunks/page-7b278a70.js">
+		<link rel="modulepreload" href="/_app/chunks/className-0b25377b.js">
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-0136ed43.css">
+		<link rel="stylesheet" href="/_app/assets/app-d7359544.css">
+		<link rel="stylesheet" href="/_app/assets/pages/posts/_path_.svelte-77f41461.css">
+		<link rel="stylesheet" href="/_app/assets/page-da0bc829.css">
+
+		<script type="module">
+			import { start } from "/_app/start-daaae108.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/pages/__layout.svelte-be316660.js"),
+						import("/_app/pages/posts/_path_.svelte-2d94d26d.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002Fposts\u002Fpypi",
+						query: new URLSearchParams(""),
+						params: {path:"pypi"}
+					}
+				}
+			});
+		</script>
+    <meta name="keyword" content="kota,yatagai,kota yatagai,八谷航太">
+    <link rel="icon" href="/me.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link defer
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet">
+    <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+      integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/a11y-dark.min.css"
+      integrity="sha384-Mt8bPDNu0L2sVzon3+a8Rqtl4fmqaUmTPBEd/DTHiGFEQEFvf0fYLnU1DgK+ER2h" crossorigin="anonymous">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-gbfwkw"><div class="left svelte-gbfwkw"><a href="/" class="svelte-gbfwkw">KOTA YATAGAI</a></div>
+  <div class="right svelte-gbfwkw"><select name="language"><option value="JP">Japanese</option><option value="EN">English</option></select>
+    <a href="/trip" sveltekit:prefetch class="svelte-gbfwkw"><img alt="to trip page" src="/airplane.svg" width="30px" height="30px"></a></div></header>
+
+<main class="svelte-gbfwkw">
+  
+
+<div class="container svelte-izy1ym"><div class="profile svelte-izy1ym"><div class="container svelte-g32fgp"><img alt="myself" src="/me.webp" width="150px" height="150px" class="svelte-g32fgp">
+  <div class="bio svelte-g32fgp"><h4 class="svelte-g32fgp">八谷航太</h4>
+    <p class="svelte-g32fgp">18yo / ソフトウェア開発者</p></div>
+  <ul class="svelte-g32fgp"><li class="svelte-g32fgp"><a href="/" class="svelte-g32fgp">Home</a></li><li class="svelte-g32fgp"><a href="/about" class="svelte-g32fgp">About</a></li><li class="svelte-g32fgp"><a href="/works" class="svelte-g32fgp">Works</a></li><li class="svelte-g32fgp"><a href="/contacts" class="svelte-g32fgp">Contacts</a></li></ul>
+  <div class="icons svelte-g32fgp"><a href="https://github.com/kota-yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/github.svg" width="20px" height="20px"></a><a href="https://open.spotify.com/user/jgm80x9h1j84hnk4nv3hozlaf" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/spotify.svg" width="20px" height="20px"></a><a href="https://twitter.com/kota_yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/twitter.svg" width="20px" height="20px"></a><a href="https://speakerdeck.com/kota_yata/" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/speakerdeck.svg" width="20px" height="20px"></a></div>
+</div></div>
+  <div class="slot svelte-izy1ym"><div class="info svelte-hf3o4"><h1 class="info-title svelte-hf3o4">Pythonで円周率を求めてみる</h1>
+    <span class="info-date svelte-hf3o4">2020-09-25</span>
+    <span class="info-category programming svelte-hf3o4">Programming</span></div>
+  <!-- HTML_TAG_START --><p>単に円周率を使いたいなら</p>
+<pre><code class="language-python"><span class="hljs-keyword">import</span> math
+<span class="hljs-built_in">print</span>(math.py)
+</code></pre>
+<p>で良いんだけども、3.14がどうやって求まっているのか自分でやってみたい。<br>
+というわけで確率的モデルで円周率を求めていきたいと思います。</p>
+<h3>第一象限の適当なところに点を打っていく</h3>
+<p>まずx座標とy座標それぞれで、0から1のランダムな数値を定めて点を打ちます</p>
+<pre><code class="language-python"><span class="hljs-keyword">import</span> random
+x, y = random.random(), random.random()
+</code></pre>
+<h3>x^2+y^2が1以内かどうか確かめる</h3>
+<p>このxとyをそれぞれ2乗してお互いに足し合わせた数が1以内であれば、点は半径1の円の内側にあることになります。</p>
+<pre><code class="language-python">number = x ** <span class="hljs-number">2</span> + y ** <span class="hljs-number">2</span> <span class="hljs-comment">#これが1以内であれば円の内側</span>
+</code></pre>
+<h3>何回も繰り返して近似値を見る</h3>
+<p>これを何回も繰り返して、繰り返した数を分母、1以内だった回数×4(全ての象限で同じ結果になると仮定する)を分子とすると、円周率が算出されます。試しに1000回くらい繰り返してみましょう。</p>
+<pre><code class="language-python"><span class="hljs-keyword">import</span> random
+
+incount = <span class="hljs-number">0</span>
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">GenerateRandom</span>():
+  x, y = random.random(), random.random()
+  number = x ** <span class="hljs-number">2</span> + y ** <span class="hljs-number">2</span>
+  <span class="hljs-keyword">return</span> number
+
+iteration = <span class="hljs-number">1000</span>
+
+<span class="hljs-keyword">for</span> ite <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(iteration):
+  check = GenerateRandom()
+  <span class="hljs-keyword">if</span> (check &lt; <span class="hljs-number">1</span>):
+    incount += <span class="hljs-number">1</span>
+
+quadrant = <span class="hljs-number">4</span> <span class="hljs-comment">#全象限</span>
+
+<span class="hljs-built_in">print</span>(incount * quadrant / iteration)
+</code></pre>
+<pre><code>3.2
+</code></pre>
+<p>うーん、微妙。数が少なかったようなので1000万回で試してみましょう。</p>
+<pre><code class="language-python"><span class="hljs-comment"># 5秒くらいかかります</span>
+<span class="hljs-number">3.141382</span>
+</code></pre>
+<p>良きかな。</p>
+<h2>可視化してみる</h2>
+<p>数字が出ただけだとあんまり感動しなかったのでmatplotlibで可視化してみましょう。</p>
+<p>まずは1000回バージョン</p>
+<pre><code class="language-python"><span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">GenerateRandom</span>():
+  x, y = random.random(), random.random()
+  number = x ** <span class="hljs-number">2</span> + y ** <span class="hljs-number">2</span>
+  <span class="hljs-keyword">return</span> [number, x, y]
+
+iteration = <span class="hljs-number">1000</span>
+
+<span class="hljs-keyword">for</span> ite <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(iteration):
+  check = GenerateRandom()
+  <span class="hljs-keyword">if</span> (check[<span class="hljs-number">0</span>] &lt; <span class="hljs-number">1</span>):
+    plt.scatter(check[<span class="hljs-number">1</span>], check[<span class="hljs-number">2</span>], c = <span class="hljs-string">&#x27;red&#x27;</span>, s = <span class="hljs-number">10</span>)
+  <span class="hljs-keyword">else</span>:
+    plt.scatter(check[<span class="hljs-number">1</span>], check[<span class="hljs-number">2</span>], c=<span class="hljs-string">&#x27;blue&#x27;</span>, s = <span class="hljs-number">10</span>)
+
+plt.title(<span class="hljs-string">&#x27;Monte Carlo Method&#x27;</span>)
+plt.xlabel(<span class="hljs-string">&quot;x&quot;</span>)
+plt.ylabel(<span class="hljs-string">&quot;y&quot;</span>)
+plt.show()
+</code></pre>
+<p>10秒くらい待つと…</p>
+<p><img src="/media/pypi.webp" alt="スクリーンショット 2020-08-17 13.46.37.png"></p>
+<p>イマイチ分かりにくいので1000万回バージョンをみてみましょう。</p>
+<pre><code class="language-python"><span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">GenerateRandom</span>():
+  x, y = random.random(), random.random()
+  number = x ** <span class="hljs-number">2</span> + y ** <span class="hljs-number">2</span>
+  <span class="hljs-keyword">return</span> [number, x, y]
+
+iteration = <span class="hljs-number">10000000</span>
+
+<span class="hljs-keyword">for</span> ite <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(iteration):
+  check = GenerateRandom()
+  <span class="hljs-keyword">if</span> (check[<span class="hljs-number">0</span>] &lt; <span class="hljs-number">1</span>):
+    plt.scatter(check[<span class="hljs-number">1</span>], check[<span class="hljs-number">2</span>], c = <span class="hljs-string">&#x27;red&#x27;</span>, s = <span class="hljs-number">10</span>)
+  <span class="hljs-keyword">else</span>:
+    plt.scatter(check[<span class="hljs-number">1</span>], check[<span class="hljs-number">2</span>], c=<span class="hljs-string">&#x27;blue&#x27;</span>, s = <span class="hljs-number">10</span>)
+
+plt.title(<span class="hljs-string">&#x27;Monte Carlo Method&#x27;</span>)
+plt.xlabel(<span class="hljs-string">&quot;x&quot;</span>)
+plt.ylabel(<span class="hljs-string">&quot;y&quot;</span>)
+plt.show()
+</code></pre>
+<p>これを実行したら一旦パソコンから離れて散歩でもしましょう。帰ってきた頃には処理が終わっているはずです。</p>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/502570/58906dc5-be4f-8f52-ec53-32eabef5cbc6.png" alt="スクリーンショット 2020-08-17 13.47.54.png"></p>
+<p>グラフを正方形にすればより分かりやすいですが、綺麗に弧を描いて分布しているのが分かります。</p>
+<hr>
+<p>これを計算したからといって何か生まれるわけでもありませんが、興味を持った方は試していただけると嬉しいです。</p>
+<h3>参考</h3>
+<h5>情報処理学会のYouTube</h5>
+<p><a href="https://www.youtube.com/watch?v=iycXxv3UKpo">https://www.youtube.com/watch?v=iycXxv3UKpo</a></p>
+<!-- HTML_TAG_END -->
+  <div class="share svelte-hf3o4"><a class="share-twitter svelte-hf3o4" target="blank"><img alt="Twitter share button" src="/twitter.svg" width="25px" height="25px"></a>
+    <a class="share-pocket svelte-hf3o4" target="blank"><img alt="Pocket share button" src="/pocket.svg" width="25px" height="25px"></a>
+    <a class="share-instapaper svelte-hf3o4" target="blank"><img alt="InstaPaper share button" src="/instapaper.svg" width="25px"></a></div></div>
+</div></main>
+
+<footer class="svelte-gbfwkw">@ 2021 Kota Yatagai</footer>
+
+
+
+			<script type="application/json" data-type="svelte-data" data-url="/posts/pypi.json">{"status":200,"statusText":"","headers":{"content-type":"application/json; charset=utf-8"},"body":"{\"meta\":{\"title\":\"Pythonで円周率を求めてみる\",\"date\":\"2020-09-25\",\"category\":\"Programming\",\"description\":\"確率的モデルで実際に計算してみる。図も描いてみちゃう\",\"ogp\":\"\u002Fmedia\u002Fpypi.webp\"},\"body\":\"\u003Cp\u003E単に円周率を使いたいなら\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-python\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E math\\n\u003Cspan class=\\\"hljs-built_in\\\"\u003Eprint\u003C\u002Fspan\u003E(math.py)\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eで良いんだけども、3.14がどうやって求まっているのか自分でやってみたい。\u003Cbr\u003E\\nというわけで確率的モデルで円周率を求めていきたいと思います。\u003C\u002Fp\u003E\\n\u003Ch3\u003E第一象限の適当なところに点を打っていく\u003C\u002Fh3\u003E\\n\u003Cp\u003Eまずx座標とy座標それぞれで、0から1のランダムな数値を定めて点を打ちます\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-python\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E random\\nx, y = random.random(), random.random()\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch3\u003Ex^2+y^2が1以内かどうか確かめる\u003C\u002Fh3\u003E\\n\u003Cp\u003Eこのxとyをそれぞれ2乗してお互いに足し合わせた数が1以内であれば、点は半径1の円の内側にあることになります。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-python\\\"\u003Enumber = x ** \u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E + y ** \u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-comment\\\"\u003E#これが1以内であれば円の内側\u003C\u002Fspan\u003E\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch3\u003E何回も繰り返して近似値を見る\u003C\u002Fh3\u003E\\n\u003Cp\u003Eこれを何回も繰り返して、繰り返した数を分母、1以内だった回数×4(全ての象限で同じ結果になると仮定する)を分子とすると、円周率が算出されます。試しに1000回くらい繰り返してみましょう。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-python\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E random\\n\\nincount = \u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E\\n\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Edef\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title function_\\\"\u003EGenerateRandom\u003C\u002Fspan\u003E():\\n  x, y = random.random(), random.random()\\n  number = x ** \u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E + y ** \u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E number\\n\\niteration = \u003Cspan class=\\\"hljs-number\\\"\u003E1000\u003C\u002Fspan\u003E\\n\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Efor\u003C\u002Fspan\u003E ite \u003Cspan class=\\\"hljs-keyword\\\"\u003Ein\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-built_in\\\"\u003Erange\u003C\u002Fspan\u003E(iteration):\\n  check = GenerateRandom()\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (check &lt; \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E):\\n    incount += \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E\\n\\nquadrant = \u003Cspan class=\\\"hljs-number\\\"\u003E4\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-comment\\\"\u003E#全象限\u003C\u002Fspan\u003E\\n\\n\u003Cspan class=\\\"hljs-built_in\\\"\u003Eprint\u003C\u002Fspan\u003E(incount * quadrant \u002F iteration)\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cpre\u003E\u003Ccode\u003E3.2\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eうーん、微妙。数が少なかったようなので1000万回で試してみましょう。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-python\\\"\u003E\u003Cspan class=\\\"hljs-comment\\\"\u003E# 5秒くらいかかります\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-number\\\"\u003E3.141382\u003C\u002Fspan\u003E\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E良きかな。\u003C\u002Fp\u003E\\n\u003Ch2\u003E可視化してみる\u003C\u002Fh2\u003E\\n\u003Cp\u003E数字が出ただけだとあんまり感動しなかったのでmatplotlibで可視化してみましょう。\u003C\u002Fp\u003E\\n\u003Cp\u003Eまずは1000回バージョン\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-python\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E random\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E matplotlib.pyplot \u003Cspan class=\\\"hljs-keyword\\\"\u003Eas\u003C\u002Fspan\u003E plt\\n\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Edef\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title function_\\\"\u003EGenerateRandom\u003C\u002Fspan\u003E():\\n  x, y = random.random(), random.random()\\n  number = x ** \u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E + y ** \u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E [number, x, y]\\n\\niteration = \u003Cspan class=\\\"hljs-number\\\"\u003E1000\u003C\u002Fspan\u003E\\n\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Efor\u003C\u002Fspan\u003E ite \u003Cspan class=\\\"hljs-keyword\\\"\u003Ein\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-built_in\\\"\u003Erange\u003C\u002Fspan\u003E(iteration):\\n  check = GenerateRandom()\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (check[\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E] &lt; \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E):\\n    plt.scatter(check[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E], check[\u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E], c = \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;red&#x27;\u003C\u002Fspan\u003E, s = \u003Cspan class=\\\"hljs-number\\\"\u003E10\u003C\u002Fspan\u003E)\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eelse\u003C\u002Fspan\u003E:\\n    plt.scatter(check[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E], check[\u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E], c=\u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;blue&#x27;\u003C\u002Fspan\u003E, s = \u003Cspan class=\\\"hljs-number\\\"\u003E10\u003C\u002Fspan\u003E)\\n\\nplt.title(\u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;Monte Carlo Method&#x27;\u003C\u002Fspan\u003E)\\nplt.xlabel(\u003Cspan class=\\\"hljs-string\\\"\u003E&quot;x&quot;\u003C\u002Fspan\u003E)\\nplt.ylabel(\u003Cspan class=\\\"hljs-string\\\"\u003E&quot;y&quot;\u003C\u002Fspan\u003E)\\nplt.show()\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E10秒くらい待つと…\u003C\u002Fp\u003E\\n\u003Cp\u003E\u003Cimg src=\\\"\u002Fmedia\u002Fpypi.webp\\\" alt=\\\"スクリーンショット 2020-08-17 13.46.37.png\\\"\u003E\u003C\u002Fp\u003E\\n\u003Cp\u003Eイマイチ分かりにくいので1000万回バージョンをみてみましょう。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-python\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E random\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E matplotlib.pyplot \u003Cspan class=\\\"hljs-keyword\\\"\u003Eas\u003C\u002Fspan\u003E plt\\n\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Edef\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title function_\\\"\u003EGenerateRandom\u003C\u002Fspan\u003E():\\n  x, y = random.random(), random.random()\\n  number = x ** \u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E + y ** \u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E [number, x, y]\\n\\niteration = \u003Cspan class=\\\"hljs-number\\\"\u003E10000000\u003C\u002Fspan\u003E\\n\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Efor\u003C\u002Fspan\u003E ite \u003Cspan class=\\\"hljs-keyword\\\"\u003Ein\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-built_in\\\"\u003Erange\u003C\u002Fspan\u003E(iteration):\\n  check = GenerateRandom()\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (check[\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E] &lt; \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E):\\n    plt.scatter(check[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E], check[\u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E], c = \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;red&#x27;\u003C\u002Fspan\u003E, s = \u003Cspan class=\\\"hljs-number\\\"\u003E10\u003C\u002Fspan\u003E)\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eelse\u003C\u002Fspan\u003E:\\n    plt.scatter(check[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E], check[\u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E], c=\u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;blue&#x27;\u003C\u002Fspan\u003E, s = \u003Cspan class=\\\"hljs-number\\\"\u003E10\u003C\u002Fspan\u003E)\\n\\nplt.title(\u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;Monte Carlo Method&#x27;\u003C\u002Fspan\u003E)\\nplt.xlabel(\u003Cspan class=\\\"hljs-string\\\"\u003E&quot;x&quot;\u003C\u002Fspan\u003E)\\nplt.ylabel(\u003Cspan class=\\\"hljs-string\\\"\u003E&quot;y&quot;\u003C\u002Fspan\u003E)\\nplt.show()\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eこれを実行したら一旦パソコンから離れて散歩でもしましょう。帰ってきた頃には処理が終わっているはずです。\u003C\u002Fp\u003E\\n\u003Cp\u003E\u003Cimg src=\\\"https:\u002F\u002Fqiita-image-store.s3.ap-northeast-1.amazonaws.com\u002F0\u002F502570\u002F58906dc5-be4f-8f52-ec53-32eabef5cbc6.png\\\" alt=\\\"スクリーンショット 2020-08-17 13.47.54.png\\\"\u003E\u003C\u002Fp\u003E\\n\u003Cp\u003Eグラフを正方形にすればより分かりやすいですが、綺麗に弧を描いて分布しているのが分かります。\u003C\u002Fp\u003E\\n\u003Chr\u003E\\n\u003Cp\u003Eこれを計算したからといって何か生まれるわけでもありませんが、興味を持った方は試していただけると嬉しいです。\u003C\u002Fp\u003E\\n\u003Ch3\u003E参考\u003C\u002Fh3\u003E\\n\u003Ch5\u003E情報処理学会のYouTube\u003C\u002Fh5\u003E\\n\u003Cp\u003E\u003Ca href=\\\"https:\u002F\u002Fwww.youtube.com\u002Fwatch?v=iycXxv3UKpo\\\"\u003Ehttps:\u002F\u002Fwww.youtube.com\u002Fwatch?v=iycXxv3UKpo\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\"}"}</script>
+		</div>
+	</body>
+</html>

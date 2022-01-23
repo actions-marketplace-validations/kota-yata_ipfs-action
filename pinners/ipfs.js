@@ -1,5 +1,6 @@
 const { create, globSource } = require("ipfs-http-client");
 const PeerId = require("peer-id");
+const Vercel = require("../vercel");
 
 module.exports = {
   name: "IPFS",
@@ -9,7 +10,7 @@ module.exports = {
     return create({ host, port, protocol, timeout, headers });
   },
   upload: async (api, options) => {
-    const { path, timeout, verbose, key } = options;
+    const { path, timeout, verbose, key, vercelDomain, vercelToken } = options;
 
     const files = globSource(path, { recursive: true });
     const { cid } = await api.add(files, { pin: true, timeout });
@@ -35,10 +36,17 @@ module.exports = {
       await api.name.publish(cid, { key });
     }
 
+    let vercel = '';
+    if (vercelDomain && vercelToken) {
+      await Vercel.changeDNS(cid);
+      vercel = 'Vercel DNS update Success';
+    }
+
     return {
       cid: cid.toString(),
       ipfs: cid.toString(),
       ipns: _key && PeerId.parse(_key.id).toB58String(),
+      vercel: vercel
     };
   },
 };

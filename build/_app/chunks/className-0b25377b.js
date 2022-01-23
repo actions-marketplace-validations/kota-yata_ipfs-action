@@ -1,0 +1,1 @@
+const e=r=>r==="Cryptography"?"cryptography":r==="Decentralized"?"decentralized":r==="Algorithm"?"algorithm":r==="Non-Tech"?"non-tech":r==="Programming"?"programming":r==="Computer Science"?"cs":"";export{e as g};

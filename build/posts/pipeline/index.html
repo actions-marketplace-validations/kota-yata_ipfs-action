@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KOTA YATAGAI | 八谷航太</title>
+    <title>パイプライン処理と高速化</title><meta name="description" content="プロセッサーの役割分担と人海戦術" data-svelte="svelte-189on1m"><meta property="og:url" content="https://kota-yata.com" data-svelte="svelte-189on1m"><meta property="og:title" content="パイプライン処理と高速化" data-svelte="svelte-189on1m"><meta property="og:image" content="https://kota-yata.com/media/pipeline.png" data-svelte="svelte-189on1m"><meta property="og:description" content="プロセッサーの役割分担と人海戦術" data-svelte="svelte-189on1m"><meta name="twitter:card" content="summary_large_image" data-svelte="svelte-189on1m"><meta name="twitter:site" content="@kota_yata" data-svelte="svelte-189on1m">
+
+		
+
+		<link rel="modulepreload" href="/_app/start-daaae108.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-495f2134.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-be316660.js">
+		<link rel="modulepreload" href="/_app/chunks/index-6747d163.js">
+		<link rel="modulepreload" href="/_app/pages/posts/_path_.svelte-2d94d26d.js">
+		<link rel="modulepreload" href="/_app/chunks/page-7b278a70.js">
+		<link rel="modulepreload" href="/_app/chunks/className-0b25377b.js">
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-0136ed43.css">
+		<link rel="stylesheet" href="/_app/assets/app-d7359544.css">
+		<link rel="stylesheet" href="/_app/assets/pages/posts/_path_.svelte-77f41461.css">
+		<link rel="stylesheet" href="/_app/assets/page-da0bc829.css">
+
+		<script type="module">
+			import { start } from "/_app/start-daaae108.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/pages/__layout.svelte-be316660.js"),
+						import("/_app/pages/posts/_path_.svelte-2d94d26d.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002Fposts\u002Fpipeline",
+						query: new URLSearchParams(""),
+						params: {path:"pipeline"}
+					}
+				}
+			});
+		</script>
+    <meta name="keyword" content="kota,yatagai,kota yatagai,八谷航太">
+    <link rel="icon" href="/me.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link defer
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet">
+    <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+      integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/a11y-dark.min.css"
+      integrity="sha384-Mt8bPDNu0L2sVzon3+a8Rqtl4fmqaUmTPBEd/DTHiGFEQEFvf0fYLnU1DgK+ER2h" crossorigin="anonymous">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-gbfwkw"><div class="left svelte-gbfwkw"><a href="/" class="svelte-gbfwkw">KOTA YATAGAI</a></div>
+  <div class="right svelte-gbfwkw"><select name="language"><option value="JP">Japanese</option><option value="EN">English</option></select>
+    <a href="/trip" sveltekit:prefetch class="svelte-gbfwkw"><img alt="to trip page" src="/airplane.svg" width="30px" height="30px"></a></div></header>
+
+<main class="svelte-gbfwkw">
+  
+
+<div class="container svelte-izy1ym"><div class="profile svelte-izy1ym"><div class="container svelte-g32fgp"><img alt="myself" src="/me.webp" width="150px" height="150px" class="svelte-g32fgp">
+  <div class="bio svelte-g32fgp"><h4 class="svelte-g32fgp">八谷航太</h4>
+    <p class="svelte-g32fgp">18yo / ソフトウェア開発者</p></div>
+  <ul class="svelte-g32fgp"><li class="svelte-g32fgp"><a href="/" class="svelte-g32fgp">Home</a></li><li class="svelte-g32fgp"><a href="/about" class="svelte-g32fgp">About</a></li><li class="svelte-g32fgp"><a href="/works" class="svelte-g32fgp">Works</a></li><li class="svelte-g32fgp"><a href="/contacts" class="svelte-g32fgp">Contacts</a></li></ul>
+  <div class="icons svelte-g32fgp"><a href="https://github.com/kota-yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/github.svg" width="20px" height="20px"></a><a href="https://open.spotify.com/user/jgm80x9h1j84hnk4nv3hozlaf" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/spotify.svg" width="20px" height="20px"></a><a href="https://twitter.com/kota_yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/twitter.svg" width="20px" height="20px"></a><a href="https://speakerdeck.com/kota_yata/" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/speakerdeck.svg" width="20px" height="20px"></a></div>
+</div></div>
+  <div class="slot svelte-izy1ym"><div class="info svelte-hf3o4"><h1 class="info-title svelte-hf3o4">パイプライン処理と高速化</h1>
+    <span class="info-date svelte-hf3o4">2021-01-14</span>
+    <span class="info-category cs svelte-hf3o4">Computer Science</span></div>
+  <!-- HTML_TAG_START --><p>最近、基本情報技術者試験の勉強をする中でパイプライン処理について少し調べたので備忘録的に書き残しておきます。Zennに書こうとも思いましたがあっちにはもっと有益な記事だけ残していきたいのでしょうもない備忘録はこっちに書きます。</p>
+<h2>パイプライン処理ってなに？</h2>
+<p>パイプライン処理とは、CPUが複数の命令を実行段階をずらしながら同時並行的に実行することでスループットの向上を目指すという処理方式のことです。ここでいう実行段階とは、</p>
+<ol>
+<li>実行プログラムをメモリからレジスタに読み込む<strong>命令フェッチ</strong></li>
+<li>実行プログラムを解析して実行準備を行う<strong>命令デコード</strong></li>
+<li>CPUの演算ユニットで実際に演算を行う<strong>実行</strong></li>
+<li>演算結果をメモリに書き込む<strong>ライトバック</strong></li>
+</ol>
+<p>の4段階に分かれます。もっと細かく分ける場合もありますがとりあえずこの4ステップということにしておきます。<br>
+従来の原始的なCPUの処理であれば、この4段階を順番に実行し、一つの命令が完了したら次の命令に移るという逐次処理を行うのですが、命令が複雑になるにつれそれではスループットが大幅に低下し処理性能が落ちてしまいます。そこで考案されたのがパイプライン処理です。パイプライン処理ではこの4段階を一つずつずらして並列処理を行うことで、従来の処理よりも高速に、複数の命令の実行を可能にしたのです。<br>
+<img src="/media/pipeline.png" alt="pipeline-processing"><br>
+<span style="font-style:italic; font-size: 13px; color:#888888;">Uploaded by Jean-Christophe Le Lann - researchgate.net</span><br></p>
+<h3>スーパー・パイプライン</h3>
+<p>上記のパイプライン処理より高速なスループットを実現するのがスーパー・パイプラインという処理方式です。スーパー・パイプラインでは、上記のパイプライン処理で4分割したステップのそれぞれをさらに2分割することで各ステップの処理をさらに単純化し、通常のパイプライン処理よりももっと高速な並列処理を実現しようという方式です。</p>
+<h3>スーパースカラー</h3>
+<p>スーパー・パイプラインと並んで通常のパイプライン処理を強化するもう一つの方法がスーパースカラーです。スーパースカラーはパイプライン処理を行うCPU等のプロセッサを複数動作させることで、ハードウェアレベルでスペックを上げてスループットを上げるという処理方式です。言うたら人海戦術です。ただスーパースカラーの場合、片方の演算結果をもう片方の演算に利用する場合等必ずしも同時にデコードされた複数の命令を並列に実行できないこともあるため、単純にプロセッサーが2倍になったからといって処理性能が2倍になるわけではありません。<br>
+<img src="https://www.ap-siken.com/kakomon/27_haru/img/09.gif" alt="extra-pipeline"><br>
+<span style="font-style:italic; font-size: 13px; color:#888888;"><a href="http://semirara.sota1235.net/general/%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC%E3%82%B9%E3%82%AB%E3%83%A9">http://semirara.sota1235.net/general/スーパースカラ</a></span><br></p>
+<h2>パイプライン・ハザード</h2>
+<p>このパイプライン処理によってCPUの処理性能は大幅に上がったわけですが、従来のCPUでは起こり得なかった<strong>パイプライン・ハザード</strong>という問題が浮かび上がりました。<br>
+パイプライン・ハザードとは、主に依存関係のある命令同士で発生する、ある命令がライトバックを行わないうちに後続の命令がそのレジスタを読み込みに行ってしまう場合などのエラーです。これが起きると、理想的なパイプライン処理の場合1になるはずのCPI(Cycles Per Instruction)が大きくなる、つまりスループットが大幅に低下することになります。</p>
+<p>このパイプライン・ハザードを防ぐために分岐予測やNop代入などさまざまな方法があるのですが、それについてはまた後ほど書きたいと思います</p>
+<!-- HTML_TAG_END -->
+  <div class="share svelte-hf3o4"><a class="share-twitter svelte-hf3o4" target="blank"><img alt="Twitter share button" src="/twitter.svg" width="25px" height="25px"></a>
+    <a class="share-pocket svelte-hf3o4" target="blank"><img alt="Pocket share button" src="/pocket.svg" width="25px" height="25px"></a>
+    <a class="share-instapaper svelte-hf3o4" target="blank"><img alt="InstaPaper share button" src="/instapaper.svg" width="25px"></a></div></div>
+</div></main>
+
+<footer class="svelte-gbfwkw">@ 2021 Kota Yatagai</footer>
+
+
+
+			<script type="application/json" data-type="svelte-data" data-url="/posts/pipeline.json">{"status":200,"statusText":"","headers":{"content-type":"application/json; charset=utf-8"},"body":"{\"meta\":{\"title\":\"パイプライン処理と高速化\",\"date\":\"2021-01-14\",\"category\":\"Computer Science\",\"description\":\"プロセッサーの役割分担と人海戦術\",\"ogp\":\"\u002Fmedia\u002Fpipeline.png\"},\"body\":\"\u003Cp\u003E最近、基本情報技術者試験の勉強をする中でパイプライン処理について少し調べたので備忘録的に書き残しておきます。Zennに書こうとも思いましたがあっちにはもっと有益な記事だけ残していきたいのでしょうもない備忘録はこっちに書きます。\u003C\u002Fp\u003E\\n\u003Ch2\u003Eパイプライン処理ってなに？\u003C\u002Fh2\u003E\\n\u003Cp\u003Eパイプライン処理とは、CPUが複数の命令を実行段階をずらしながら同時並行的に実行することでスループットの向上を目指すという処理方式のことです。ここでいう実行段階とは、\u003C\u002Fp\u003E\\n\u003Col\u003E\\n\u003Cli\u003E実行プログラムをメモリからレジスタに読み込む\u003Cstrong\u003E命令フェッチ\u003C\u002Fstrong\u003E\u003C\u002Fli\u003E\\n\u003Cli\u003E実行プログラムを解析して実行準備を行う\u003Cstrong\u003E命令デコード\u003C\u002Fstrong\u003E\u003C\u002Fli\u003E\\n\u003Cli\u003ECPUの演算ユニットで実際に演算を行う\u003Cstrong\u003E実行\u003C\u002Fstrong\u003E\u003C\u002Fli\u003E\\n\u003Cli\u003E演算結果をメモリに書き込む\u003Cstrong\u003Eライトバック\u003C\u002Fstrong\u003E\u003C\u002Fli\u003E\\n\u003C\u002Fol\u003E\\n\u003Cp\u003Eの4段階に分かれます。もっと細かく分ける場合もありますがとりあえずこの4ステップということにしておきます。\u003Cbr\u003E\\n従来の原始的なCPUの処理であれば、この4段階を順番に実行し、一つの命令が完了したら次の命令に移るという逐次処理を行うのですが、命令が複雑になるにつれそれではスループットが大幅に低下し処理性能が落ちてしまいます。そこで考案されたのがパイプライン処理です。パイプライン処理ではこの4段階を一つずつずらして並列処理を行うことで、従来の処理よりも高速に、複数の命令の実行を可能にしたのです。\u003Cbr\u003E\\n\u003Cimg src=\\\"\u002Fmedia\u002Fpipeline.png\\\" alt=\\\"pipeline-processing\\\"\u003E\u003Cbr\u003E\\n\u003Cspan style=\\\"font-style:italic; font-size: 13px; color:#888888;\\\"\u003EUploaded by Jean-Christophe Le Lann - researchgate.net\u003C\u002Fspan\u003E\u003Cbr\u003E\u003C\u002Fp\u003E\\n\u003Ch3\u003Eスーパー・パイプライン\u003C\u002Fh3\u003E\\n\u003Cp\u003E上記のパイプライン処理より高速なスループットを実現するのがスーパー・パイプラインという処理方式です。スーパー・パイプラインでは、上記のパイプライン処理で4分割したステップのそれぞれをさらに2分割することで各ステップの処理をさらに単純化し、通常のパイプライン処理よりももっと高速な並列処理を実現しようという方式です。\u003C\u002Fp\u003E\\n\u003Ch3\u003Eスーパースカラー\u003C\u002Fh3\u003E\\n\u003Cp\u003Eスーパー・パイプラインと並んで通常のパイプライン処理を強化するもう一つの方法がスーパースカラーです。スーパースカラーはパイプライン処理を行うCPU等のプロセッサを複数動作させることで、ハードウェアレベルでスペックを上げてスループットを上げるという処理方式です。言うたら人海戦術です。ただスーパースカラーの場合、片方の演算結果をもう片方の演算に利用する場合等必ずしも同時にデコードされた複数の命令を並列に実行できないこともあるため、単純にプロセッサーが2倍になったからといって処理性能が2倍になるわけではありません。\u003Cbr\u003E\\n\u003Cimg src=\\\"https:\u002F\u002Fwww.ap-siken.com\u002Fkakomon\u002F27_haru\u002Fimg\u002F09.gif\\\" alt=\\\"extra-pipeline\\\"\u003E\u003Cbr\u003E\\n\u003Cspan style=\\\"font-style:italic; font-size: 13px; color:#888888;\\\"\u003E\u003Ca href=\\\"http:\u002F\u002Fsemirara.sota1235.net\u002Fgeneral\u002F%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC%E3%82%B9%E3%82%AB%E3%83%A9\\\"\u003Ehttp:\u002F\u002Fsemirara.sota1235.net\u002Fgeneral\u002Fスーパースカラ\u003C\u002Fa\u003E\u003C\u002Fspan\u003E\u003Cbr\u003E\u003C\u002Fp\u003E\\n\u003Ch2\u003Eパイプライン・ハザード\u003C\u002Fh2\u003E\\n\u003Cp\u003Eこのパイプライン処理によってCPUの処理性能は大幅に上がったわけですが、従来のCPUでは起こり得なかった\u003Cstrong\u003Eパイプライン・ハザード\u003C\u002Fstrong\u003Eという問題が浮かび上がりました。\u003Cbr\u003E\\nパイプライン・ハザードとは、主に依存関係のある命令同士で発生する、ある命令がライトバックを行わないうちに後続の命令がそのレジスタを読み込みに行ってしまう場合などのエラーです。これが起きると、理想的なパイプライン処理の場合1になるはずのCPI(Cycles Per Instruction)が大きくなる、つまりスループットが大幅に低下することになります。\u003C\u002Fp\u003E\\n\u003Cp\u003Eこのパイプライン・ハザードを防ぐために分岐予測やNop代入などさまざまな方法があるのですが、それについてはまた後ほど書きたいと思います\u003C\u002Fp\u003E\\n\"}"}</script>
+		</div>
+	</body>
+</html>

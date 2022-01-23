@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KOTA YATAGAI | 八谷航太</title>
+    <title>TCPが繋がって切れるまで</title><meta name="description" content="TCPのハンドシェイクの概略" data-svelte="svelte-189on1m"><meta property="og:url" content="https://kota-yata.com" data-svelte="svelte-189on1m"><meta property="og:title" content="TCPが繋がって切れるまで" data-svelte="svelte-189on1m"><meta property="og:image" content="https://kota-yata.com/media/tcp.webp" data-svelte="svelte-189on1m"><meta property="og:description" content="TCPのハンドシェイクの概略" data-svelte="svelte-189on1m"><meta name="twitter:card" content="summary_large_image" data-svelte="svelte-189on1m"><meta name="twitter:site" content="@kota_yata" data-svelte="svelte-189on1m">
+
+		
+
+		<link rel="modulepreload" href="/_app/start-daaae108.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-495f2134.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-be316660.js">
+		<link rel="modulepreload" href="/_app/chunks/index-6747d163.js">
+		<link rel="modulepreload" href="/_app/pages/posts/_path_.svelte-2d94d26d.js">
+		<link rel="modulepreload" href="/_app/chunks/page-7b278a70.js">
+		<link rel="modulepreload" href="/_app/chunks/className-0b25377b.js">
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-0136ed43.css">
+		<link rel="stylesheet" href="/_app/assets/app-d7359544.css">
+		<link rel="stylesheet" href="/_app/assets/pages/posts/_path_.svelte-77f41461.css">
+		<link rel="stylesheet" href="/_app/assets/page-da0bc829.css">
+
+		<script type="module">
+			import { start } from "/_app/start-daaae108.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/pages/__layout.svelte-be316660.js"),
+						import("/_app/pages/posts/_path_.svelte-2d94d26d.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002Fposts\u002Ftcp",
+						query: new URLSearchParams(""),
+						params: {path:"tcp"}
+					}
+				}
+			});
+		</script>
+    <meta name="keyword" content="kota,yatagai,kota yatagai,八谷航太">
+    <link rel="icon" href="/me.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link defer
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet">
+    <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+      integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/a11y-dark.min.css"
+      integrity="sha384-Mt8bPDNu0L2sVzon3+a8Rqtl4fmqaUmTPBEd/DTHiGFEQEFvf0fYLnU1DgK+ER2h" crossorigin="anonymous">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-gbfwkw"><div class="left svelte-gbfwkw"><a href="/" class="svelte-gbfwkw">KOTA YATAGAI</a></div>
+  <div class="right svelte-gbfwkw"><select name="language"><option value="JP">Japanese</option><option value="EN">English</option></select>
+    <a href="/trip" sveltekit:prefetch class="svelte-gbfwkw"><img alt="to trip page" src="/airplane.svg" width="30px" height="30px"></a></div></header>
+
+<main class="svelte-gbfwkw">
+  
+
+<div class="container svelte-izy1ym"><div class="profile svelte-izy1ym"><div class="container svelte-g32fgp"><img alt="myself" src="/me.webp" width="150px" height="150px" class="svelte-g32fgp">
+  <div class="bio svelte-g32fgp"><h4 class="svelte-g32fgp">八谷航太</h4>
+    <p class="svelte-g32fgp">18yo / ソフトウェア開発者</p></div>
+  <ul class="svelte-g32fgp"><li class="svelte-g32fgp"><a href="/" class="svelte-g32fgp">Home</a></li><li class="svelte-g32fgp"><a href="/about" class="svelte-g32fgp">About</a></li><li class="svelte-g32fgp"><a href="/works" class="svelte-g32fgp">Works</a></li><li class="svelte-g32fgp"><a href="/contacts" class="svelte-g32fgp">Contacts</a></li></ul>
+  <div class="icons svelte-g32fgp"><a href="https://github.com/kota-yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/github.svg" width="20px" height="20px"></a><a href="https://open.spotify.com/user/jgm80x9h1j84hnk4nv3hozlaf" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/spotify.svg" width="20px" height="20px"></a><a href="https://twitter.com/kota_yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/twitter.svg" width="20px" height="20px"></a><a href="https://speakerdeck.com/kota_yata/" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/speakerdeck.svg" width="20px" height="20px"></a></div>
+</div></div>
+  <div class="slot svelte-izy1ym"><div class="info svelte-hf3o4"><h1 class="info-title svelte-hf3o4">TCPが繋がって切れるまで</h1>
+    <span class="info-date svelte-hf3o4">2020-10-22</span>
+    <span class="info-category cs svelte-hf3o4">Computer Science</span></div>
+  <!-- HTML_TAG_START --><p>最近ふと、「あれ？俺TCP通信理解してなくね？」と思ったので軽くTCPの働きをまとめておきます</p>
+<h2>ソケットを作る</h2>
+<p>アプリケーションでSocketライブラリが呼び出されたタイミングでソケット一つ分のメモリ領域を確保し、制御情報の初期値を記録する。この時点でソケットが一つできたことになるので、このソケットのディスクリプタをアプリケーションに返す。今後アプリケーションがプロトコルスタックにデータ送受信動作を依頼する際にディスクリプタを渡すことで、いちいちアプリケーションが情報を渡す手間を省くことができる。アプリケーションはこのディスクリプタと名前解決で得たサーバーのIPアドレス、IPアドレス内での接続先を示すポート番号を引数にconnect()メソッドを呼び出し、接続フェーズに入る。</p>
+<h2>サーバーと接続する</h2>
+<p>宛先情報を引数として受け取ったTCPはTCPヘッダーのSYNビットを1にし、ウィンドウサイズやシーケンス番号を記載してサーバーに送信する。サーバー側のTCPは宛先のソケットに接続したらSYN・ACKビットを1にして、サーバー側のウィンドウサイズと乱数で算出したシーケンス番号を記載したTCPヘッダーをつけてクライアントに送り返す。それを受け取ったクライアントのTCPはソケットに制御情報を追加し、再びACKビットを1にしてサーバーに受信確認を送る。この接続動作ではクライアントとサーバー合わせて3回のやりとりで接続が完了するため「3ウェイ・ハンドシェイク」と呼ばれている。</p>
+<h2>データを送受信する</h2>
+<p>接続が完了したらいよいよデータの送受信に入るが、TCPはMSSに近づくまで送信ようバッファメモリにデータをため、ある程度まで貯まった段階で送信動作に入る。ただ、中々MSSに近づかない場合は送信動作の遅延を招くので、一定時間が経過したら強制的に送信動作が実行される仕様になっているプロトコルスタックがほとんどである。クライアントのTCPはデータを送信する際にシーケンス番号をTCPヘッダーに記載し、サーバーのTCPは受け取ったデータのTCPヘッダーを確認してシーケンス番号＋データのバイト数であるACK番号をクライアントに返す。こうすることでクライアントはサーバーが正常にデータを受け取ったかを確認することができる。</p>
+<p>この時、サーバーからACK番号が帰ってくるのをいちいちクライアントが待っていたら通信速度はえげつなく遅くなってしまう。そのため、実際の通信では、接続フェーズで受信側のウィンドウサイズ、つまり受信バッファの空き容量を相手に伝えて置くことでウィンドウサイズに到達するまではACK番号を待つことなくデータを送信できる仕組みになっている。受信側は受信処理が完了して新たにバッファの空き容量が変化したらTCPヘッダーのウィンドウフィールドでウィンドウサイズを通知する。</p>
+<h2>サーバーから切断する</h2>
+<p>ブラウザの場合はサーバーが最後のレスポンスデータを返してデータ送受信が終了するのでサーバー側から切断動作に入るが、クライアントから切断するアプリケーションも存在する。</p>
+<p>サーバーは最後のレスポンスメッセージを送信したら、TCPヘッダーのFINビットを１にしたデータをクライアントに送信し、ソケットに切断動作に入ったという情報を記載する。FINビットが1のデータを受け取ったクライアントは同様にソケットに切断動作に入ったという情報を記載し、サーバーにACK番号を返す。その後アプリケーションにデータ受信が終了したという情報を伝え、今度はクライアントからFINビットを1にしたデータをサーバーに送信する。それを受け取ったサーバーはACK番号をクライアントに返し、切断が完了する。</p>
+<hr>
+<p>あくまでこの記事はまとめなので実際にデータ送受信の際はもっと他の動作も行われていますが、接続から切断までクライアントとサーバーのTCPさんが行っている仕事を大まかに説明するとこんな感じになります。</p>
+<!-- HTML_TAG_END -->
+  <div class="share svelte-hf3o4"><a class="share-twitter svelte-hf3o4" target="blank"><img alt="Twitter share button" src="/twitter.svg" width="25px" height="25px"></a>
+    <a class="share-pocket svelte-hf3o4" target="blank"><img alt="Pocket share button" src="/pocket.svg" width="25px" height="25px"></a>
+    <a class="share-instapaper svelte-hf3o4" target="blank"><img alt="InstaPaper share button" src="/instapaper.svg" width="25px"></a></div></div>
+</div></main>
+
+<footer class="svelte-gbfwkw">@ 2021 Kota Yatagai</footer>
+
+
+
+			<script type="application/json" data-type="svelte-data" data-url="/posts/tcp.json">{"status":200,"statusText":"","headers":{"content-type":"application/json; charset=utf-8"},"body":"{\"meta\":{\"title\":\"TCPが繋がって切れるまで\",\"date\":\"2020-10-22\",\"category\":\"Computer Science\",\"description\":\"TCPのハンドシェイクの概略\",\"ogp\":\"\u002Fmedia\u002Ftcp.webp\"},\"body\":\"\u003Cp\u003E最近ふと、「あれ？俺TCP通信理解してなくね？」と思ったので軽くTCPの働きをまとめておきます\u003C\u002Fp\u003E\\n\u003Ch2\u003Eソケットを作る\u003C\u002Fh2\u003E\\n\u003Cp\u003EアプリケーションでSocketライブラリが呼び出されたタイミングでソケット一つ分のメモリ領域を確保し、制御情報の初期値を記録する。この時点でソケットが一つできたことになるので、このソケットのディスクリプタをアプリケーションに返す。今後アプリケーションがプロトコルスタックにデータ送受信動作を依頼する際にディスクリプタを渡すことで、いちいちアプリケーションが情報を渡す手間を省くことができる。アプリケーションはこのディスクリプタと名前解決で得たサーバーのIPアドレス、IPアドレス内での接続先を示すポート番号を引数にconnect()メソッドを呼び出し、接続フェーズに入る。\u003C\u002Fp\u003E\\n\u003Ch2\u003Eサーバーと接続する\u003C\u002Fh2\u003E\\n\u003Cp\u003E宛先情報を引数として受け取ったTCPはTCPヘッダーのSYNビットを1にし、ウィンドウサイズやシーケンス番号を記載してサーバーに送信する。サーバー側のTCPは宛先のソケットに接続したらSYN・ACKビットを1にして、サーバー側のウィンドウサイズと乱数で算出したシーケンス番号を記載したTCPヘッダーをつけてクライアントに送り返す。それを受け取ったクライアントのTCPはソケットに制御情報を追加し、再びACKビットを1にしてサーバーに受信確認を送る。この接続動作ではクライアントとサーバー合わせて3回のやりとりで接続が完了するため「3ウェイ・ハンドシェイク」と呼ばれている。\u003C\u002Fp\u003E\\n\u003Ch2\u003Eデータを送受信する\u003C\u002Fh2\u003E\\n\u003Cp\u003E接続が完了したらいよいよデータの送受信に入るが、TCPはMSSに近づくまで送信ようバッファメモリにデータをため、ある程度まで貯まった段階で送信動作に入る。ただ、中々MSSに近づかない場合は送信動作の遅延を招くので、一定時間が経過したら強制的に送信動作が実行される仕様になっているプロトコルスタックがほとんどである。クライアントのTCPはデータを送信する際にシーケンス番号をTCPヘッダーに記載し、サーバーのTCPは受け取ったデータのTCPヘッダーを確認してシーケンス番号＋データのバイト数であるACK番号をクライアントに返す。こうすることでクライアントはサーバーが正常にデータを受け取ったかを確認することができる。\u003C\u002Fp\u003E\\n\u003Cp\u003Eこの時、サーバーからACK番号が帰ってくるのをいちいちクライアントが待っていたら通信速度はえげつなく遅くなってしまう。そのため、実際の通信では、接続フェーズで受信側のウィンドウサイズ、つまり受信バッファの空き容量を相手に伝えて置くことでウィンドウサイズに到達するまではACK番号を待つことなくデータを送信できる仕組みになっている。受信側は受信処理が完了して新たにバッファの空き容量が変化したらTCPヘッダーのウィンドウフィールドでウィンドウサイズを通知する。\u003C\u002Fp\u003E\\n\u003Ch2\u003Eサーバーから切断する\u003C\u002Fh2\u003E\\n\u003Cp\u003Eブラウザの場合はサーバーが最後のレスポンスデータを返してデータ送受信が終了するのでサーバー側から切断動作に入るが、クライアントから切断するアプリケーションも存在する。\u003C\u002Fp\u003E\\n\u003Cp\u003Eサーバーは最後のレスポンスメッセージを送信したら、TCPヘッダーのFINビットを１にしたデータをクライアントに送信し、ソケットに切断動作に入ったという情報を記載する。FINビットが1のデータを受け取ったクライアントは同様にソケットに切断動作に入ったという情報を記載し、サーバーにACK番号を返す。その後アプリケーションにデータ受信が終了したという情報を伝え、今度はクライアントからFINビットを1にしたデータをサーバーに送信する。それを受け取ったサーバーはACK番号をクライアントに返し、切断が完了する。\u003C\u002Fp\u003E\\n\u003Chr\u003E\\n\u003Cp\u003Eあくまでこの記事はまとめなので実際にデータ送受信の際はもっと他の動作も行われていますが、接続から切断までクライアントとサーバーのTCPさんが行っている仕事を大まかに説明するとこんな感じになります。\u003C\u002Fp\u003E\\n\"}"}</script>
+		</div>
+	</body>
+</html>

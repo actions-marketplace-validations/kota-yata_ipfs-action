@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KOTA YATAGAI | 八谷航太</title>
+    <title>久々に順列列挙アルゴリズムを書いた</title><meta name="description" content="Percomのリファクタリングと末尾呼び出し最適化の話" data-svelte="svelte-189on1m"><meta property="og:url" content="https://kota-yata.com" data-svelte="svelte-189on1m"><meta property="og:title" content="久々に順列列挙アルゴリズムを書いた" data-svelte="svelte-189on1m"><meta property="og:image" content="https://kota-yata.com/media/percom.webp" data-svelte="svelte-189on1m"><meta property="og:description" content="Percomのリファクタリングと末尾呼び出し最適化の話" data-svelte="svelte-189on1m"><meta name="twitter:card" content="summary_large_image" data-svelte="svelte-189on1m"><meta name="twitter:site" content="@kota_yata" data-svelte="svelte-189on1m">
+
+		
+
+		<link rel="modulepreload" href="/_app/start-daaae108.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-495f2134.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-be316660.js">
+		<link rel="modulepreload" href="/_app/chunks/index-6747d163.js">
+		<link rel="modulepreload" href="/_app/pages/posts/_path_.svelte-2d94d26d.js">
+		<link rel="modulepreload" href="/_app/chunks/page-7b278a70.js">
+		<link rel="modulepreload" href="/_app/chunks/className-0b25377b.js">
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-0136ed43.css">
+		<link rel="stylesheet" href="/_app/assets/app-d7359544.css">
+		<link rel="stylesheet" href="/_app/assets/pages/posts/_path_.svelte-77f41461.css">
+		<link rel="stylesheet" href="/_app/assets/page-da0bc829.css">
+
+		<script type="module">
+			import { start } from "/_app/start-daaae108.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/pages/__layout.svelte-be316660.js"),
+						import("/_app/pages/posts/_path_.svelte-2d94d26d.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002Fposts\u002Fpermutation",
+						query: new URLSearchParams(""),
+						params: {path:"permutation"}
+					}
+				}
+			});
+		</script>
+    <meta name="keyword" content="kota,yatagai,kota yatagai,八谷航太">
+    <link rel="icon" href="/me.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link defer
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet">
+    <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+      integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/a11y-dark.min.css"
+      integrity="sha384-Mt8bPDNu0L2sVzon3+a8Rqtl4fmqaUmTPBEd/DTHiGFEQEFvf0fYLnU1DgK+ER2h" crossorigin="anonymous">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-gbfwkw"><div class="left svelte-gbfwkw"><a href="/" class="svelte-gbfwkw">KOTA YATAGAI</a></div>
+  <div class="right svelte-gbfwkw"><select name="language"><option value="JP">Japanese</option><option value="EN">English</option></select>
+    <a href="/trip" sveltekit:prefetch class="svelte-gbfwkw"><img alt="to trip page" src="/airplane.svg" width="30px" height="30px"></a></div></header>
+
+<main class="svelte-gbfwkw">
+  
+
+<div class="container svelte-izy1ym"><div class="profile svelte-izy1ym"><div class="container svelte-g32fgp"><img alt="myself" src="/me.webp" width="150px" height="150px" class="svelte-g32fgp">
+  <div class="bio svelte-g32fgp"><h4 class="svelte-g32fgp">八谷航太</h4>
+    <p class="svelte-g32fgp">18yo / ソフトウェア開発者</p></div>
+  <ul class="svelte-g32fgp"><li class="svelte-g32fgp"><a href="/" class="svelte-g32fgp">Home</a></li><li class="svelte-g32fgp"><a href="/about" class="svelte-g32fgp">About</a></li><li class="svelte-g32fgp"><a href="/works" class="svelte-g32fgp">Works</a></li><li class="svelte-g32fgp"><a href="/contacts" class="svelte-g32fgp">Contacts</a></li></ul>
+  <div class="icons svelte-g32fgp"><a href="https://github.com/kota-yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/github.svg" width="20px" height="20px"></a><a href="https://open.spotify.com/user/jgm80x9h1j84hnk4nv3hozlaf" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/spotify.svg" width="20px" height="20px"></a><a href="https://twitter.com/kota_yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/twitter.svg" width="20px" height="20px"></a><a href="https://speakerdeck.com/kota_yata/" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/speakerdeck.svg" width="20px" height="20px"></a></div>
+</div></div>
+  <div class="slot svelte-izy1ym"><div class="info svelte-hf3o4"><h1 class="info-title svelte-hf3o4">久々に順列列挙アルゴリズムを書いた</h1>
+    <span class="info-date svelte-hf3o4">2021-03-30</span>
+    <span class="info-category algorithm svelte-hf3o4">Algorithm</span></div>
+  <!-- HTML_TAG_START --><p>去年の夏頃に趣味で作った<a href="https://github.com/kota-yata/Percom">Percom</a>なる、順列と組み合わせ列挙をやってくれるnpmパッケージを久々にリファクタリングした時の記録です。Node.js使ってて「順列/組み合わせ列挙してぇなぁ」とか思ったことないのでしばらく前にリポジトリ見てUsed by 5になってた時は不思議な気分でした。</p>
+<p><img src="https://user-images.githubusercontent.com/51294895/113145292-3a2a3c80-9269-11eb-9df4-9d5f74f92f57.png" alt="謎のユーザーたち"></p>
+<p>今までのアルゴリズムはほぼQiitaのコピペみたいなもんで、パッケージ作者が書いてないアルゴリズム使うのは流石によくないだろと思ったので書き換えることにしました。なぜ書けもしないパッケージを作ろうとしたのかは謎です。</p>
+<p>前の順列列挙のアルゴリズムがこちら</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">per</span> = (<span class="hljs-params">array, num</span>) =&gt; {
+  <span class="hljs-keyword">const</span> result = [];
+  <span class="hljs-keyword">if</span> (array.<span class="hljs-property">length</span> &lt; num) <span class="hljs-keyword">return</span> [];
+  <span class="hljs-keyword">if</span> (num === <span class="hljs-number">1</span>) {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; array.<span class="hljs-property">length</span>; i++) {
+          result[i] = [array[i]];
+      }
+  } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; array.<span class="hljs-property">length</span>; i++) {
+          <span class="hljs-keyword">const</span> parts = array.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>);
+          parts.<span class="hljs-title function_">splice</span>(i, <span class="hljs-number">1</span>)[<span class="hljs-number">0</span>];
+          <span class="hljs-keyword">const</span> row = <span class="hljs-title function_">per</span>(parts, num - <span class="hljs-number">1</span>);
+          <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> j = <span class="hljs-number">0</span>; j &lt; row.<span class="hljs-property">length</span>; j++) {
+              result.<span class="hljs-title function_">push</span>([array[i]].<span class="hljs-title function_">concat</span>(row[j]));
+          }
+      }
+  }
+  <span class="hljs-keyword">return</span> result;
+};
+</code></pre>
+<p>まあQiitaに書くくらいなので悪くはないと思いますが、ネスト深いしこの関数だけで完結させていて引数のエラーハンドリングとかしてないので普通に書き直しがいはありそう。</p>
+<h2>書いていく</h2>
+<p>もう一つ悲しいお知らせをすると、組み合わせ列挙の方もほぼQiitaのコピペなんですよね。しばくぞ。</p>
+<p>組み合わせの方はまた今度書き直すとして順列の方をどうにか効率的にできないかと考えていたのですが、組み合わせとかと比べるとひたすら列挙していく感じが強いのでよっぽどひどい実装しない限り速度はそこまで変わらないのでは、という気づきを経て、思いついたものをよく考えずに書くことにしました。</p>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">filterArray</span> = (<span class="hljs-params">array, index</span>) =&gt; {
+  <span class="hljs-keyword">const</span> newArray = array.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">_, i</span>) =&gt;</span> i !== index);
+  <span class="hljs-keyword">return</span> newArray;
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">calcPer</span> = (<span class="hljs-params">array, num, current = [], result = []</span>) =&gt; {
+  <span class="hljs-keyword">if</span> (current.<span class="hljs-property">length</span> &gt;= num) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">let</span> tempCurrent = current.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, current.<span class="hljs-property">length</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; array.<span class="hljs-property">length</span>; i++) {
+    tempCurrent.<span class="hljs-title function_">push</span>(array[i]);
+    <span class="hljs-keyword">const</span> slicedArray = <span class="hljs-title function_">filterArray</span>(array, i);
+    <span class="hljs-keyword">const</span> returned = <span class="hljs-title function_">calcPer</span>(slicedArray, num, tempCurrent, result);
+    <span class="hljs-keyword">if</span> (returned === <span class="hljs-literal">null</span>) result.<span class="hljs-title function_">push</span>(tempCurrent);
+    tempCurrent = current.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, current.<span class="hljs-property">length</span>);
+  }
+  <span class="hljs-keyword">return</span> result;
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">per</span> = (<span class="hljs-params">array, num</span>) =&gt; {
+  <span class="hljs-keyword">if</span> (array.<span class="hljs-property">length</span> &lt; num) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;Number of elements of array must be greater than number to choose&#x27;</span>);
+  <span class="hljs-keyword">const</span> result = <span class="hljs-title function_">calcPer</span>(array, num);
+  <span class="hljs-keyword">return</span> result;
+};
+</code></pre>
+<p>速度は置いといて、個人的には割と可読性の高いコードが書けたんじゃないかなと思ってます。実際に再帰的に演算をする関数と、エラーハンドリングだけ先にするメインの関数に分けて、条件分岐を減らしてネストも浅くしたので割と満足しています。詰まった点としては、配列を代入すると参照渡しになるというJavaScriptの仕様を知らずに<code>tempCurrent</code>に引数<code>current</code>を代入して訳分からん返り値をゲットしてたところくらいです。まあただハマったおかげで配列操作のどの関数が破壊的でどの関数が非破壊的なのかの区別もついたしJavaScript力も上がったので全然無駄ではなかった。</p>
+<p>一つ気になっている点として、例外処理の返り値に<code>null</code>を使うのが適切なのかどうかは疑問です。文字列で返すのも気持ち悪いので<code>null</code>にしてますが、<code>returned</code>に値が入らなかった時に<code>undefined</code>が入るだろうという僕の認識が間違っていた場合バグの温床になるので少し怖いです。</p>
+<h2>JSにおけるTail Call Optimization (おまけ)</h2>
+<p>アルゴリズム考える段階でJavaScriptにおける<a href="https://qiita.com/badpingpong/items/6b5035ab80850ae88a0a">末尾呼び出し最適化(Tail Call Optimization)</a>(以下TCO)についてちょっと調べてたところ、SafariでしかTCOが実装されてないことに気づきました。なんでだろと思って色々調べていると、Stack Overflowにこんな記事が。<br>
+<a href="https://stackoverflow.com/questions/54719548/tail-call-optimization-implementation-in-javascript-engines">https://stackoverflow.com/questions/54719548/tail-call-optimization-implementation-in-javascript-engines</a></p>
+<p>どうやら、TC39のミーティングで分裂が起きていて、一時はES6に実装され、ChromeもOrigin TrialsでTCOを実装していたにも関わらずEdgeチームはWindows ABI云々、Mozillaはなんだか分からんがES6策定時の議論を掘り返して反対し、最終的にはChromeもUnshippingしてしまったという経緯があったらしい。他の記事でBabelはトランスパイル時にTCOしてくれると知ってBabel使ったるわいと思っていたのですが、Babelもver.6で無効にされたらしく、現在のJavaScript環境ではTCOはされていないと認識した方が良さそうでした。Babelが無効にした経緯とかTC39で議論が起きた細かい理由とかは調べていませんが、特にTCOを実装することでスループットに逆効果とかそういう問題がないのであれば実装して欲しい感が強いですね。速度には期待していませんが現実的な範囲でスタックオーバーフローが出ることが多いのでもうちょっと耐えてくれよと思うことは多いです。</p>
+<h2>おわりに</h2>
+<p>次に暇な日ができたら組み合わせ列挙の方も書き直したいと思います。あとTypeScript移行とかもやりたい</p>
+<!-- HTML_TAG_END -->
+  <div class="share svelte-hf3o4"><a class="share-twitter svelte-hf3o4" target="blank"><img alt="Twitter share button" src="/twitter.svg" width="25px" height="25px"></a>
+    <a class="share-pocket svelte-hf3o4" target="blank"><img alt="Pocket share button" src="/pocket.svg" width="25px" height="25px"></a>
+    <a class="share-instapaper svelte-hf3o4" target="blank"><img alt="InstaPaper share button" src="/instapaper.svg" width="25px"></a></div></div>
+</div></main>
+
+<footer class="svelte-gbfwkw">@ 2021 Kota Yatagai</footer>
+
+
+
+			<script type="application/json" data-type="svelte-data" data-url="/posts/permutation.json">{"status":200,"statusText":"","headers":{"content-type":"application/json; charset=utf-8"},"body":"{\"meta\":{\"title\":\"久々に順列列挙アルゴリズムを書いた\",\"date\":\"2021-03-30\",\"category\":\"Algorithm\",\"description\":\"Percomのリファクタリングと末尾呼び出し最適化の話\",\"ogp\":\"\u002Fmedia\u002Fpercom.webp\"},\"body\":\"\u003Cp\u003E去年の夏頃に趣味で作った\u003Ca href=\\\"https:\u002F\u002Fgithub.com\u002Fkota-yata\u002FPercom\\\"\u003EPercom\u003C\u002Fa\u003Eなる、順列と組み合わせ列挙をやってくれるnpmパッケージを久々にリファクタリングした時の記録です。Node.js使ってて「順列\u002F組み合わせ列挙してぇなぁ」とか思ったことないのでしばらく前にリポジトリ見てUsed by 5になってた時は不思議な気分でした。\u003C\u002Fp\u003E\\n\u003Cp\u003E\u003Cimg src=\\\"https:\u002F\u002Fuser-images.githubusercontent.com\u002F51294895\u002F113145292-3a2a3c80-9269-11eb-9df4-9d5f74f92f57.png\\\" alt=\\\"謎のユーザーたち\\\"\u003E\u003C\u002Fp\u003E\\n\u003Cp\u003E今までのアルゴリズムはほぼQiitaのコピペみたいなもんで、パッケージ作者が書いてないアルゴリズム使うのは流石によくないだろと思ったので書き換えることにしました。なぜ書けもしないパッケージを作ろうとしたのかは謎です。\u003C\u002Fp\u003E\\n\u003Cp\u003E前の順列列挙のアルゴリズムがこちら\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-js\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title function_\\\"\u003Eper\u003C\u002Fspan\u003E = (\u003Cspan class=\\\"hljs-params\\\"\u003Earray, num\u003C\u002Fspan\u003E) =&gt; {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E result = [];\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (array.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E &lt; num) \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E [];\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (num === \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E) {\\n      \u003Cspan class=\\\"hljs-keyword\\\"\u003Efor\u003C\u002Fspan\u003E (\u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E i = \u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E; i &lt; array.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E; i++) {\\n          result[i] = [array[i]];\\n      }\\n  } \u003Cspan class=\\\"hljs-keyword\\\"\u003Eelse\u003C\u002Fspan\u003E {\\n      \u003Cspan class=\\\"hljs-keyword\\\"\u003Efor\u003C\u002Fspan\u003E (\u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E i = \u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E; i &lt; array.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E; i++) {\\n          \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E parts = array.\u003Cspan class=\\\"hljs-title function_\\\"\u003Eslice\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E);\\n          parts.\u003Cspan class=\\\"hljs-title function_\\\"\u003Esplice\u003C\u002Fspan\u003E(i, \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E)[\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E];\\n          \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E row = \u003Cspan class=\\\"hljs-title function_\\\"\u003Eper\u003C\u002Fspan\u003E(parts, num - \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E);\\n          \u003Cspan class=\\\"hljs-keyword\\\"\u003Efor\u003C\u002Fspan\u003E (\u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E j = \u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E; j &lt; row.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E; j++) {\\n              result.\u003Cspan class=\\\"hljs-title function_\\\"\u003Epush\u003C\u002Fspan\u003E([array[i]].\u003Cspan class=\\\"hljs-title function_\\\"\u003Econcat\u003C\u002Fspan\u003E(row[j]));\\n          }\\n      }\\n  }\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E result;\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003EまあQiitaに書くくらいなので悪くはないと思いますが、ネスト深いしこの関数だけで完結させていて引数のエラーハンドリングとかしてないので普通に書き直しがいはありそう。\u003C\u002Fp\u003E\\n\u003Ch2\u003E書いていく\u003C\u002Fh2\u003E\\n\u003Cp\u003Eもう一つ悲しいお知らせをすると、組み合わせ列挙の方もほぼQiitaのコピペなんですよね。しばくぞ。\u003C\u002Fp\u003E\\n\u003Cp\u003E組み合わせの方はまた今度書き直すとして順列の方をどうにか効率的にできないかと考えていたのですが、組み合わせとかと比べるとひたすら列挙していく感じが強いのでよっぽどひどい実装しない限り速度はそこまで変わらないのでは、という気づきを経て、思いついたものをよく考えずに書くことにしました。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-js\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title function_\\\"\u003EfilterArray\u003C\u002Fspan\u003E = (\u003Cspan class=\\\"hljs-params\\\"\u003Earray, index\u003C\u002Fspan\u003E) =&gt; {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E newArray = array.\u003Cspan class=\\\"hljs-title function_\\\"\u003Efilter\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-function\\\"\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003E_, i\u003C\u002Fspan\u003E) =&gt;\u003C\u002Fspan\u003E i !== index);\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E newArray;\\n};\\n\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title function_\\\"\u003EcalcPer\u003C\u002Fspan\u003E = (\u003Cspan class=\\\"hljs-params\\\"\u003Earray, num, current = [], result = []\u003C\u002Fspan\u003E) =&gt; {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (current.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E &gt;= num) \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-literal\\\"\u003Enull\u003C\u002Fspan\u003E;\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E tempCurrent = current.\u003Cspan class=\\\"hljs-title function_\\\"\u003Eslice\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E, current.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E);\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Efor\u003C\u002Fspan\u003E (\u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E i = \u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E; i &lt; array.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E; i++) {\\n    tempCurrent.\u003Cspan class=\\\"hljs-title function_\\\"\u003Epush\u003C\u002Fspan\u003E(array[i]);\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E slicedArray = \u003Cspan class=\\\"hljs-title function_\\\"\u003EfilterArray\u003C\u002Fspan\u003E(array, i);\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E returned = \u003Cspan class=\\\"hljs-title function_\\\"\u003EcalcPer\u003C\u002Fspan\u003E(slicedArray, num, tempCurrent, result);\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (returned === \u003Cspan class=\\\"hljs-literal\\\"\u003Enull\u003C\u002Fspan\u003E) result.\u003Cspan class=\\\"hljs-title function_\\\"\u003Epush\u003C\u002Fspan\u003E(tempCurrent);\\n    tempCurrent = current.\u003Cspan class=\\\"hljs-title function_\\\"\u003Eslice\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E, current.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E);\\n  }\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E result;\\n};\\n\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title function_\\\"\u003Eper\u003C\u002Fspan\u003E = (\u003Cspan class=\\\"hljs-params\\\"\u003Earray, num\u003C\u002Fspan\u003E) =&gt; {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (array.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E &lt; num) \u003Cspan class=\\\"hljs-keyword\\\"\u003Ethrow\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Enew\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title class_\\\"\u003EError\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;Number of elements of array must be greater than number to choose&#x27;\u003C\u002Fspan\u003E);\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E result = \u003Cspan class=\\\"hljs-title function_\\\"\u003EcalcPer\u003C\u002Fspan\u003E(array, num);\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E result;\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E速度は置いといて、個人的には割と可読性の高いコードが書けたんじゃないかなと思ってます。実際に再帰的に演算をする関数と、エラーハンドリングだけ先にするメインの関数に分けて、条件分岐を減らしてネストも浅くしたので割と満足しています。詰まった点としては、配列を代入すると参照渡しになるというJavaScriptの仕様を知らずに\u003Ccode\u003EtempCurrent\u003C\u002Fcode\u003Eに引数\u003Ccode\u003Ecurrent\u003C\u002Fcode\u003Eを代入して訳分からん返り値をゲットしてたところくらいです。まあただハマったおかげで配列操作のどの関数が破壊的でどの関数が非破壊的なのかの区別もついたしJavaScript力も上がったので全然無駄ではなかった。\u003C\u002Fp\u003E\\n\u003Cp\u003E一つ気になっている点として、例外処理の返り値に\u003Ccode\u003Enull\u003C\u002Fcode\u003Eを使うのが適切なのかどうかは疑問です。文字列で返すのも気持ち悪いので\u003Ccode\u003Enull\u003C\u002Fcode\u003Eにしてますが、\u003Ccode\u003Ereturned\u003C\u002Fcode\u003Eに値が入らなかった時に\u003Ccode\u003Eundefined\u003C\u002Fcode\u003Eが入るだろうという僕の認識が間違っていた場合バグの温床になるので少し怖いです。\u003C\u002Fp\u003E\\n\u003Ch2\u003EJSにおけるTail Call Optimization (おまけ)\u003C\u002Fh2\u003E\\n\u003Cp\u003Eアルゴリズム考える段階でJavaScriptにおける\u003Ca href=\\\"https:\u002F\u002Fqiita.com\u002Fbadpingpong\u002Fitems\u002F6b5035ab80850ae88a0a\\\"\u003E末尾呼び出し最適化(Tail Call Optimization)\u003C\u002Fa\u003E(以下TCO)についてちょっと調べてたところ、SafariでしかTCOが実装されてないことに気づきました。なんでだろと思って色々調べていると、Stack Overflowにこんな記事が。\u003Cbr\u003E\\n\u003Ca href=\\\"https:\u002F\u002Fstackoverflow.com\u002Fquestions\u002F54719548\u002Ftail-call-optimization-implementation-in-javascript-engines\\\"\u003Ehttps:\u002F\u002Fstackoverflow.com\u002Fquestions\u002F54719548\u002Ftail-call-optimization-implementation-in-javascript-engines\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\u003Cp\u003Eどうやら、TC39のミーティングで分裂が起きていて、一時はES6に実装され、ChromeもOrigin TrialsでTCOを実装していたにも関わらずEdgeチームはWindows ABI云々、Mozillaはなんだか分からんがES6策定時の議論を掘り返して反対し、最終的にはChromeもUnshippingしてしまったという経緯があったらしい。他の記事でBabelはトランスパイル時にTCOしてくれると知ってBabel使ったるわいと思っていたのですが、Babelもver.6で無効にされたらしく、現在のJavaScript環境ではTCOはされていないと認識した方が良さそうでした。Babelが無効にした経緯とかTC39で議論が起きた細かい理由とかは調べていませんが、特にTCOを実装することでスループットに逆効果とかそういう問題がないのであれば実装して欲しい感が強いですね。速度には期待していませんが現実的な範囲でスタックオーバーフローが出ることが多いのでもうちょっと耐えてくれよと思うことは多いです。\u003C\u002Fp\u003E\\n\u003Ch2\u003Eおわりに\u003C\u002Fh2\u003E\\n\u003Cp\u003E次に暇な日ができたら組み合わせ列挙の方も書き直したいと思います。あとTypeScript移行とかもやりたい\u003C\u002Fp\u003E\\n\"}"}</script>
+		</div>
+	</body>
+</html>

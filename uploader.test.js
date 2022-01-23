@@ -3,13 +3,13 @@ const uploader = require("./uploader");
 jest.setTimeout(240000);
 
 const options = {
-  path: "",
+  path: "./build",
   service: "ipfs",
   host: "ipfs.infura.io",
   port: 5001,
   protocol: "https",
   timeout: 1000,
-  verbose: false,
+  verbose: true,
 };
 
 describe("ipfs", () => {

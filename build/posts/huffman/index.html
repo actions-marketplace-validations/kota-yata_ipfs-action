@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KOTA YATAGAI | 八谷航太</title>
+    <title>TypeScriptでハフマン符号を作る</title><meta name="description" content="バイナリーを文字列で扱うJavaScriptな実装" data-svelte="svelte-189on1m"><meta property="og:url" content="https://kota-yata.com" data-svelte="svelte-189on1m"><meta property="og:title" content="TypeScriptでハフマン符号を作る" data-svelte="svelte-189on1m"><meta property="og:image" content="https://kota-yata.com/media/huffman.webp" data-svelte="svelte-189on1m"><meta property="og:description" content="バイナリーを文字列で扱うJavaScriptな実装" data-svelte="svelte-189on1m"><meta name="twitter:card" content="summary_large_image" data-svelte="svelte-189on1m"><meta name="twitter:site" content="@kota_yata" data-svelte="svelte-189on1m">
+
+		
+
+		<link rel="modulepreload" href="/_app/start-daaae108.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-495f2134.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-be316660.js">
+		<link rel="modulepreload" href="/_app/chunks/index-6747d163.js">
+		<link rel="modulepreload" href="/_app/pages/posts/_path_.svelte-2d94d26d.js">
+		<link rel="modulepreload" href="/_app/chunks/page-7b278a70.js">
+		<link rel="modulepreload" href="/_app/chunks/className-0b25377b.js">
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-0136ed43.css">
+		<link rel="stylesheet" href="/_app/assets/app-d7359544.css">
+		<link rel="stylesheet" href="/_app/assets/pages/posts/_path_.svelte-77f41461.css">
+		<link rel="stylesheet" href="/_app/assets/page-da0bc829.css">
+
+		<script type="module">
+			import { start } from "/_app/start-daaae108.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/pages/__layout.svelte-be316660.js"),
+						import("/_app/pages/posts/_path_.svelte-2d94d26d.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002Fposts\u002Fhuffman",
+						query: new URLSearchParams(""),
+						params: {path:"huffman"}
+					}
+				}
+			});
+		</script>
+    <meta name="keyword" content="kota,yatagai,kota yatagai,八谷航太">
+    <link rel="icon" href="/me.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link defer
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet">
+    <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+      integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/a11y-dark.min.css"
+      integrity="sha384-Mt8bPDNu0L2sVzon3+a8Rqtl4fmqaUmTPBEd/DTHiGFEQEFvf0fYLnU1DgK+ER2h" crossorigin="anonymous">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-gbfwkw"><div class="left svelte-gbfwkw"><a href="/" class="svelte-gbfwkw">KOTA YATAGAI</a></div>
+  <div class="right svelte-gbfwkw"><select name="language"><option value="JP">Japanese</option><option value="EN">English</option></select>
+    <a href="/trip" sveltekit:prefetch class="svelte-gbfwkw"><img alt="to trip page" src="/airplane.svg" width="30px" height="30px"></a></div></header>
+
+<main class="svelte-gbfwkw">
+  
+
+<div class="container svelte-izy1ym"><div class="profile svelte-izy1ym"><div class="container svelte-g32fgp"><img alt="myself" src="/me.webp" width="150px" height="150px" class="svelte-g32fgp">
+  <div class="bio svelte-g32fgp"><h4 class="svelte-g32fgp">八谷航太</h4>
+    <p class="svelte-g32fgp">18yo / ソフトウェア開発者</p></div>
+  <ul class="svelte-g32fgp"><li class="svelte-g32fgp"><a href="/" class="svelte-g32fgp">Home</a></li><li class="svelte-g32fgp"><a href="/about" class="svelte-g32fgp">About</a></li><li class="svelte-g32fgp"><a href="/works" class="svelte-g32fgp">Works</a></li><li class="svelte-g32fgp"><a href="/contacts" class="svelte-g32fgp">Contacts</a></li></ul>
+  <div class="icons svelte-g32fgp"><a href="https://github.com/kota-yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/github.svg" width="20px" height="20px"></a><a href="https://open.spotify.com/user/jgm80x9h1j84hnk4nv3hozlaf" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/spotify.svg" width="20px" height="20px"></a><a href="https://twitter.com/kota_yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/twitter.svg" width="20px" height="20px"></a><a href="https://speakerdeck.com/kota_yata/" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/speakerdeck.svg" width="20px" height="20px"></a></div>
+</div></div>
+  <div class="slot svelte-izy1ym"><div class="info svelte-hf3o4"><h1 class="info-title svelte-hf3o4">TypeScriptでハフマン符号を作る</h1>
+    <span class="info-date svelte-hf3o4">2021-03-23</span>
+    <span class="info-category algorithm svelte-hf3o4">Algorithm</span></div>
+  <!-- HTML_TAG_START --><p>最近圧縮アルゴリズムに興味が出てきたんですが、いきなり重いのやると挫折するので比較的理解しやすいとどっかのブログに書いてあったハフマン符号をTypeScriptで作ります。ちゃんとデコードもします。</p>
+<p>完成品はこちら<br>
+<a href="https://github.com/kota-yata/deno-huffman">https://github.com/kota-yata/deno-huffman</a></p>
+<p>型に関しては、全てnumber型とstring型だけでどうにかします。なのでビット列は全てstring型として扱います。</p>
+<h1>ハフマン符号って何ですか</h1>
+<p>「なめてんのかお前」って思った人は次の章に進んで大丈夫です。</p>
+<p>ハフマン符号は戦後間もない1952年にデイビッドさんが発明した圧縮アルゴリズムです。文字の出現頻度を調べて、頻出する文字には少ないビット列を、あまり出てこない文字には長いビット列を割り当ててデータ量の削減を実現しています。ZipとかJPEGの圧縮にも使われていることでも有名ですね。</p>
+<p>ハフマン符号の長所として、<strong>接頭符号</strong>であることが挙げられます。接頭符号というのは、ある符号が他の符号の最初の部分と重複しないという性質です。例えば、</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>文字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>A</td>
+</tr>
+<tr>
+<td>1</td>
+<td>B</td>
+</tr>
+<tr>
+<td>01</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+<p>という符号があった場合、Aの符号０がCの符号の最初と同じになっているので接頭符号とは言えません。これで何が困るのかというと、エンコードされたビット列の中に「01」があった場合、デコードされた文字は「AB」と「C」のどちらもあり得るのです。デコードされる文字列がエンコード前と違ったらそれはもう可逆圧縮とは言えませんね。</p>
+<p>もう一つ、ハフマン符号が広く使われる理由として、著作権の問題がないことも挙げられます。先述の通り、ハフマン符号はかなり歴史の長いアルゴリズムなのでより効率の良いアルゴリズムもいくつかすでに発明されています。ただそのほとんどは著作権が絡んで自由に使えなかったりするので、いまだに圧縮性能としては中程度のハフマン符号が使われているわけです。</p>
+<h1>大まかな流れ</h1>
+<h3>エンコード</h3>
+<ol>
+<li>ハフマン符号は文字の出現頻度を元に木を作るので、まずは平文を探索して文字の出現頻度を調べます</li>
+<li>各文字の出現頻度がわかったらそれを元にハフマン木を作ります</li>
+<li>ハフマン木が無事に作れたらそこから各文字に対応するビット列を算出してテーブルを作ります</li>
+<li>それが終わったらもう一度平文を探索して各文字をビット列に変換していきます</li>
+<li>最後にデコード用にハフマン木そのものをエンコードしてヘッダーとしてエンコード結果と繋げ、ハフマン符号化完了になります</li>
+</ol>
+<p>以上のように、エンコードの際に合計で2回平文を走査します。しかしこれではデータ量が莫大になったときに圧縮時間が長くなってしまうので、出現頻度を調べながらビット列への変換を行い、走査を1回で済ませる<strong>動的ハフマン符号</strong>というものも存在します。動的ハフマン符号は処理時間は短いですがハフマン木の精度は落ちることがあります。<br>
+今回は動的ハフマン符号ではなく、普通に2回走査する<strong>静的ハフマン符号</strong>を実装します。</p>
+<h3>デコード</h3>
+<ol>
+<li>まずはヘッダーを読んでテーブルを再生成します</li>
+<li>テーブルができたら残りのビット列を文字列に変換してデコード終了です</li>
+</ol>
+<p>デコードに関してはテーブルさえ手に入れば何も苦労はないので比較的簡単に処理が終わります。</p>
+<h1>前提条件</h1>
+<p>よく使う型はこんな感じで定義しています。独自の型が出てきて何だこれってなったらここに戻って確認してください</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> treeArray = [<span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>, <span class="hljs-built_in">number</span>, [treeArray, treeArray]?];
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> rebuiltTreeArray = [
+  <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>,
+  [rebuiltTreeArray, rebuiltTreeArray]?,
+];
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> occurrenceArray = treeArray[];
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> bitsTable = [<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>][];
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> dividedObj {
+  <span class="hljs-attr">spliced</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">remaining</span>: <span class="hljs-built_in">string</span>;
+}
+</code></pre>
+<p>処理の中で、何回も使うものは別ファイルに関数として定義しています。</p>
+<pre><code class="language-typescript"><span class="hljs-comment">// 文字をビット列に変換する</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> convertSymbolToBits = (<span class="hljs-attr">symbol</span>: <span class="hljs-built_in">string</span>): <span class="hljs-function"><span class="hljs-params">string</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">bits</span>: <span class="hljs-built_in">string</span> = symbol.<span class="hljs-title function_">charCodeAt</span>(<span class="hljs-number">0</span>).<span class="hljs-title function_">toString</span>(<span class="hljs-number">2</span>);
+  <span class="hljs-keyword">return</span> bits;
+};
+
+<span class="hljs-comment">// ビット列を文字に変換する</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> convertBitsToSymbol = (<span class="hljs-attr">bits</span>: <span class="hljs-built_in">string</span>): <span class="hljs-function"><span class="hljs-params">string</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">symbol</span>: <span class="hljs-built_in">string</span> = <span class="hljs-title class_">String</span>.<span class="hljs-title function_">fromCharCode</span>(<span class="hljs-built_in">parseInt</span>(bits, <span class="hljs-number">2</span>));
+  <span class="hljs-keyword">return</span> symbol;
+};
+
+<span class="hljs-comment">// 第一引数の長さになるように第二引数の前に0を追加する</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> padding = (<span class="hljs-attr">len</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">string</span>: <span class="hljs-built_in">string</span>): <span class="hljs-function"><span class="hljs-params">string</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">pre</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;0&quot;</span>.<span class="hljs-title function_">repeat</span>(len);
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">result</span>: <span class="hljs-built_in">string</span> = (pre + <span class="hljs-built_in">string</span>).<span class="hljs-title function_">slice</span>(-len);
+  <span class="hljs-keyword">return</span> result;
+};
+</code></pre>
+<h1>エンコード</h1>
+<p>お待たせしました。<br>
+今回は参考にした<a href="https://engineering.purdue.edu/ece264/17au/hw/HW13?alt=huffman">このサイト</a>で使われていた「go go gophers」という文字列を例にとってエンコードとデコードをしたいと思います。</p>
+<h3>平文から各文字の出現頻度を調べる</h3>
+<p>まずは一度平文を走査して各文字の出現頻度を調べます。</p>
+<pre><code class="language-typescript:">const getOccurence = (plane: string): occurrenceArray =&gt; {
+  let string: string = plane;
+  const occurrenceArray: occurrenceArray = new Array(0) as occurrenceArray;
+  while (string.length &gt; 0) {
+    const regexString: string = string[0].replace(/[-\/\\^$*+?.()|\[\]{}]/g, &quot;\\$&amp;&quot;);
+    const regExp = new RegExp(regexString, &quot;g&quot;);
+    const occurrence: number = (string.match(regExp) || []).length;
+    const relation: treeArray = [string[0], occurrence];
+    occurrenceArray.push(relation);
+    string = string.replace(regExp, &quot;&quot;);
+  }
+  return occurrenceArray;
+};
+</code></pre>
+<p>ここでやっていることとしては、whileループの中で、文字列の最初を切り出し、その文字が文字列の中にどれくらい含まれているかを<code>string.match(regExp).length</code>で調べています。文字と出現回数を配列に格納したのち、文字列からその文字全てを削除し、次のループに入っています。<br>
+この関数で得られる配列は以下のような感じです。</p>
+<pre><code class="language-typescript">occurrenceArray = [
+  [ <span class="hljs-string">&quot;g&quot;</span>, <span class="hljs-number">3</span> ],
+  [ <span class="hljs-string">&quot;o&quot;</span>, <span class="hljs-number">3</span> ],
+  [ <span class="hljs-string">&quot; &quot;</span>, <span class="hljs-number">2</span> ],
+  [ <span class="hljs-string">&quot;p&quot;</span>, <span class="hljs-number">1</span> ],
+  [ <span class="hljs-string">&quot;h&quot;</span>, <span class="hljs-number">1</span> ],
+  [ <span class="hljs-string">&quot;e&quot;</span>, <span class="hljs-number">1</span> ],
+  [ <span class="hljs-string">&quot;r&quot;</span>, <span class="hljs-number">1</span> ],
+  [ <span class="hljs-string">&quot;s&quot;</span>, <span class="hljs-number">1</span> ]
+]
+</code></pre>
+<h3>出現頻度の情報からハフマン木を作る</h3>
+<p>木の作り方は、まず出現頻度の低い2つの文字を葉として短い木を作ります。そして2つの文字の出現回数を足した回数と他の文字の出現回数を比べ、再び低い方から2つを使って木を作ります。最終的に僕のコードで生成された木は以下のような感じです。僕のコードで、というのはアルゴリズムによってはちょっと違う構造になることがあるからです。最終的な圧縮率は変わらないのでそんなに気にするとこではないです。<br>
+<img src="https://storage.googleapis.com/zenn-user-upload/vb3645r6qz3hvb62lxttip0v5pi4" alt=""></p>
+<p>コードで木を表現する方法としては、連想配列やNodeListなどでも可能ですが、今回は多次元配列を用いて木構造を表現しようと思います。</p>
+<pre><code>[文字 or null, 出現回数, [[左の子],[右の子]]]
+</code></pre>
+<p>1要素目に文字が来る場合は葉なので、3要素目はありません。以下の<code>generateTree.ts</code>で木を生成します。</p>
+<pre><code class="language-typescript:">const generateTree = (occurrenceArray: occurrenceArray): occurrenceArray =&gt; {
+  if (occurrenceArray.length &lt;= 1) return occurrenceArray;
+  sortQuickly(occurrenceArray);
+  const parsedArray: treeArray = [
+    null,
+    occurrenceArray[0][1] + occurrenceArray[1][1],
+    [occurrenceArray[0], occurrenceArray[1]],
+  ];
+  occurrenceArray.splice(0, 2);
+  occurrenceArray.unshift(parsedArray);
+  return generateTree(occurrenceArray);
+};
+</code></pre>
+<p>先ほど作成した出現回数の配列を書き換える形で木を作ります。<br>
+まず配列を出現頻度でソートします。</p>
+<pre><code class="language-typescript"><span class="hljs-title function_">sortQuickly</span>(occurrenceArray);
+</code></pre>
+<p>ここは</p>
+<pre><code class="language-typescript">occurrenceArray.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> a[<span class="hljs-number">1</span>].<span class="hljs-property">length</span> - b[<span class="hljs-number">1</span>].<span class="hljs-property">length</span>;
+});
+</code></pre>
+<p>でも構わないのですが、せっかくなのでクイックソートで書きました。趣味です。</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">const</span> partitioning = ( <span class="hljs-attr">mda</span>: occurrenceArray, <span class="hljs-attr">start</span>: <span class="hljs-built_in">number</span>, <span class="hljs-attr">end</span>: <span class="hljs-built_in">number</span> ): <span class="hljs-function"><span class="hljs-params">number</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">pivot</span>: <span class="hljs-built_in">number</span> = mda[end][<span class="hljs-number">1</span>];
+  <span class="hljs-keyword">let</span> <span class="hljs-attr">pivotIndex</span>: <span class="hljs-built_in">number</span> = start;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> <span class="hljs-attr">i</span>: <span class="hljs-built_in">number</span> = start; i &lt; end; i++) {
+    <span class="hljs-keyword">if</span> (mda[i][<span class="hljs-number">1</span>] &gt; pivot) <span class="hljs-keyword">continue</span>;
+    [mda[i], mda[pivotIndex]] = [mda[pivotIndex], mda[i]];
+    pivotIndex++;
+  }
+  [mda[pivotIndex], mda[end]] = [mda[end], mda[pivotIndex]];
+  <span class="hljs-keyword">return</span> pivotIndex;
+};
+
+<span class="hljs-keyword">const</span> sortQuickly = ( <span class="hljs-attr">mda</span>: occurrenceArray, <span class="hljs-attr">start</span>: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>, <span class="hljs-attr">end</span>: <span class="hljs-built_in">number</span> = mda.<span class="hljs-property">length</span> - <span class="hljs-number">1</span> ): <span class="hljs-function"><span class="hljs-params">void</span> =&gt;</span> {
+  <span class="hljs-keyword">if</span> (start &gt;= end) <span class="hljs-keyword">return</span>;
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">pivotIndex</span>: <span class="hljs-built_in">number</span> = <span class="hljs-title function_">partitioning</span>(mda, start, end);
+  <span class="hljs-title function_">sortQuickly</span>(mda, start, pivotIndex - <span class="hljs-number">1</span>);
+  <span class="hljs-title function_">sortQuickly</span>(mda, pivotIndex + <span class="hljs-number">1</span>, end);
+};
+</code></pre>
+<p>最初の行で1要素目が文字だった場合の条件分岐はできているのでソートされた配列の1,2要素目（=頻度の少ない方から1,2番目）をマージして新しい木構造を作ります。</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">const</span> <span class="hljs-attr">parsedArray</span>: treeArray = [
+  <span class="hljs-literal">null</span>,
+  occurrenceArray[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] + occurrenceArray[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>], <span class="hljs-comment">// 2つの出現回数を足す</span>
+  [occurrenceArray[<span class="hljs-number">0</span>], occurrenceArray[<span class="hljs-number">1</span>]], <span class="hljs-comment">// 子要素として追加する</span>
+];
+<span class="hljs-comment">// 最初の2要素を削除して代わりに生成した木を挿入する</span>
+occurrenceArray.<span class="hljs-title function_">splice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>);
+occurrenceArray.<span class="hljs-title function_">unshift</span>(parsedArray);
+<span class="hljs-keyword">return</span> <span class="hljs-title function_">generateTree</span>(occurrenceArray); <span class="hljs-comment">// 配列が最終的に全て木構造になるまで再帰する</span>
+</code></pre>
+<h3>ハフマン木から文字とビット列の変換表を作る</h3>
+<pre><code class="language-typescript:generateBitsTable.ts">const generateBitsTableFromTreeArray = ( tree: treeArray, bitsTable: bitsTable = new Array(0) as bitsTable, bit: string = &quot;&quot; ): bitsTable =&gt; {
+  if (tree[0] !== null) {
+    bitsTable.push([tree[0], bit]);
+    return bitsTable;
+  }
+  // tree[0]がnullなのに3要素目がないということはつまり節なのに子がいないということなのでエラー
+  if (!tree[2]) {
+    throw new Error(&quot;You assigned wrong tree as argument&quot;);
+  }
+  // まずは左の子要素を探索しに行く
+  const nextBitsTable: bitsTable = generateBitsTableFromTreeArray(
+    tree[2][0],
+    bitsTable,
+    bit + &quot;0&quot;,
+  );
+  // 左の子を全て探索したらそのbitsTableを受け取って右の子の探索に向かう
+  return generateBitsTableFromTreeArray(tree[2][1], nextBitsTable, bit + &quot;1&quot;);
+};
+</code></pre>
+<p>木は完成しているのであとは文字と符号の変換表を作るだけです。具体的には木の左の枝を0、右を1として木の根から再帰的に辿っていき、1要素目が文字列=葉に行き着いたらそれまで辿った枝のビットを繋げたものを符号としてテーブルに格納します。</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">if</span> (tree[<span class="hljs-number">0</span>] !== <span class="hljs-literal">null</span>) {
+  bitsTable.<span class="hljs-title function_">push</span>([tree[<span class="hljs-number">0</span>], bit]);
+  <span class="hljs-keyword">return</span> bitsTable;
+}
+</code></pre>
+<p>tree[0]がnullでないということは子要素がない、つまり葉なので、文字と<code>bit</code>に格納してあるこれまで辿ってきた枝のビット列を配列として変換表<code>bitsTable</code>にpushして上の節に戻ります。</p>
+<pre><code class="language-typescript"><span class="hljs-comment">// tree[0]がnullなのに3要素目がないということはつまり節なのに子がいないということなのでエラー</span>
+<span class="hljs-keyword">if</span> (!tree[<span class="hljs-number">2</span>]) {
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;You assigned wrong tree as argument&quot;</span>);
+}
+<span class="hljs-comment">// まずは左の子要素を探索しに行く</span>
+<span class="hljs-keyword">const</span> <span class="hljs-attr">nextBitsTable</span>: bitsTable = <span class="hljs-title function_">generateBitsTableFromTreeArray</span>(
+  tree[<span class="hljs-number">2</span>][<span class="hljs-number">0</span>],
+  bitsTable,
+  bit + <span class="hljs-string">&quot;0&quot;</span>,
+);
+<span class="hljs-comment">// 左の子を全て探索したらそのbitsTableを受け取って右の子の探索に向かう</span>
+<span class="hljs-keyword">return</span> <span class="hljs-title function_">generateBitsTableFromTreeArray</span>(tree[<span class="hljs-number">2</span>][<span class="hljs-number">1</span>], nextBitsTable, bit + <span class="hljs-string">&quot;1&quot;</span>);
+</code></pre>
+<p>コメントで大体説明していますが、左の子を奥深くまで探索したあとに変換表を引き継いで右の子の探索に移ります。これを再帰的に行うことでハフマン木から変換表の生成が可能になります。<br>
+変換表の完成形はこんな感じ。</p>
+<pre><code class="language-typescript">bitsTable = [
+  [ <span class="hljs-string">&quot;s&quot;</span>, <span class="hljs-string">&quot;000&quot;</span> ],
+  [ <span class="hljs-string">&quot;e&quot;</span>, <span class="hljs-string">&quot;0010&quot;</span> ],
+  [ <span class="hljs-string">&quot;r&quot;</span>, <span class="hljs-string">&quot;0011&quot;</span> ],
+  [ <span class="hljs-string">&quot;g&quot;</span>, <span class="hljs-string">&quot;01&quot;</span> ],
+  [ <span class="hljs-string">&quot;o&quot;</span>, <span class="hljs-string">&quot;10&quot;</span> ],
+  [ <span class="hljs-string">&quot;p&quot;</span>, <span class="hljs-string">&quot;1100&quot;</span> ],
+  [ <span class="hljs-string">&quot;h&quot;</span>, <span class="hljs-string">&quot;1101&quot;</span> ],
+  [ <span class="hljs-string">&quot; &quot;</span>, <span class="hljs-string">&quot;111&quot;</span> ]
+]
+</code></pre>
+<h3>文字列をエンコードする</h3>
+<p>変換表が完成したら、もう一度文字列を走査して各文字を符号に変換していきます。</p>
+<pre><code class="language-typescript:getResult.ts">const generateResultBits = ( plane: string, bitsTable: bitsTable ): string =&gt; {
+  let stringArray: string[] = [];
+  let bitArray: string[] = [];
+  for (let i = 0; i &lt; bitsTable.length; i++) {
+    [stringArray[i], bitArray[i]] = [bitsTable[i][0], bitsTable[i][1]];
+  }
+  let resultString = &quot;&quot;;
+  // 文字列配列の中で対象の文字とマッチするインデックスのビット列を結果に追加する
+  for (let i = 0; i &lt; plane.length; i++) {
+    const index: number = stringArray.indexOf(plane[i]);
+    resultString += bitArray[index];
+  }
+  return resultString;
+};
+</code></pre>
+<p>ここでは一旦変換表<code>bitsTable</code>を文字の配列と符号の配列に分割して、文字の配列の方で<code>indexOf(文字)</code>してそのインデックスの符号を結果に追加しています。別に<code>bitsTable</code>のままでもやろうと思えばできるんでしょうがこっちの方がやりやすかったので分割してます。<br>
+エンコードされた文字列はこうなります。</p>
+<pre><code>0110111011011101101100110100100011000
+</code></pre>
+<h3>ハフマン木自体をエンコードする</h3>
+<p>ハフマン符号は出現頻度で符号が決まるので標準化された変換表なんてものはありません。Qiitaとかの記事を見ると、エンコードした後に変換表だけは変数に格納してそのままデコードで使うなどというチートをしている輩がいたり、そもそもデコード諦めて文字列のエンコード結果だけ出力してハフマン符号らしからぬ圧縮率を叩き出していたりする記事はあったのですがここを詳細に書いてる日本語の記事がなかったので結構困りました。最終的にアメリカの大学の講義録みたいなやつに書いてあった方法で理解しました。<br>
+<a href="https://engineering.purdue.edu/ece264/17au/hw/HW13?alt=huffman">https://engineering.purdue.edu/ece264/17au/hw/HW13?alt=huffman</a><br>
+この文献を見つけるまでは変換表を素直にビット変換する方法でヘッダーに加えていたのですが、そうすると結局エンコード前とあまり変わらなかったりして「ハフマン符号大したことなくね」とか思ってました。ごめんなさい。</p>
+<pre><code class="language-typescript:encodeTree.ts">const encodeTree = ( huffmanTree: treeArray, resultString: string = &quot;&quot; ): string =&gt; {
+  if (huffmanTree[0] !== null) {
+    const symbolBits: string = convertSymbolToBits(huffmanTree[0]);
+    return resultString += `1${padding(8, symbolBits)}`;
+  }
+  resultString += &quot;0&quot;;
+  if (!huffmanTree[2]) throw new Error(&quot;You assigned wrong array...&quot;);
+  const resultLeft: string = encodeTree(huffmanTree[2][0], resultString);
+  return encodeTree(huffmanTree[2][1], resultLeft);
+};
+</code></pre>
+<p>具体的な方法としては、ハフマン木から変換表を作った時と同様に根から深さ優先探索で左の子から探索し、葉に着いたらそれまでのビットと文字を結果に追加します。<br>
+注意したいのは、この場合探索時に貯めておくビットは枝の値ではなく節の値です。探索している子が節だった場合は0、葉に当たった場合は1を追加しその直後に該当する文字8bits分を追加します。こうすることで1が来たらその後8bitsは文字であることがわかるので、接頭辞なしでデコード時にハフマン木を再構築できるというわけです。</p>
+<h3>ヘッダーとエンコードされた文字列を合体して完成</h3>
+<p>先ほど2回目の走査でエンコードしたビット列と上でエンコードしたハフマン木をつなげたものが出力結果になります。ただ、このままだとどこまでがヘッダーなのかの区切りが分からないので、一番最初にエンコードしたハフマン木の長さを16bitsで入れておきます。<br>
+さっきの大学の文献を見るとこの情報は入れず、別のエンコード方法で区別できるようにしてるっぽいのですがいまいちそこが理解できませんでした。区切りの判別が16bits以内でできるのであれば微々たるものですが圧縮率も上がるので方法が分かる方は教えていただけると嬉しいです。</p>
+<pre><code class="language-typescript:encode.ts">const encodedTree: string = encodeTree(huffmanTree);
+const encodedTreeLength: string = getEncodedTreeLength(encodedTree);
+const result: string = generateResultBits(plane, bitsTable);
+return encodedTreeLength + encodedTree + result;
+</code></pre>
+<pre><code class="language-typescript:encodeTree.ts">const getEncodedTreeLength = (encodedTree: string): string =&gt; {
+  const lengthNumber: number = encodedTree.length;
+  const lengthBits: string = padding(16, lengthNumber.toString(2));
+  return lengthBits;
+};
+</code></pre>
+<h5>出力結果</h5>
+<pre><code>000000000100111100010111001101011001011011100101011001110101101111001011100001011010001001000000110111011011101101100110100100011000
+</code></pre>
+<h1>デコード</h1>
+<p>デコードはエンコード結果の解析作業みたいなものなので特に引っかかる点はありませんでした。<br>
+デコードの中で文字列を切り分ける作業が多かったので以下の関数を定義しました。</p>
+<pre><code class="language-typescript"><span class="hljs-comment">// 刻みたい文字列と刻みたい位置を引数にとって刻んだ方(spliced)と刻みカス(remaining)をオブジェクトで返す</span>
+<span class="hljs-keyword">const</span> spliceString = (<span class="hljs-attr">string</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">divisionNumber</span>: <span class="hljs-built_in">number</span>): <span class="hljs-function"><span class="hljs-params">dividedObj</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">spliced</span>: <span class="hljs-built_in">string</span> = <span class="hljs-built_in">string</span>.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, divisionNumber);
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">remaining</span>: <span class="hljs-built_in">string</span> = <span class="hljs-built_in">string</span>.<span class="hljs-title function_">slice</span>(divisionNumber);
+  <span class="hljs-keyword">return</span> { spliced, remaining };
+};
+</code></pre>
+<h3>ヘッダーを読む</h3>
+<pre><code class="language-typescript"><span class="hljs-comment">// 最初の16bitsはヘッダーの長さなので切り分けて10進数化する</span>
+<span class="hljs-keyword">const</span> <span class="hljs-attr">headerBits</span>: dividedObj = <span class="hljs-title function_">spliceString</span>(encodeResult, <span class="hljs-number">16</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-attr">headerLength</span>: <span class="hljs-built_in">number</span> = <span class="hljs-built_in">parseInt</span>(headerBits.<span class="hljs-property">spliced</span>, <span class="hljs-number">2</span>);
+<span class="hljs-comment">// 10進数化した長さの分だけ残りの文字列を切り分けヘッダーと平文のエンコード結果を分割する</span>
+<span class="hljs-comment">// treeAndContents.splicedがヘッダーでtreeAndContents.remainingが平文のエンコード結果</span>
+<span class="hljs-keyword">const</span> <span class="hljs-attr">treeAndContents</span>: dividedObj = <span class="hljs-title function_">spliceString</span>( headerBits.<span class="hljs-property">remaining</span>, headerLength );
+</code></pre>
+<h3>ハフマン木を再構築する</h3>
+<pre><code class="language-typescript"><span class="hljs-keyword">const</span> rebuildHuffmanTree = ( <span class="hljs-attr">bits</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">resultArray</span>: rebuiltTreeArray ): <span class="hljs-function"><span class="hljs-params">string</span> =&gt;</span> {
+  <span class="hljs-keyword">if</span> (bits === <span class="hljs-string">&quot;&quot;</span>) <span class="hljs-keyword">return</span> bits;
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">firstBits</span>: <span class="hljs-built_in">string</span> = bits.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+  bits = bits.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>);
+  <span class="hljs-keyword">if</span> (firstBits === <span class="hljs-string">&quot;1&quot;</span>) {
+    <span class="hljs-keyword">const</span> <span class="hljs-attr">symbolBits</span>: <span class="hljs-built_in">string</span> = bits.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">8</span>);
+    bits = bits.<span class="hljs-title function_">slice</span>(<span class="hljs-number">8</span>);
+    <span class="hljs-keyword">const</span> <span class="hljs-attr">symbol</span>: <span class="hljs-built_in">string</span> = <span class="hljs-title function_">convertBitsToSymbol</span>(symbolBits);
+    resultArray[<span class="hljs-number">0</span>] = symbol;
+    <span class="hljs-keyword">return</span> bits;
+  }
+  resultArray.<span class="hljs-title function_">push</span>([[<span class="hljs-literal">null</span>], [<span class="hljs-literal">null</span>]]);
+  <span class="hljs-keyword">if</span> (!resultArray[<span class="hljs-number">1</span>]) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;resultArray has no index 1&quot;</span>);
+  <span class="hljs-keyword">const</span> <span class="hljs-attr">result</span>: <span class="hljs-built_in">string</span> = <span class="hljs-title function_">rebuildHuffmanTree</span>( bits, resultArray[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] );
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">rebuildHuffmanTree</span>(result, resultArray[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]);
+};
+<span class="hljs-comment">// 使い方</span>
+<span class="hljs-keyword">const</span> <span class="hljs-attr">rebuiltTree</span>: rebuiltTreeArray = [<span class="hljs-literal">null</span>];
+<span class="hljs-title function_">rebuildHuffmanTree</span>(treeAndContents.<span class="hljs-property">spliced</span>, rebuiltTree);
+</code></pre>
+<p>第一引数の<code>bits</code>には先ほど分割したヘッダーの方を渡し、あらかじめ<code>[ null ]</code>を代入した<code>rebuiltTreeArray</code>型の配列を第二引数にとります。<br>
+ヘッダーを1文字ずつ読み、1だったらその後の8bitsを文字に変換して木の1要素目に追加し、0だったら1要素目はすでに<code>null</code>が入っているので二要素目に左と右の子を準備し、左から先に再帰的に探索を行います。<br>
+この関数では返り値を残りのビット列にすることで末尾の再帰を実現しているので先に配列を作る必要があるのですが、普通に配列返すやり方にできそうなことに今書いてて気づきました。ちょっと再考の余地ありですね。なんでこんな変態みたいな仕様にしたんだろ。<br>
+とにかく、上の処理でエンコード時に一度作ったハフマン木の再構築が完了します。</p>
+<h3>ハフマン木から変換表を作る</h3>
+<p>ここはエンコード時とほぼ同じで、違いは引数にとる木に出現回数の値がないというだけです。</p>
+<pre><code class="language-typescript:generateBitsTable.ts">const generateBitsTableFromRebuiltTreeArray = ( tree: rebuiltTreeArray, bitsTable: bitsTable = new Array(0) as bitsTable, bit: string = &quot;&quot; ): bitsTable =&gt; {
+  if (tree[0] !== null) {
+    bitsTable.push([tree[0], bit]);
+    return bitsTable;
+  }
+  // 出現回数がないので子要素が格納されるインデックスは1になる
+  if (!tree[1]) {
+    throw new Error(&quot;You assigned wrong tree as argument&quot;);
+  }
+  const nextBitsTable: bitsTable = generateBitsTableFromRebuiltTreeArray(tree[1][0], bitsTable, bit + &quot;0&quot;);
+  return generateBitsTableFromRebuiltTreeArray(tree[1][1], nextBitsTable, bit + &quot;1&quot;);
+};
+</code></pre>
+<p>この場面で出現回数は全く必要ないのでエンコード時のハフマン木から出現回数の値を取り除けば上と全く同じ関数がエンコードにも使えます。</p>
+<h3>ビット列をデコードする</h3>
+<p>ヘッダーを読む際にヘッダーと平文のエンコード結果の切り分けが完了し、変換表もできたのであとはエンコード結果を元の平文に戻す作業だけです。</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">const</span> parseBits = (<span class="hljs-attr">bits</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">bitsTable</span>: bitsTable): <span class="hljs-function"><span class="hljs-params">string</span> =&gt;</span> {
+  bitsTable.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> a[<span class="hljs-number">1</span>].<span class="hljs-property">length</span> - b[<span class="hljs-number">1</span>].<span class="hljs-property">length</span>;
+  });
+  <span class="hljs-keyword">let</span> <span class="hljs-attr">result</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;&quot;</span>;
+  <span class="hljs-keyword">let</span> <span class="hljs-attr">queueString</span>: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;&quot;</span>;
+  <span class="hljs-keyword">let</span> <span class="hljs-attr">remainingBits</span>: <span class="hljs-built_in">string</span> = bits;
+  <span class="hljs-keyword">while</span> (remainingBits !== <span class="hljs-string">&quot;&quot;</span>) {
+    queueString += remainingBits[<span class="hljs-number">0</span>];
+    remainingBits = remainingBits.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; bitsTable.<span class="hljs-property">length</span>; i++) {
+      <span class="hljs-keyword">if</span> (queueString.<span class="hljs-property">length</span> &lt; bitsTable[i][<span class="hljs-number">1</span>].<span class="hljs-property">length</span>) <span class="hljs-keyword">break</span>;
+      <span class="hljs-keyword">if</span> (queueString.<span class="hljs-property">length</span> &gt; bitsTable[i][<span class="hljs-number">1</span>].<span class="hljs-property">length</span>) <span class="hljs-keyword">continue</span>;
+      <span class="hljs-keyword">if</span> (queueString === bitsTable[i][<span class="hljs-number">1</span>]) {
+        result += bitsTable[i][<span class="hljs-number">0</span>];
+        queueString = <span class="hljs-string">&quot;&quot;</span>;
+        <span class="hljs-keyword">break</span>;
+      }
+    }
+  }
+  <span class="hljs-keyword">return</span> result;
+};
+</code></pre>
+<p>なぜ今まで再帰で書いていたのに突然ループにするかというと、30000文字くらいのデータで試したところこの部分は流石にスタックオーバーフローしたからです。まあJavaScriptですし仕方ないと言えば仕方ないですね。<br>
+この部分、エンコード時と同じように<code>bitsTable</code>を文字列の配列とビット列の配列に分割する方法もあるのですが、ビット列を最初から最後まで走査するわけで、indexOfで愚直に探索していては処理が遅くなるわけです（indexOfの中身は普通に線形探索）。それを避けるために、上のコードでは最初にビット列の長さでソートし、キューのビット列の長さと等しい部分でのみ値を比較することでちょっとでも速くしようと試みています。多分意味ある。</p>
+<pre><code class="language-typescript"><span class="hljs-comment">// 昇順ソート</span>
+bitsTable.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> a[<span class="hljs-number">1</span>].<span class="hljs-property">length</span> - b[<span class="hljs-number">1</span>].<span class="hljs-property">length</span>;
+});
+</code></pre>
+<p>ここはエンコード時のようにクイックソートにしても良し。</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">while</span> (remainingBits !== <span class="hljs-string">&quot;&quot;</span>) {
+  <span class="hljs-comment">// 最初のビットをキューのビット列に追加</span>
+  queueString += remainingBits[<span class="hljs-number">0</span>];
+  <span class="hljs-comment">// ビット列から最初の文字を削除する</span>
+  remainingBits = remainingBits.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>);
+  ...
+}
+</code></pre>
+<p>残りのビットが空でない場合、キューに最初のビットを追加します。remainingBitsは関数内で共通なのでここを減らしていけばwhileループは勝手に判断してくれます。</p>
+<pre><code class="language-typescript"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; bitsTable.<span class="hljs-property">length</span>; i++) {
+  <span class="hljs-keyword">if</span> (queueString.<span class="hljs-property">length</span> &lt; bitsTable[i][<span class="hljs-number">1</span>].<span class="hljs-property">length</span>) <span class="hljs-keyword">break</span>; <span class="hljs-comment">// これ以上探索しても符号の長さが長いものとしか当たらないのでループを抜ける</span>
+  <span class="hljs-keyword">if</span> (queueString.<span class="hljs-property">length</span> &gt; bitsTable[i][<span class="hljs-number">1</span>].<span class="hljs-property">length</span>) <span class="hljs-keyword">continue</span>; <span class="hljs-comment">// まだ長さがたりてないので次のループにスキップ</span>
+  <span class="hljs-keyword">if</span> (queueString === bitsTable[i][<span class="hljs-number">1</span>]) { <span class="hljs-comment">// 一致!!</span>
+    result += bitsTable[i][<span class="hljs-number">0</span>];
+    queueString = <span class="hljs-string">&quot;&quot;</span>;
+    <span class="hljs-keyword">break</span>;
+  }
+}
+</code></pre>
+<p>キューの文字数よりイテレート中の変換表の符号の長さが長い場合は、ソート済みなのでこれ以上探索しても意味がないため親のwhileループに戻ります。変換表の符号の長さが短い場合はまだキューの文字列と等しい符号たちにたどり着いていないだけなので<code>continue</code>で次のループにスキップします。<br>
+キューの文字数よりイテレート中の変換表の符号の長さが等しい場合のみ互いの値を比較し、晴れて一致した場合は結果に変換表の文字を追加し、キューをクリアして親のwhileループに戻ります。<br>
+最終的にwhileループから抜ける際の<code>result</code>には「go go gophers」が格納されているはずです。</p>
+<h1>圧縮の結果</h1>
+<p>以下が「go go gophers」をハフマン符号化した際の結果です。<br>
+<img src="https://storage.googleapis.com/zenn-user-upload/xljbq6dbmsh30kvzr4jjsqvuujzq" alt="image"><br>
+お分かりいただけただろうか。全然successfullじゃありませんね。<br>
+「go go gophers」のような短い文字列の場合、ヘッダーがオーバーヘッドになってむしろエンコード後のサイズの方が大きくなることがあります。実際にこんな短い文字列を圧縮することはないので気にしなくても良いと思いますがサイズが大きくなったら元のデータを返すみたいな処理を加えておいても良さげです。</p>
+<p>ちなみにかの有名な「Lorem ipsum…」のテキストをエンコードした結果は以下の通りです。<br>
+<img src="https://storage.googleapis.com/zenn-user-upload/0s923xjodsxkxlu9k0vbk6e4rd6y" alt="image"><br>
+文字数は450文字くらいですが、60%なのでまあまあ良いんじゃないでしょうか。</p>
+<h1>おわりに</h1>
+<p>Macの予測変換でハフマン木が全然出てこなくて辛かったです。<br>
+Qiitaにはゴミ箱のような記事を上げてますがZennは真面目に書きたいので間違っている点やベストプラクティスでない実装があればコメントで教えていただければ幸いです。<br>
+では</p>
+<h1>参考文献</h1>
+<h5>デイビッド兄貴が書いた論文</h5>
+<p><a href="https://ieeexplore.ieee.org/document/4051119">https://ieeexplore.ieee.org/document/4051119</a></p>
+<h5>purdue大学の文献</h5>
+<p><a href="https://engineering.purdue.edu/ece264/17au/hw/HW13?alt=huffman">https://engineering.purdue.edu/ece264/17au/hw/HW13?alt=huffman</a></p>
+<h5>すごくわかりやすかった日本語文献（Algoful）</h5>
+<p><a href="https://algoful.com/Archive/Algorithm/HaffmanEncoding">https://algoful.com/Archive/Algorithm/HaffmanEncoding</a></p>
+<h5>UUUM攻殻機動隊</h5>
+<p><a href="https://system.blog.uuum.jp/entry/2016/03/01/110000">https://system.blog.uuum.jp/entry/2016/03/01/110000</a></p>
+<!-- HTML_TAG_END -->
+  <div class="share svelte-hf3o4"><a class="share-twitter svelte-hf3o4" target="blank"><img alt="Twitter share button" src="/twitter.svg" width="25px" height="25px"></a>
+    <a class="share-pocket svelte-hf3o4" target="blank"><img alt="Pocket share button" src="/pocket.svg" width="25px" height="25px"></a>
+    <a class="share-instapaper svelte-hf3o4" target="blank"><img alt="InstaPaper share button" src="/instapaper.svg" width="25px"></a></div></div>
+</div></main>
+
+<footer class="svelte-gbfwkw">@ 2021 Kota Yatagai</footer>
+
+
+
+			<script type="application/json" data-type="svelte-data" data-url="/posts/huffman.json">{"status":200,"statusText":"","headers":{"content-type":"application/json; charset=utf-8"},"body":"{\"meta\":{\"title\":\"TypeScriptでハフマン符号を作る\",\"date\":\"2021-03-23\",\"category\":\"Algorithm\",\"description\":\"バイナリーを文字列で扱うJavaScriptな実装\",\"ogp\":\"\u002Fmedia\u002Fhuffman.webp\"},\"body\":\"\u003Cp\u003E最近圧縮アルゴリズムに興味が出てきたんですが、いきなり重いのやると挫折するので比較的理解しやすいとどっかのブログに書いてあったハフマン符号をTypeScriptで作ります。ちゃんとデコードもします。\u003C\u002Fp\u003E\\n\u003Cp\u003E完成品はこちら\u003Cbr\u003E\\n\u003Ca href=\\\"https:\u002F\u002Fgithub.com\u002Fkota-yata\u002Fdeno-huffman\\\"\u003Ehttps:\u002F\u002Fgithub.com\u002Fkota-yata\u002Fdeno-huffman\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\u003Cp\u003E型に関しては、全てnumber型とstring型だけでどうにかします。なのでビット列は全てstring型として扱います。\u003C\u002Fp\u003E\\n\u003Ch1\u003Eハフマン符号って何ですか\u003C\u002Fh1\u003E\\n\u003Cp\u003E「なめてんのかお前」って思った人は次の章に進んで大丈夫です。\u003C\u002Fp\u003E\\n\u003Cp\u003Eハフマン符号は戦後間もない1952年にデイビッドさんが発明した圧縮アルゴリズムです。文字の出現頻度を調べて、頻出する文字には少ないビット列を、あまり出てこない文字には長いビット列を割り当ててデータ量の削減を実現しています。ZipとかJPEGの圧縮にも使われていることでも有名ですね。\u003C\u002Fp\u003E\\n\u003Cp\u003Eハフマン符号の長所として、\u003Cstrong\u003E接頭符号\u003C\u002Fstrong\u003Eであることが挙げられます。接頭符号というのは、ある符号が他の符号の最初の部分と重複しないという性質です。例えば、\u003C\u002Fp\u003E\\n\u003Ctable\u003E\\n\u003Cthead\u003E\\n\u003Ctr\u003E\\n\u003Cth\u003E符号\u003C\u002Fth\u003E\\n\u003Cth\u003E文字\u003C\u002Fth\u003E\\n\u003C\u002Ftr\u003E\\n\u003C\u002Fthead\u003E\\n\u003Ctbody\u003E\\n\u003Ctr\u003E\\n\u003Ctd\u003E0\u003C\u002Ftd\u003E\\n\u003Ctd\u003EA\u003C\u002Ftd\u003E\\n\u003C\u002Ftr\u003E\\n\u003Ctr\u003E\\n\u003Ctd\u003E1\u003C\u002Ftd\u003E\\n\u003Ctd\u003EB\u003C\u002Ftd\u003E\\n\u003C\u002Ftr\u003E\\n\u003Ctr\u003E\\n\u003Ctd\u003E01\u003C\u002Ftd\u003E\\n\u003Ctd\u003EC\u003C\u002Ftd\u003E\\n\u003C\u002Ftr\u003E\\n\u003C\u002Ftbody\u003E\\n\u003C\u002Ftable\u003E\\n\u003Cp\u003Eという符号があった場合、Aの符号０がCの符号の最初と同じになっているので接頭符号とは言えません。これで何が困るのかというと、エンコードされたビット列の中に「01」があった場合、デコードされた文字は「AB」と「C」のどちらもあり得るのです。デコードされる文字列がエンコード前と違ったらそれはもう可逆圧縮とは言えませんね。\u003C\u002Fp\u003E\\n\u003Cp\u003Eもう一つ、ハフマン符号が広く使われる理由として、著作権の問題がないことも挙げられます。先述の通り、ハフマン符号はかなり歴史の長いアルゴリズムなのでより効率の良いアルゴリズムもいくつかすでに発明されています。ただそのほとんどは著作権が絡んで自由に使えなかったりするので、いまだに圧縮性能としては中程度のハフマン符号が使われているわけです。\u003C\u002Fp\u003E\\n\u003Ch1\u003E大まかな流れ\u003C\u002Fh1\u003E\\n\u003Ch3\u003Eエンコード\u003C\u002Fh3\u003E\\n\u003Col\u003E\\n\u003Cli\u003Eハフマン符号は文字の出現頻度を元に木を作るので、まずは平文を探索して文字の出現頻度を調べます\u003C\u002Fli\u003E\\n\u003Cli\u003E各文字の出現頻度がわかったらそれを元にハフマン木を作ります\u003C\u002Fli\u003E\\n\u003Cli\u003Eハフマン木が無事に作れたらそこから各文字に対応するビット列を算出してテーブルを作ります\u003C\u002Fli\u003E\\n\u003Cli\u003Eそれが終わったらもう一度平文を探索して各文字をビット列に変換していきます\u003C\u002Fli\u003E\\n\u003Cli\u003E最後にデコード用にハフマン木そのものをエンコードしてヘッダーとしてエンコード結果と繋げ、ハフマン符号化完了になります\u003C\u002Fli\u003E\\n\u003C\u002Fol\u003E\\n\u003Cp\u003E以上のように、エンコードの際に合計で2回平文を走査します。しかしこれではデータ量が莫大になったときに圧縮時間が長くなってしまうので、出現頻度を調べながらビット列への変換を行い、走査を1回で済ませる\u003Cstrong\u003E動的ハフマン符号\u003C\u002Fstrong\u003Eというものも存在します。動的ハフマン符号は処理時間は短いですがハフマン木の精度は落ちることがあります。\u003Cbr\u003E\\n今回は動的ハフマン符号ではなく、普通に2回走査する\u003Cstrong\u003E静的ハフマン符号\u003C\u002Fstrong\u003Eを実装します。\u003C\u002Fp\u003E\\n\u003Ch3\u003Eデコード\u003C\u002Fh3\u003E\\n\u003Col\u003E\\n\u003Cli\u003Eまずはヘッダーを読んでテーブルを再生成します\u003C\u002Fli\u003E\\n\u003Cli\u003Eテーブルができたら残りのビット列を文字列に変換してデコード終了です\u003C\u002Fli\u003E\\n\u003C\u002Fol\u003E\\n\u003Cp\u003Eデコードに関してはテーブルさえ手に入れば何も苦労はないので比較的簡単に処理が終わります。\u003C\u002Fp\u003E\\n\u003Ch1\u003E前提条件\u003C\u002Fh1\u003E\\n\u003Cp\u003Eよく使う型はこんな感じで定義しています。独自の型が出てきて何だこれってなったらここに戻って確認してください\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eexport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Etype\u003C\u002Fspan\u003E treeArray = [\u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E | \u003Cspan class=\\\"hljs-literal\\\"\u003Enull\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-built_in\\\"\u003Enumber\u003C\u002Fspan\u003E, [treeArray, treeArray]?];\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eexport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Etype\u003C\u002Fspan\u003E rebuiltTreeArray = [\\n  \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E | \u003Cspan class=\\\"hljs-literal\\\"\u003Enull\u003C\u002Fspan\u003E,\\n  [rebuiltTreeArray, rebuiltTreeArray]?,\\n];\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eexport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Etype\u003C\u002Fspan\u003E occurrenceArray = treeArray[];\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eexport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Etype\u003C\u002Fspan\u003E bitsTable = [\u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E][];\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eexport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Einterface\u003C\u002Fspan\u003E dividedObj {\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003Espliced\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E;\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003Eremaining\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E;\\n}\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E処理の中で、何回も使うものは別ファイルに関数として定義しています。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 文字をビット列に変換する\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eexport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E convertSymbolToBits = (\u003Cspan class=\\\"hljs-attr\\\"\u003Esymbol\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E): \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-params\\\"\u003Estring\u003C\u002Fspan\u003E =&gt;\u003C\u002Fspan\u003E {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Ebits\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E = symbol.\u003Cspan class=\\\"hljs-title function_\\\"\u003EcharCodeAt\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E).\u003Cspan class=\\\"hljs-title function_\\\"\u003EtoString\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E);\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E bits;\\n};\\n\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F ビット列を文字に変換する\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eexport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E convertBitsToSymbol = (\u003Cspan class=\\\"hljs-attr\\\"\u003Ebits\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E): \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-params\\\"\u003Estring\u003C\u002Fspan\u003E =&gt;\u003C\u002Fspan\u003E {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Esymbol\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E = \u003Cspan class=\\\"hljs-title class_\\\"\u003EString\u003C\u002Fspan\u003E.\u003Cspan class=\\\"hljs-title function_\\\"\u003EfromCharCode\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-built_in\\\"\u003EparseInt\u003C\u002Fspan\u003E(bits, \u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E));\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E symbol;\\n};\\n\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 第一引数の長さになるように第二引数の前に0を追加する\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eexport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E padding = (\u003Cspan class=\\\"hljs-attr\\\"\u003Elen\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Enumber\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-attr\\\"\u003Estring\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E): \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-params\\\"\u003Estring\u003C\u002Fspan\u003E =&gt;\u003C\u002Fspan\u003E {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Epre\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E = \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;0&quot;\u003C\u002Fspan\u003E.\u003Cspan class=\\\"hljs-title function_\\\"\u003Erepeat\u003C\u002Fspan\u003E(len);\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Eresult\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E = (pre + \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E).\u003Cspan class=\\\"hljs-title function_\\\"\u003Eslice\u003C\u002Fspan\u003E(-len);\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E result;\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch1\u003Eエンコード\u003C\u002Fh1\u003E\\n\u003Cp\u003Eお待たせしました。\u003Cbr\u003E\\n今回は参考にした\u003Ca href=\\\"https:\u002F\u002Fengineering.purdue.edu\u002Fece264\u002F17au\u002Fhw\u002FHW13?alt=huffman\\\"\u003Eこのサイト\u003C\u002Fa\u003Eで使われていた「go go gophers」という文字列を例にとってエンコードとデコードをしたいと思います。\u003C\u002Fp\u003E\\n\u003Ch3\u003E平文から各文字の出現頻度を調べる\u003C\u002Fh3\u003E\\n\u003Cp\u003Eまずは一度平文を走査して各文字の出現頻度を調べます。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript:\\\"\u003Econst getOccurence = (plane: string): occurrenceArray =&gt; {\\n  let string: string = plane;\\n  const occurrenceArray: occurrenceArray = new Array(0) as occurrenceArray;\\n  while (string.length &gt; 0) {\\n    const regexString: string = string[0].replace(\u002F[-\\\\\u002F\\\\\\\\^$*+?.()|\\\\[\\\\]{}]\u002Fg, &quot;\\\\\\\\$&amp;&quot;);\\n    const regExp = new RegExp(regexString, &quot;g&quot;);\\n    const occurrence: number = (string.match(regExp) || []).length;\\n    const relation: treeArray = [string[0], occurrence];\\n    occurrenceArray.push(relation);\\n    string = string.replace(regExp, &quot;&quot;);\\n  }\\n  return occurrenceArray;\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eここでやっていることとしては、whileループの中で、文字列の最初を切り出し、その文字が文字列の中にどれくらい含まれているかを\u003Ccode\u003Estring.match(regExp).length\u003C\u002Fcode\u003Eで調べています。文字と出現回数を配列に格納したのち、文字列からその文字全てを削除し、次のループに入っています。\u003Cbr\u003E\\nこの関数で得られる配列は以下のような感じです。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003EoccurrenceArray = [\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;g&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-number\\\"\u003E3\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;o&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-number\\\"\u003E3\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot; &quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;p&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;h&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;e&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;r&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;s&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E ]\\n]\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch3\u003E出現頻度の情報からハフマン木を作る\u003C\u002Fh3\u003E\\n\u003Cp\u003E木の作り方は、まず出現頻度の低い2つの文字を葉として短い木を作ります。そして2つの文字の出現回数を足した回数と他の文字の出現回数を比べ、再び低い方から2つを使って木を作ります。最終的に僕のコードで生成された木は以下のような感じです。僕のコードで、というのはアルゴリズムによってはちょっと違う構造になることがあるからです。最終的な圧縮率は変わらないのでそんなに気にするとこではないです。\u003Cbr\u003E\\n\u003Cimg src=\\\"https:\u002F\u002Fstorage.googleapis.com\u002Fzenn-user-upload\u002Fvb3645r6qz3hvb62lxttip0v5pi4\\\" alt=\\\"\\\"\u003E\u003C\u002Fp\u003E\\n\u003Cp\u003Eコードで木を表現する方法としては、連想配列やNodeListなどでも可能ですが、今回は多次元配列を用いて木構造を表現しようと思います。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode\u003E[文字 or null, 出現回数, [[左の子],[右の子]]]\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E1要素目に文字が来る場合は葉なので、3要素目はありません。以下の\u003Ccode\u003EgenerateTree.ts\u003C\u002Fcode\u003Eで木を生成します。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript:\\\"\u003Econst generateTree = (occurrenceArray: occurrenceArray): occurrenceArray =&gt; {\\n  if (occurrenceArray.length &lt;= 1) return occurrenceArray;\\n  sortQuickly(occurrenceArray);\\n  const parsedArray: treeArray = [\\n    null,\\n    occurrenceArray[0][1] + occurrenceArray[1][1],\\n    [occurrenceArray[0], occurrenceArray[1]],\\n  ];\\n  occurrenceArray.splice(0, 2);\\n  occurrenceArray.unshift(parsedArray);\\n  return generateTree(occurrenceArray);\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E先ほど作成した出現回数の配列を書き換える形で木を作ります。\u003Cbr\u003E\\nまず配列を出現頻度でソートします。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-title function_\\\"\u003EsortQuickly\u003C\u002Fspan\u003E(occurrenceArray);\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eここは\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003EoccurrenceArray.\u003Cspan class=\\\"hljs-title function_\\\"\u003Esort\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-function\\\"\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003Ea, b\u003C\u002Fspan\u003E) =&gt;\u003C\u002Fspan\u003E {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E a[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E].\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E - b[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E].\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E;\\n});\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eでも構わないのですが、せっかくなのでクイックソートで書きました。趣味です。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E partitioning = ( \u003Cspan class=\\\"hljs-attr\\\"\u003Emda\u003C\u002Fspan\u003E: occurrenceArray, \u003Cspan class=\\\"hljs-attr\\\"\u003Estart\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Enumber\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-attr\\\"\u003Eend\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Enumber\u003C\u002Fspan\u003E ): \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-params\\\"\u003Enumber\u003C\u002Fspan\u003E =&gt;\u003C\u002Fspan\u003E {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Epivot\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Enumber\u003C\u002Fspan\u003E = mda[end][\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E];\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003EpivotIndex\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Enumber\u003C\u002Fspan\u003E = start;\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Efor\u003C\u002Fspan\u003E (\u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Ei\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Enumber\u003C\u002Fspan\u003E = start; i &lt; end; i++) {\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (mda[i][\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E] &gt; pivot) \u003Cspan class=\\\"hljs-keyword\\\"\u003Econtinue\u003C\u002Fspan\u003E;\\n    [mda[i], mda[pivotIndex]] = [mda[pivotIndex], mda[i]];\\n    pivotIndex++;\\n  }\\n  [mda[pivotIndex], mda[end]] = [mda[end], mda[pivotIndex]];\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E pivotIndex;\\n};\\n\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E sortQuickly = ( \u003Cspan class=\\\"hljs-attr\\\"\u003Emda\u003C\u002Fspan\u003E: occurrenceArray, \u003Cspan class=\\\"hljs-attr\\\"\u003Estart\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Enumber\u003C\u002Fspan\u003E = \u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-attr\\\"\u003Eend\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Enumber\u003C\u002Fspan\u003E = mda.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E - \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E ): \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-params\\\"\u003Evoid\u003C\u002Fspan\u003E =&gt;\u003C\u002Fspan\u003E {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (start &gt;= end) \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E;\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003EpivotIndex\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Enumber\u003C\u002Fspan\u003E = \u003Cspan class=\\\"hljs-title function_\\\"\u003Epartitioning\u003C\u002Fspan\u003E(mda, start, end);\\n  \u003Cspan class=\\\"hljs-title function_\\\"\u003EsortQuickly\u003C\u002Fspan\u003E(mda, start, pivotIndex - \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E);\\n  \u003Cspan class=\\\"hljs-title function_\\\"\u003EsortQuickly\u003C\u002Fspan\u003E(mda, pivotIndex + \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E, end);\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E最初の行で1要素目が文字だった場合の条件分岐はできているのでソートされた配列の1,2要素目（=頻度の少ない方から1,2番目）をマージして新しい木構造を作ります。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003EparsedArray\u003C\u002Fspan\u003E: treeArray = [\\n  \u003Cspan class=\\\"hljs-literal\\\"\u003Enull\u003C\u002Fspan\u003E,\\n  occurrenceArray[\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E][\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E] + occurrenceArray[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E][\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E], \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 2つの出現回数を足す\u003C\u002Fspan\u003E\\n  [occurrenceArray[\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E], occurrenceArray[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E]], \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 子要素として追加する\u003C\u002Fspan\u003E\\n];\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 最初の2要素を削除して代わりに生成した木を挿入する\u003C\u002Fspan\u003E\\noccurrenceArray.\u003Cspan class=\\\"hljs-title function_\\\"\u003Esplice\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E);\\noccurrenceArray.\u003Cspan class=\\\"hljs-title function_\\\"\u003Eunshift\u003C\u002Fspan\u003E(parsedArray);\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title function_\\\"\u003EgenerateTree\u003C\u002Fspan\u003E(occurrenceArray); \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 配列が最終的に全て木構造になるまで再帰する\u003C\u002Fspan\u003E\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch3\u003Eハフマン木から文字とビット列の変換表を作る\u003C\u002Fh3\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript:generateBitsTable.ts\\\"\u003Econst generateBitsTableFromTreeArray = ( tree: treeArray, bitsTable: bitsTable = new Array(0) as bitsTable, bit: string = &quot;&quot; ): bitsTable =&gt; {\\n  if (tree[0] !== null) {\\n    bitsTable.push([tree[0], bit]);\\n    return bitsTable;\\n  }\\n  \u002F\u002F tree[0]がnullなのに3要素目がないということはつまり節なのに子がいないということなのでエラー\\n  if (!tree[2]) {\\n    throw new Error(&quot;You assigned wrong tree as argument&quot;);\\n  }\\n  \u002F\u002F まずは左の子要素を探索しに行く\\n  const nextBitsTable: bitsTable = generateBitsTableFromTreeArray(\\n    tree[2][0],\\n    bitsTable,\\n    bit + &quot;0&quot;,\\n  );\\n  \u002F\u002F 左の子を全て探索したらそのbitsTableを受け取って右の子の探索に向かう\\n  return generateBitsTableFromTreeArray(tree[2][1], nextBitsTable, bit + &quot;1&quot;);\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E木は完成しているのであとは文字と符号の変換表を作るだけです。具体的には木の左の枝を0、右を1として木の根から再帰的に辿っていき、1要素目が文字列=葉に行き着いたらそれまで辿った枝のビットを繋げたものを符号としてテーブルに格納します。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (tree[\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E] !== \u003Cspan class=\\\"hljs-literal\\\"\u003Enull\u003C\u002Fspan\u003E) {\\n  bitsTable.\u003Cspan class=\\\"hljs-title function_\\\"\u003Epush\u003C\u002Fspan\u003E([tree[\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E], bit]);\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E bitsTable;\\n}\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Etree[0]がnullでないということは子要素がない、つまり葉なので、文字と\u003Ccode\u003Ebit\u003C\u002Fcode\u003Eに格納してあるこれまで辿ってきた枝のビット列を配列として変換表\u003Ccode\u003EbitsTable\u003C\u002Fcode\u003Eにpushして上の節に戻ります。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F tree[0]がnullなのに3要素目がないということはつまり節なのに子がいないということなのでエラー\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (!tree[\u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E]) {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ethrow\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Enew\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title class_\\\"\u003EError\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-string\\\"\u003E&quot;You assigned wrong tree as argument&quot;\u003C\u002Fspan\u003E);\\n}\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F まずは左の子要素を探索しに行く\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003EnextBitsTable\u003C\u002Fspan\u003E: bitsTable = \u003Cspan class=\\\"hljs-title function_\\\"\u003EgenerateBitsTableFromTreeArray\u003C\u002Fspan\u003E(\\n  tree[\u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E][\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E],\\n  bitsTable,\\n  bit + \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;0&quot;\u003C\u002Fspan\u003E,\\n);\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 左の子を全て探索したらそのbitsTableを受け取って右の子の探索に向かう\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title function_\\\"\u003EgenerateBitsTableFromTreeArray\u003C\u002Fspan\u003E(tree[\u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E][\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E], nextBitsTable, bit + \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;1&quot;\u003C\u002Fspan\u003E);\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eコメントで大体説明していますが、左の子を奥深くまで探索したあとに変換表を引き継いで右の子の探索に移ります。これを再帰的に行うことでハフマン木から変換表の生成が可能になります。\u003Cbr\u003E\\n変換表の完成形はこんな感じ。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003EbitsTable = [\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;s&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;000&quot;\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;e&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;0010&quot;\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;r&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;0011&quot;\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;g&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;01&quot;\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;o&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;10&quot;\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;p&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;1100&quot;\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;h&quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;1101&quot;\u003C\u002Fspan\u003E ],\\n  [ \u003Cspan class=\\\"hljs-string\\\"\u003E&quot; &quot;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;111&quot;\u003C\u002Fspan\u003E ]\\n]\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch3\u003E文字列をエンコードする\u003C\u002Fh3\u003E\\n\u003Cp\u003E変換表が完成したら、もう一度文字列を走査して各文字を符号に変換していきます。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript:getResult.ts\\\"\u003Econst generateResultBits = ( plane: string, bitsTable: bitsTable ): string =&gt; {\\n  let stringArray: string[] = [];\\n  let bitArray: string[] = [];\\n  for (let i = 0; i &lt; bitsTable.length; i++) {\\n    [stringArray[i], bitArray[i]] = [bitsTable[i][0], bitsTable[i][1]];\\n  }\\n  let resultString = &quot;&quot;;\\n  \u002F\u002F 文字列配列の中で対象の文字とマッチするインデックスのビット列を結果に追加する\\n  for (let i = 0; i &lt; plane.length; i++) {\\n    const index: number = stringArray.indexOf(plane[i]);\\n    resultString += bitArray[index];\\n  }\\n  return resultString;\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eここでは一旦変換表\u003Ccode\u003EbitsTable\u003C\u002Fcode\u003Eを文字の配列と符号の配列に分割して、文字の配列の方で\u003Ccode\u003EindexOf(文字)\u003C\u002Fcode\u003Eしてそのインデックスの符号を結果に追加しています。別に\u003Ccode\u003EbitsTable\u003C\u002Fcode\u003Eのままでもやろうと思えばできるんでしょうがこっちの方がやりやすかったので分割してます。\u003Cbr\u003E\\nエンコードされた文字列はこうなります。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode\u003E0110111011011101101100110100100011000\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch3\u003Eハフマン木自体をエンコードする\u003C\u002Fh3\u003E\\n\u003Cp\u003Eハフマン符号は出現頻度で符号が決まるので標準化された変換表なんてものはありません。Qiitaとかの記事を見ると、エンコードした後に変換表だけは変数に格納してそのままデコードで使うなどというチートをしている輩がいたり、そもそもデコード諦めて文字列のエンコード結果だけ出力してハフマン符号らしからぬ圧縮率を叩き出していたりする記事はあったのですがここを詳細に書いてる日本語の記事がなかったので結構困りました。最終的にアメリカの大学の講義録みたいなやつに書いてあった方法で理解しました。\u003Cbr\u003E\\n\u003Ca href=\\\"https:\u002F\u002Fengineering.purdue.edu\u002Fece264\u002F17au\u002Fhw\u002FHW13?alt=huffman\\\"\u003Ehttps:\u002F\u002Fengineering.purdue.edu\u002Fece264\u002F17au\u002Fhw\u002FHW13?alt=huffman\u003C\u002Fa\u003E\u003Cbr\u003E\\nこの文献を見つけるまでは変換表を素直にビット変換する方法でヘッダーに加えていたのですが、そうすると結局エンコード前とあまり変わらなかったりして「ハフマン符号大したことなくね」とか思ってました。ごめんなさい。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript:encodeTree.ts\\\"\u003Econst encodeTree = ( huffmanTree: treeArray, resultString: string = &quot;&quot; ): string =&gt; {\\n  if (huffmanTree[0] !== null) {\\n    const symbolBits: string = convertSymbolToBits(huffmanTree[0]);\\n    return resultString += `1${padding(8, symbolBits)}`;\\n  }\\n  resultString += &quot;0&quot;;\\n  if (!huffmanTree[2]) throw new Error(&quot;You assigned wrong array...&quot;);\\n  const resultLeft: string = encodeTree(huffmanTree[2][0], resultString);\\n  return encodeTree(huffmanTree[2][1], resultLeft);\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E具体的な方法としては、ハフマン木から変換表を作った時と同様に根から深さ優先探索で左の子から探索し、葉に着いたらそれまでのビットと文字を結果に追加します。\u003Cbr\u003E\\n注意したいのは、この場合探索時に貯めておくビットは枝の値ではなく節の値です。探索している子が節だった場合は0、葉に当たった場合は1を追加しその直後に該当する文字8bits分を追加します。こうすることで1が来たらその後8bitsは文字であることがわかるので、接頭辞なしでデコード時にハフマン木を再構築できるというわけです。\u003C\u002Fp\u003E\\n\u003Ch3\u003Eヘッダーとエンコードされた文字列を合体して完成\u003C\u002Fh3\u003E\\n\u003Cp\u003E先ほど2回目の走査でエンコードしたビット列と上でエンコードしたハフマン木をつなげたものが出力結果になります。ただ、このままだとどこまでがヘッダーなのかの区切りが分からないので、一番最初にエンコードしたハフマン木の長さを16bitsで入れておきます。\u003Cbr\u003E\\nさっきの大学の文献を見るとこの情報は入れず、別のエンコード方法で区別できるようにしてるっぽいのですがいまいちそこが理解できませんでした。区切りの判別が16bits以内でできるのであれば微々たるものですが圧縮率も上がるので方法が分かる方は教えていただけると嬉しいです。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript:encode.ts\\\"\u003Econst encodedTree: string = encodeTree(huffmanTree);\\nconst encodedTreeLength: string = getEncodedTreeLength(encodedTree);\\nconst result: string = generateResultBits(plane, bitsTable);\\nreturn encodedTreeLength + encodedTree + result;\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript:encodeTree.ts\\\"\u003Econst getEncodedTreeLength = (encodedTree: string): string =&gt; {\\n  const lengthNumber: number = encodedTree.length;\\n  const lengthBits: string = padding(16, lengthNumber.toString(2));\\n  return lengthBits;\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch5\u003E出力結果\u003C\u002Fh5\u003E\\n\u003Cpre\u003E\u003Ccode\u003E000000000100111100010111001101011001011011100101011001110101101111001011100001011010001001000000110111011011101101100110100100011000\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch1\u003Eデコード\u003C\u002Fh1\u003E\\n\u003Cp\u003Eデコードはエンコード結果の解析作業みたいなものなので特に引っかかる点はありませんでした。\u003Cbr\u003E\\nデコードの中で文字列を切り分ける作業が多かったので以下の関数を定義しました。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 刻みたい文字列と刻みたい位置を引数にとって刻んだ方(spliced)と刻みカス(remaining)をオブジェクトで返す\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E spliceString = (\u003Cspan class=\\\"hljs-attr\\\"\u003Estring\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-attr\\\"\u003EdivisionNumber\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Enumber\u003C\u002Fspan\u003E): \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-params\\\"\u003EdividedObj\u003C\u002Fspan\u003E =&gt;\u003C\u002Fspan\u003E {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Espliced\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E = \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E.\u003Cspan class=\\\"hljs-title function_\\\"\u003Eslice\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E, divisionNumber);\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Eremaining\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E = \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E.\u003Cspan class=\\\"hljs-title function_\\\"\u003Eslice\u003C\u002Fspan\u003E(divisionNumber);\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E { spliced, remaining };\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch3\u003Eヘッダーを読む\u003C\u002Fh3\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 最初の16bitsはヘッダーの長さなので切り分けて10進数化する\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003EheaderBits\u003C\u002Fspan\u003E: dividedObj = \u003Cspan class=\\\"hljs-title function_\\\"\u003EspliceString\u003C\u002Fspan\u003E(encodeResult, \u003Cspan class=\\\"hljs-number\\\"\u003E16\u003C\u002Fspan\u003E);\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003EheaderLength\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Enumber\u003C\u002Fspan\u003E = \u003Cspan class=\\\"hljs-built_in\\\"\u003EparseInt\u003C\u002Fspan\u003E(headerBits.\u003Cspan class=\\\"hljs-property\\\"\u003Espliced\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-number\\\"\u003E2\u003C\u002Fspan\u003E);\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 10進数化した長さの分だけ残りの文字列を切り分けヘッダーと平文のエンコード結果を分割する\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F treeAndContents.splicedがヘッダーでtreeAndContents.remainingが平文のエンコード結果\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003EtreeAndContents\u003C\u002Fspan\u003E: dividedObj = \u003Cspan class=\\\"hljs-title function_\\\"\u003EspliceString\u003C\u002Fspan\u003E( headerBits.\u003Cspan class=\\\"hljs-property\\\"\u003Eremaining\u003C\u002Fspan\u003E, headerLength );\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch3\u003Eハフマン木を再構築する\u003C\u002Fh3\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E rebuildHuffmanTree = ( \u003Cspan class=\\\"hljs-attr\\\"\u003Ebits\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-attr\\\"\u003EresultArray\u003C\u002Fspan\u003E: rebuiltTreeArray ): \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-params\\\"\u003Estring\u003C\u002Fspan\u003E =&gt;\u003C\u002Fspan\u003E {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (bits === \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;&quot;\u003C\u002Fspan\u003E) \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E bits;\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003EfirstBits\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E = bits.\u003Cspan class=\\\"hljs-title function_\\\"\u003Eslice\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E);\\n  bits = bits.\u003Cspan class=\\\"hljs-title function_\\\"\u003Eslice\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E);\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (firstBits === \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;1&quot;\u003C\u002Fspan\u003E) {\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003EsymbolBits\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E = bits.\u003Cspan class=\\\"hljs-title function_\\\"\u003Eslice\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-number\\\"\u003E8\u003C\u002Fspan\u003E);\\n    bits = bits.\u003Cspan class=\\\"hljs-title function_\\\"\u003Eslice\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-number\\\"\u003E8\u003C\u002Fspan\u003E);\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Esymbol\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E = \u003Cspan class=\\\"hljs-title function_\\\"\u003EconvertBitsToSymbol\u003C\u002Fspan\u003E(symbolBits);\\n    resultArray[\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E] = symbol;\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E bits;\\n  }\\n  resultArray.\u003Cspan class=\\\"hljs-title function_\\\"\u003Epush\u003C\u002Fspan\u003E([[\u003Cspan class=\\\"hljs-literal\\\"\u003Enull\u003C\u002Fspan\u003E], [\u003Cspan class=\\\"hljs-literal\\\"\u003Enull\u003C\u002Fspan\u003E]]);\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (!resultArray[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E]) \u003Cspan class=\\\"hljs-keyword\\\"\u003Ethrow\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Enew\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title class_\\\"\u003EError\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-string\\\"\u003E&quot;resultArray has no index 1&quot;\u003C\u002Fspan\u003E);\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Eresult\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E = \u003Cspan class=\\\"hljs-title function_\\\"\u003ErebuildHuffmanTree\u003C\u002Fspan\u003E( bits, resultArray[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E][\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E] );\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title function_\\\"\u003ErebuildHuffmanTree\u003C\u002Fspan\u003E(result, resultArray[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E][\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E]);\\n};\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 使い方\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003ErebuiltTree\u003C\u002Fspan\u003E: rebuiltTreeArray = [\u003Cspan class=\\\"hljs-literal\\\"\u003Enull\u003C\u002Fspan\u003E];\\n\u003Cspan class=\\\"hljs-title function_\\\"\u003ErebuildHuffmanTree\u003C\u002Fspan\u003E(treeAndContents.\u003Cspan class=\\\"hljs-property\\\"\u003Espliced\u003C\u002Fspan\u003E, rebuiltTree);\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E第一引数の\u003Ccode\u003Ebits\u003C\u002Fcode\u003Eには先ほど分割したヘッダーの方を渡し、あらかじめ\u003Ccode\u003E[ null ]\u003C\u002Fcode\u003Eを代入した\u003Ccode\u003ErebuiltTreeArray\u003C\u002Fcode\u003E型の配列を第二引数にとります。\u003Cbr\u003E\\nヘッダーを1文字ずつ読み、1だったらその後の8bitsを文字に変換して木の1要素目に追加し、0だったら1要素目はすでに\u003Ccode\u003Enull\u003C\u002Fcode\u003Eが入っているので二要素目に左と右の子を準備し、左から先に再帰的に探索を行います。\u003Cbr\u003E\\nこの関数では返り値を残りのビット列にすることで末尾の再帰を実現しているので先に配列を作る必要があるのですが、普通に配列返すやり方にできそうなことに今書いてて気づきました。ちょっと再考の余地ありですね。なんでこんな変態みたいな仕様にしたんだろ。\u003Cbr\u003E\\nとにかく、上の処理でエンコード時に一度作ったハフマン木の再構築が完了します。\u003C\u002Fp\u003E\\n\u003Ch3\u003Eハフマン木から変換表を作る\u003C\u002Fh3\u003E\\n\u003Cp\u003Eここはエンコード時とほぼ同じで、違いは引数にとる木に出現回数の値がないというだけです。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript:generateBitsTable.ts\\\"\u003Econst generateBitsTableFromRebuiltTreeArray = ( tree: rebuiltTreeArray, bitsTable: bitsTable = new Array(0) as bitsTable, bit: string = &quot;&quot; ): bitsTable =&gt; {\\n  if (tree[0] !== null) {\\n    bitsTable.push([tree[0], bit]);\\n    return bitsTable;\\n  }\\n  \u002F\u002F 出現回数がないので子要素が格納されるインデックスは1になる\\n  if (!tree[1]) {\\n    throw new Error(&quot;You assigned wrong tree as argument&quot;);\\n  }\\n  const nextBitsTable: bitsTable = generateBitsTableFromRebuiltTreeArray(tree[1][0], bitsTable, bit + &quot;0&quot;);\\n  return generateBitsTableFromRebuiltTreeArray(tree[1][1], nextBitsTable, bit + &quot;1&quot;);\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eこの場面で出現回数は全く必要ないのでエンコード時のハフマン木から出現回数の値を取り除けば上と全く同じ関数がエンコードにも使えます。\u003C\u002Fp\u003E\\n\u003Ch3\u003Eビット列をデコードする\u003C\u002Fh3\u003E\\n\u003Cp\u003Eヘッダーを読む際にヘッダーと平文のエンコード結果の切り分けが完了し、変換表もできたのであとはエンコード結果を元の平文に戻す作業だけです。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E parseBits = (\u003Cspan class=\\\"hljs-attr\\\"\u003Ebits\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-attr\\\"\u003EbitsTable\u003C\u002Fspan\u003E: bitsTable): \u003Cspan class=\\\"hljs-function\\\"\u003E\u003Cspan class=\\\"hljs-params\\\"\u003Estring\u003C\u002Fspan\u003E =&gt;\u003C\u002Fspan\u003E {\\n  bitsTable.\u003Cspan class=\\\"hljs-title function_\\\"\u003Esort\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-function\\\"\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003Ea, b\u003C\u002Fspan\u003E) =&gt;\u003C\u002Fspan\u003E {\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E a[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E].\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E - b[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E].\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E;\\n  });\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Eresult\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E = \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;&quot;\u003C\u002Fspan\u003E;\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003EqueueString\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E = \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;&quot;\u003C\u002Fspan\u003E;\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003EremainingBits\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-built_in\\\"\u003Estring\u003C\u002Fspan\u003E = bits;\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ewhile\u003C\u002Fspan\u003E (remainingBits !== \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;&quot;\u003C\u002Fspan\u003E) {\\n    queueString += remainingBits[\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E];\\n    remainingBits = remainingBits.\u003Cspan class=\\\"hljs-title function_\\\"\u003Eslice\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E);\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Efor\u003C\u002Fspan\u003E (\u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E i = \u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E; i &lt; bitsTable.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E; i++) {\\n      \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (queueString.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E &lt; bitsTable[i][\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E].\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E) \u003Cspan class=\\\"hljs-keyword\\\"\u003Ebreak\u003C\u002Fspan\u003E;\\n      \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (queueString.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E &gt; bitsTable[i][\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E].\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E) \u003Cspan class=\\\"hljs-keyword\\\"\u003Econtinue\u003C\u002Fspan\u003E;\\n      \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (queueString === bitsTable[i][\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E]) {\\n        result += bitsTable[i][\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E];\\n        queueString = \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;&quot;\u003C\u002Fspan\u003E;\\n        \u003Cspan class=\\\"hljs-keyword\\\"\u003Ebreak\u003C\u002Fspan\u003E;\\n      }\\n    }\\n  }\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E result;\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eなぜ今まで再帰で書いていたのに突然ループにするかというと、30000文字くらいのデータで試したところこの部分は流石にスタックオーバーフローしたからです。まあJavaScriptですし仕方ないと言えば仕方ないですね。\u003Cbr\u003E\\nこの部分、エンコード時と同じように\u003Ccode\u003EbitsTable\u003C\u002Fcode\u003Eを文字列の配列とビット列の配列に分割する方法もあるのですが、ビット列を最初から最後まで走査するわけで、indexOfで愚直に探索していては処理が遅くなるわけです（indexOfの中身は普通に線形探索）。それを避けるために、上のコードでは最初にビット列の長さでソートし、キューのビット列の長さと等しい部分でのみ値を比較することでちょっとでも速くしようと試みています。多分意味ある。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 昇順ソート\u003C\u002Fspan\u003E\\nbitsTable.\u003Cspan class=\\\"hljs-title function_\\\"\u003Esort\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-function\\\"\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003Ea, b\u003C\u002Fspan\u003E) =&gt;\u003C\u002Fspan\u003E {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Ereturn\u003C\u002Fspan\u003E a[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E].\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E - b[\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E].\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E;\\n});\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eここはエンコード時のようにクイックソートにしても良し。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Ewhile\u003C\u002Fspan\u003E (remainingBits !== \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;&quot;\u003C\u002Fspan\u003E) {\\n  \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 最初のビットをキューのビット列に追加\u003C\u002Fspan\u003E\\n  queueString += remainingBits[\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E];\\n  \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F ビット列から最初の文字を削除する\u003C\u002Fspan\u003E\\n  remainingBits = remainingBits.\u003Cspan class=\\\"hljs-title function_\\\"\u003Eslice\u003C\u002Fspan\u003E(\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E);\\n  ...\\n}\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E残りのビットが空でない場合、キューに最初のビットを追加します。remainingBitsは関数内で共通なのでここを減らしていけばwhileループは勝手に判断してくれます。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-typescript\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Efor\u003C\u002Fspan\u003E (\u003Cspan class=\\\"hljs-keyword\\\"\u003Elet\u003C\u002Fspan\u003E i = \u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E; i &lt; bitsTable.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E; i++) {\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (queueString.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E &lt; bitsTable[i][\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E].\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E) \u003Cspan class=\\\"hljs-keyword\\\"\u003Ebreak\u003C\u002Fspan\u003E; \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F これ以上探索しても符号の長さが長いものとしか当たらないのでループを抜ける\u003C\u002Fspan\u003E\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (queueString.\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E &gt; bitsTable[i][\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E].\u003Cspan class=\\\"hljs-property\\\"\u003Elength\u003C\u002Fspan\u003E) \u003Cspan class=\\\"hljs-keyword\\\"\u003Econtinue\u003C\u002Fspan\u003E; \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F まだ長さがたりてないので次のループにスキップ\u003C\u002Fspan\u003E\\n  \u003Cspan class=\\\"hljs-keyword\\\"\u003Eif\u003C\u002Fspan\u003E (queueString === bitsTable[i][\u003Cspan class=\\\"hljs-number\\\"\u003E1\u003C\u002Fspan\u003E]) { \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 一致!!\u003C\u002Fspan\u003E\\n    result += bitsTable[i][\u003Cspan class=\\\"hljs-number\\\"\u003E0\u003C\u002Fspan\u003E];\\n    queueString = \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;&quot;\u003C\u002Fspan\u003E;\\n    \u003Cspan class=\\\"hljs-keyword\\\"\u003Ebreak\u003C\u002Fspan\u003E;\\n  }\\n}\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eキューの文字数よりイテレート中の変換表の符号の長さが長い場合は、ソート済みなのでこれ以上探索しても意味がないため親のwhileループに戻ります。変換表の符号の長さが短い場合はまだキューの文字列と等しい符号たちにたどり着いていないだけなので\u003Ccode\u003Econtinue\u003C\u002Fcode\u003Eで次のループにスキップします。\u003Cbr\u003E\\nキューの文字数よりイテレート中の変換表の符号の長さが等しい場合のみ互いの値を比較し、晴れて一致した場合は結果に変換表の文字を追加し、キューをクリアして親のwhileループに戻ります。\u003Cbr\u003E\\n最終的にwhileループから抜ける際の\u003Ccode\u003Eresult\u003C\u002Fcode\u003Eには「go go gophers」が格納されているはずです。\u003C\u002Fp\u003E\\n\u003Ch1\u003E圧縮の結果\u003C\u002Fh1\u003E\\n\u003Cp\u003E以下が「go go gophers」をハフマン符号化した際の結果です。\u003Cbr\u003E\\n\u003Cimg src=\\\"https:\u002F\u002Fstorage.googleapis.com\u002Fzenn-user-upload\u002Fxljbq6dbmsh30kvzr4jjsqvuujzq\\\" alt=\\\"image\\\"\u003E\u003Cbr\u003E\\nお分かりいただけただろうか。全然successfullじゃありませんね。\u003Cbr\u003E\\n「go go gophers」のような短い文字列の場合、ヘッダーがオーバーヘッドになってむしろエンコード後のサイズの方が大きくなることがあります。実際にこんな短い文字列を圧縮することはないので気にしなくても良いと思いますがサイズが大きくなったら元のデータを返すみたいな処理を加えておいても良さげです。\u003C\u002Fp\u003E\\n\u003Cp\u003Eちなみにかの有名な「Lorem ipsum…」のテキストをエンコードした結果は以下の通りです。\u003Cbr\u003E\\n\u003Cimg src=\\\"https:\u002F\u002Fstorage.googleapis.com\u002Fzenn-user-upload\u002F0s923xjodsxkxlu9k0vbk6e4rd6y\\\" alt=\\\"image\\\"\u003E\u003Cbr\u003E\\n文字数は450文字くらいですが、60%なのでまあまあ良いんじゃないでしょうか。\u003C\u002Fp\u003E\\n\u003Ch1\u003Eおわりに\u003C\u002Fh1\u003E\\n\u003Cp\u003EMacの予測変換でハフマン木が全然出てこなくて辛かったです。\u003Cbr\u003E\\nQiitaにはゴミ箱のような記事を上げてますがZennは真面目に書きたいので間違っている点やベストプラクティスでない実装があればコメントで教えていただければ幸いです。\u003Cbr\u003E\\nでは\u003C\u002Fp\u003E\\n\u003Ch1\u003E参考文献\u003C\u002Fh1\u003E\\n\u003Ch5\u003Eデイビッド兄貴が書いた論文\u003C\u002Fh5\u003E\\n\u003Cp\u003E\u003Ca href=\\\"https:\u002F\u002Fieeexplore.ieee.org\u002Fdocument\u002F4051119\\\"\u003Ehttps:\u002F\u002Fieeexplore.ieee.org\u002Fdocument\u002F4051119\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\u003Ch5\u003Epurdue大学の文献\u003C\u002Fh5\u003E\\n\u003Cp\u003E\u003Ca href=\\\"https:\u002F\u002Fengineering.purdue.edu\u002Fece264\u002F17au\u002Fhw\u002FHW13?alt=huffman\\\"\u003Ehttps:\u002F\u002Fengineering.purdue.edu\u002Fece264\u002F17au\u002Fhw\u002FHW13?alt=huffman\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\u003Ch5\u003Eすごくわかりやすかった日本語文献（Algoful）\u003C\u002Fh5\u003E\\n\u003Cp\u003E\u003Ca href=\\\"https:\u002F\u002Falgoful.com\u002FArchive\u002FAlgorithm\u002FHaffmanEncoding\\\"\u003Ehttps:\u002F\u002Falgoful.com\u002FArchive\u002FAlgorithm\u002FHaffmanEncoding\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\u003Ch5\u003EUUUM攻殻機動隊\u003C\u002Fh5\u003E\\n\u003Cp\u003E\u003Ca href=\\\"https:\u002F\u002Fsystem.blog.uuum.jp\u002Fentry\u002F2016\u002F03\u002F01\u002F110000\\\"\u003Ehttps:\u002F\u002Fsystem.blog.uuum.jp\u002Fentry\u002F2016\u002F03\u002F01\u002F110000\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\"}"}</script>
+		</div>
+	</body>
+</html>

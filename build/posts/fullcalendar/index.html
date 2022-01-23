@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KOTA YATAGAI | 八谷航太</title>
+    <title>SvelteでFullCalendarを使う</title><meta name="description" content="今後Svelteの人気が上昇することを願って" data-svelte="svelte-189on1m"><meta property="og:url" content="https://kota-yata.com" data-svelte="svelte-189on1m"><meta property="og:title" content="SvelteでFullCalendarを使う" data-svelte="svelte-189on1m"><meta property="og:image" content="https://kota-yata.com/media/fullcalendar.webp" data-svelte="svelte-189on1m"><meta property="og:description" content="今後Svelteの人気が上昇することを願って" data-svelte="svelte-189on1m"><meta name="twitter:card" content="summary_large_image" data-svelte="svelte-189on1m"><meta name="twitter:site" content="@kota_yata" data-svelte="svelte-189on1m">
+
+		
+
+		<link rel="modulepreload" href="/_app/start-daaae108.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-495f2134.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-be316660.js">
+		<link rel="modulepreload" href="/_app/chunks/index-6747d163.js">
+		<link rel="modulepreload" href="/_app/pages/posts/_path_.svelte-2d94d26d.js">
+		<link rel="modulepreload" href="/_app/chunks/page-7b278a70.js">
+		<link rel="modulepreload" href="/_app/chunks/className-0b25377b.js">
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-0136ed43.css">
+		<link rel="stylesheet" href="/_app/assets/app-d7359544.css">
+		<link rel="stylesheet" href="/_app/assets/pages/posts/_path_.svelte-77f41461.css">
+		<link rel="stylesheet" href="/_app/assets/page-da0bc829.css">
+
+		<script type="module">
+			import { start } from "/_app/start-daaae108.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/pages/__layout.svelte-be316660.js"),
+						import("/_app/pages/posts/_path_.svelte-2d94d26d.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002Fposts\u002Ffullcalendar",
+						query: new URLSearchParams(""),
+						params: {path:"fullcalendar"}
+					}
+				}
+			});
+		</script>
+    <meta name="keyword" content="kota,yatagai,kota yatagai,八谷航太">
+    <link rel="icon" href="/me.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link defer
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet">
+    <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+      integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/a11y-dark.min.css"
+      integrity="sha384-Mt8bPDNu0L2sVzon3+a8Rqtl4fmqaUmTPBEd/DTHiGFEQEFvf0fYLnU1DgK+ER2h" crossorigin="anonymous">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-gbfwkw"><div class="left svelte-gbfwkw"><a href="/" class="svelte-gbfwkw">KOTA YATAGAI</a></div>
+  <div class="right svelte-gbfwkw"><select name="language"><option value="JP">Japanese</option><option value="EN">English</option></select>
+    <a href="/trip" sveltekit:prefetch class="svelte-gbfwkw"><img alt="to trip page" src="/airplane.svg" width="30px" height="30px"></a></div></header>
+
+<main class="svelte-gbfwkw">
+  
+
+<div class="container svelte-izy1ym"><div class="profile svelte-izy1ym"><div class="container svelte-g32fgp"><img alt="myself" src="/me.webp" width="150px" height="150px" class="svelte-g32fgp">
+  <div class="bio svelte-g32fgp"><h4 class="svelte-g32fgp">八谷航太</h4>
+    <p class="svelte-g32fgp">18yo / ソフトウェア開発者</p></div>
+  <ul class="svelte-g32fgp"><li class="svelte-g32fgp"><a href="/" class="svelte-g32fgp">Home</a></li><li class="svelte-g32fgp"><a href="/about" class="svelte-g32fgp">About</a></li><li class="svelte-g32fgp"><a href="/works" class="svelte-g32fgp">Works</a></li><li class="svelte-g32fgp"><a href="/contacts" class="svelte-g32fgp">Contacts</a></li></ul>
+  <div class="icons svelte-g32fgp"><a href="https://github.com/kota-yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/github.svg" width="20px" height="20px"></a><a href="https://open.spotify.com/user/jgm80x9h1j84hnk4nv3hozlaf" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/spotify.svg" width="20px" height="20px"></a><a href="https://twitter.com/kota_yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/twitter.svg" width="20px" height="20px"></a><a href="https://speakerdeck.com/kota_yata/" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/speakerdeck.svg" width="20px" height="20px"></a></div>
+</div></div>
+  <div class="slot svelte-izy1ym"><div class="info svelte-hf3o4"><h1 class="info-title svelte-hf3o4">SvelteでFullCalendarを使う</h1>
+    <span class="info-date svelte-hf3o4">2020-09-23</span>
+    <span class="info-category programming svelte-hf3o4">Programming</span></div>
+  <!-- HTML_TAG_START --><p>そもそもSvelteって何なんという方は<a href="https://zenn.dev/toshitoma/articles/what-is-svelte">こちら</a>を見ていただければ大体わかると思います。</p>
+<p>JavaScriptでは割と定番な(はず)のカレンダーライブラリ、<a href="https://fullcalendar.io/">FullCalendar</a>。今年7月にv5もリリースされてコミュニティも活発なんですが、なぜかSvelteに対応していないという体たらく。<br>
+というわけで今回はNuxtより早いとか噂されておいて日本で全く知名度の上がらないSvelteでFull Calendarを使う方法をお伝えします。</p>
+<h3>サードパーティーのライブラリはあります。普通に</h3>
+<p>さも1からSvelteに対応させますみたいなタイトルですが、<a href="https://github.com/YogliB/svelte-fullcalendar">Svelte用のFullCalendarライブラリ</a>はだいぶ前からあります。ただ、僕の観測範囲で日本語の文献(というか英語の文献も)が全く見当たらず、エラーが出たらGitHubで直接Issueを投げる以外の解決策がなかったので、これからSvelteでカレンダー機能を使いそうな人のために備忘録を残しておくまでです。</p>
+<h3>開発環境</h3>
+<p>開発環境で何かが変わるわけではありませんが一応。</p>
+<ul>
+<li>Mac OS BS 11.0 Beta</li>
+<li>VSCode Version: 1.49.1</li>
+<li>Google Chrome 85.0.4183.121（Official Build）</li>
+<li>ビルドツール : Rollup (WebPackの場合は参考にならないかも)</li>
+</ul>
+<h1>1章 環境構築</h1>
+<p>仰々しく1章とか書きましたが2章までしかないので安心してください。</p>
+<h3>yarn addしていく</h3>
+<pre><code>yarn add svelte-fullcalendar
+</code></pre>
+<p>まずはベースのモジュールを追加します。ただこれだけではクソも動かないのでカレンダーを表示するためのモジュールを追加していきます。</p>
+<pre><code>yarn add @fullcalendar/common @fullcalendar/core @fullcalendar/daygrid @fullcalendar/interaction
+</code></pre>
+<p>各パッケージについて説明します。</p>
+<ul>
+<li>@fullcalendar/common … このパッケージを追加しないと実質的に動作しません。</li>
+<li>@fullcalendar/core … このパッケージはベースとなるCSS、ローカライゼーションの際などに必要になります</li>
+<li>@fullcalendar/daygrid … 名前でわかると思いますがdaygridのパッケージです。<a href="https://fullcalendar.io/docs/list-view">リストビュー</a>や<a href="https://fullcalendar.io/docs/timegrid-view">タイムグリッド</a>を使いたい場合は各々追加する必要があります。</li>
+<li>@fullcalendar/interaction … このパッケージはクリックイベントなどイベントハンドラーを動作させるために必要です。</li>
+</ul>
+<p>svelte-fullcalendar以外のパッケージは純正のFullCalendarと同じものを追加するだけなのでハマることはなさそうですね。ハマったらごめんなさい</p>
+<h3>rollup.config.jsの変更</h3>
+<p>rollup.config.jsに以下を追加します。</p>
+<pre><code class="language-js">...
+...
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+...
+  <span class="hljs-title function_">resolve</span>({
+    <span class="hljs-attr">browser</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">dedupe</span>: [<span class="hljs-string">&#x27;svelte&#x27;</span>, <span class="hljs-string">&#x27;@fullcalendar/common&#x27;</span>],
+  }),
+}
+</code></pre>
+<p>この解決策に辿り着くまで5時間くらい半ベソかきながらググってたのでこれは忘れずに追加してください。答えが見つかったissueが<a href="https://github.com/fullcalendar/fullcalendar/issues/5592#issuecomment-687671621">こちら</a></p>
+<h1>2章 コードを書いていく</h1>
+<p>環境構築ができたらあとはコードをカキカキするだけ。カレンダーだけでComponentに分けてもよし、そんな女々しいことはせずApp.svelteに直書きする暴挙に出てもよし。</p>
+<h4>モジュールをimportしていく</h4>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">FullCalendar</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;svelte-fullcalendar&#x27;</span>;
+<span class="hljs-keyword">import</span> interactionPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@fullcalendar/interaction&#x27;</span>;
+<span class="hljs-keyword">import</span> dayGridPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@fullcalendar/daygrid&#x27;</span>;
+<span class="hljs-keyword">import</span> jaLocal <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@fullcalendar/core/locales/ja&#x27;</span>;
+</code></pre>
+<p>日本語対応する必要がなければjaLocalは必要ない。</p>
+<h4>CSSをimportしていく</h4>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;@fullcalendar/core/main.min.css&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;@fullcalendar/daygrid/main.min.css&#x27;</span>;
+</code></pre>
+<p>上のCSSを追加しないとレイアウト崩れます。下はdaygrid使う場合のみ。</p>
+<h4>オプションを定義する</h4>
+<pre><code class="language-js"><span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">droppable</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">editable</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">initialView</span>: <span class="hljs-string">&#x27;dayGridMonth&#x27;</span>,
+  <span class="hljs-attr">headerToolbar</span>: { <span class="hljs-attr">left</span>: <span class="hljs-string">&#x27;prevYear,prev,next,nextYear&#x27;</span>, <span class="hljs-attr">center</span>: <span class="hljs-string">&#x27;title&#x27;</span>, <span class="hljs-attr">right</span>: <span class="hljs-string">&#x27;today&#x27;</span> },
+  <span class="hljs-attr">locale</span>: jaLocal,
+  <span class="hljs-attr">buttonText</span>: { <span class="hljs-attr">today</span>: <span class="hljs-string">&#x27;今月に戻る&#x27;</span> },
+  <span class="hljs-attr">plugins</span>: [dayGridPlugin, interactionPlugin],
+  <span class="hljs-attr">dateClick</span>: <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> <span class="hljs-title function_">handleDateClick</span>(event),
+};
+<span class="hljs-comment">// ドラッグイベントなどdateClick以外のJSイベントも普通に動きます</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">handleDateClick</span> = (<span class="hljs-params">event</span>) =&gt; {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(event);
+};
+</code></pre>
+<p>ここは純正のFullCalendarのオプション表記とほぼ同じです。buttonText,initialViewなどv5で表現の変更されたフラッグもありますのでご注意ください。</p>
+<p><a href="https://fullcalendar.io/docs/upgrading-from-v4">FullCalendar v5 Release Notes</a></p>
+<h4>表示するだけ</h4>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;Calendar&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">FullCalendar</span> {<span class="hljs-attr">options</span>} /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>もちろん<code>options = {options}</code>と表記しても構いません。</p>
+<h2>動作確認</h2>
+<pre><code>yarn run dev
+</code></pre>
+<p><img src="https://storage.googleapis.com/zenn-user-upload/5s7cvv3bg4rgtc03jzwdte5y9crm" alt=""></p>
+<p>適当な日付をクリックすると…</p>
+<p><img src="https://storage.googleapis.com/zenn-user-upload/u35t0wcn58zw0opsvnb5xaw6xit3" alt=""></p>
+<p>よき。</p>
+<h1>終わりに</h1>
+<p>svelte-fullcalendarのリポジトリにサンプルも用意されていますのでそちらも参考になるかと思います。</p>
+<p><a href="https://www.dropbox.com/s/xtzcyry80hhmbcc/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202020-09-24%200.04.30.png?dl=0">svelte-fullcalendar/examples/svelte</a></p>
+<p>まだまだ資料が少なくとっつきにくいSvelteですが、体感できるほどには高速なので一度試してると良いと思います。GitHubのIssueも飽和状態というわけではないので数日以内に返信来ると思います。</p>
+<h5>参考</h5>
+<p><a href="https://github.com/YogliB/svelte-fullcalendar">svelte-fullcalendar</a><br>
+<a href="https://svelte.dev/repl/afa33232d6914c5f9fd25e332e167a7c?version=3.12.1">svelte-fullcalendarがWeb上で試せるやつ</a><br>
+<a href="https://www.creative-tim.com/learning-lab/svelte/fullcalendar/argon-dashboard">唯一見つけた英語のsvelte-fullcalendarの記事</a></p>
+<!-- HTML_TAG_END -->
+  <div class="share svelte-hf3o4"><a class="share-twitter svelte-hf3o4" target="blank"><img alt="Twitter share button" src="/twitter.svg" width="25px" height="25px"></a>
+    <a class="share-pocket svelte-hf3o4" target="blank"><img alt="Pocket share button" src="/pocket.svg" width="25px" height="25px"></a>
+    <a class="share-instapaper svelte-hf3o4" target="blank"><img alt="InstaPaper share button" src="/instapaper.svg" width="25px"></a></div></div>
+</div></main>
+
+<footer class="svelte-gbfwkw">@ 2021 Kota Yatagai</footer>
+
+
+
+			<script type="application/json" data-type="svelte-data" data-url="/posts/fullcalendar.json">{"status":200,"statusText":"","headers":{"content-type":"application/json; charset=utf-8"},"body":"{\"meta\":{\"title\":\"SvelteでFullCalendarを使う\",\"date\":\"2020-09-23\",\"category\":\"Programming\",\"description\":\"今後Svelteの人気が上昇することを願って\",\"ogp\":\"\u002Fmedia\u002Ffullcalendar.webp\"},\"body\":\"\u003Cp\u003EそもそもSvelteって何なんという方は\u003Ca href=\\\"https:\u002F\u002Fzenn.dev\u002Ftoshitoma\u002Farticles\u002Fwhat-is-svelte\\\"\u003Eこちら\u003C\u002Fa\u003Eを見ていただければ大体わかると思います。\u003C\u002Fp\u003E\\n\u003Cp\u003EJavaScriptでは割と定番な(はず)のカレンダーライブラリ、\u003Ca href=\\\"https:\u002F\u002Ffullcalendar.io\u002F\\\"\u003EFullCalendar\u003C\u002Fa\u003E。今年7月にv5もリリースされてコミュニティも活発なんですが、なぜかSvelteに対応していないという体たらく。\u003Cbr\u003E\\nというわけで今回はNuxtより早いとか噂されておいて日本で全く知名度の上がらないSvelteでFull Calendarを使う方法をお伝えします。\u003C\u002Fp\u003E\\n\u003Ch3\u003Eサードパーティーのライブラリはあります。普通に\u003C\u002Fh3\u003E\\n\u003Cp\u003Eさも1からSvelteに対応させますみたいなタイトルですが、\u003Ca href=\\\"https:\u002F\u002Fgithub.com\u002FYogliB\u002Fsvelte-fullcalendar\\\"\u003ESvelte用のFullCalendarライブラリ\u003C\u002Fa\u003Eはだいぶ前からあります。ただ、僕の観測範囲で日本語の文献(というか英語の文献も)が全く見当たらず、エラーが出たらGitHubで直接Issueを投げる以外の解決策がなかったので、これからSvelteでカレンダー機能を使いそうな人のために備忘録を残しておくまでです。\u003C\u002Fp\u003E\\n\u003Ch3\u003E開発環境\u003C\u002Fh3\u003E\\n\u003Cp\u003E開発環境で何かが変わるわけではありませんが一応。\u003C\u002Fp\u003E\\n\u003Cul\u003E\\n\u003Cli\u003EMac OS BS 11.0 Beta\u003C\u002Fli\u003E\\n\u003Cli\u003EVSCode Version: 1.49.1\u003C\u002Fli\u003E\\n\u003Cli\u003EGoogle Chrome 85.0.4183.121（Official Build）\u003C\u002Fli\u003E\\n\u003Cli\u003Eビルドツール : Rollup (WebPackの場合は参考にならないかも)\u003C\u002Fli\u003E\\n\u003C\u002Ful\u003E\\n\u003Ch1\u003E1章 環境構築\u003C\u002Fh1\u003E\\n\u003Cp\u003E仰々しく1章とか書きましたが2章までしかないので安心してください。\u003C\u002Fp\u003E\\n\u003Ch3\u003Eyarn addしていく\u003C\u002Fh3\u003E\\n\u003Cpre\u003E\u003Ccode\u003Eyarn add svelte-fullcalendar\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eまずはベースのモジュールを追加します。ただこれだけではクソも動かないのでカレンダーを表示するためのモジュールを追加していきます。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode\u003Eyarn add @fullcalendar\u002Fcommon @fullcalendar\u002Fcore @fullcalendar\u002Fdaygrid @fullcalendar\u002Finteraction\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E各パッケージについて説明します。\u003C\u002Fp\u003E\\n\u003Cul\u003E\\n\u003Cli\u003E@fullcalendar\u002Fcommon … このパッケージを追加しないと実質的に動作しません。\u003C\u002Fli\u003E\\n\u003Cli\u003E@fullcalendar\u002Fcore … このパッケージはベースとなるCSS、ローカライゼーションの際などに必要になります\u003C\u002Fli\u003E\\n\u003Cli\u003E@fullcalendar\u002Fdaygrid … 名前でわかると思いますがdaygridのパッケージです。\u003Ca href=\\\"https:\u002F\u002Ffullcalendar.io\u002Fdocs\u002Flist-view\\\"\u003Eリストビュー\u003C\u002Fa\u003Eや\u003Ca href=\\\"https:\u002F\u002Ffullcalendar.io\u002Fdocs\u002Ftimegrid-view\\\"\u003Eタイムグリッド\u003C\u002Fa\u003Eを使いたい場合は各々追加する必要があります。\u003C\u002Fli\u003E\\n\u003Cli\u003E@fullcalendar\u002Finteraction … このパッケージはクリックイベントなどイベントハンドラーを動作させるために必要です。\u003C\u002Fli\u003E\\n\u003C\u002Ful\u003E\\n\u003Cp\u003Esvelte-fullcalendar以外のパッケージは純正のFullCalendarと同じものを追加するだけなのでハマることはなさそうですね。ハマったらごめんなさい\u003C\u002Fp\u003E\\n\u003Ch3\u003Erollup.config.jsの変更\u003C\u002Fh3\u003E\\n\u003Cp\u003Erollup.config.jsに以下を追加します。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-js\\\"\u003E...\\n...\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eexport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Edefault\u003C\u002Fspan\u003E {\\n...\\n  \u003Cspan class=\\\"hljs-title function_\\\"\u003Eresolve\u003C\u002Fspan\u003E({\\n    \u003Cspan class=\\\"hljs-attr\\\"\u003Ebrowser\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-literal\\\"\u003Etrue\u003C\u002Fspan\u003E,\\n    \u003Cspan class=\\\"hljs-attr\\\"\u003Ededupe\u003C\u002Fspan\u003E: [\u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;svelte&#x27;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;@fullcalendar\u002Fcommon&#x27;\u003C\u002Fspan\u003E],\\n  }),\\n}\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eこの解決策に辿り着くまで5時間くらい半ベソかきながらググってたのでこれは忘れずに追加してください。答えが見つかったissueが\u003Ca href=\\\"https:\u002F\u002Fgithub.com\u002Ffullcalendar\u002Ffullcalendar\u002Fissues\u002F5592#issuecomment-687671621\\\"\u003Eこちら\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\u003Ch1\u003E2章 コードを書いていく\u003C\u002Fh1\u003E\\n\u003Cp\u003E環境構築ができたらあとはコードをカキカキするだけ。カレンダーだけでComponentに分けてもよし、そんな女々しいことはせずApp.svelteに直書きする暴挙に出てもよし。\u003C\u002Fp\u003E\\n\u003Ch4\u003Eモジュールをimportしていく\u003C\u002Fh4\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-js\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title class_\\\"\u003EFullCalendar\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-keyword\\\"\u003Efrom\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;svelte-fullcalendar&#x27;\u003C\u002Fspan\u003E;\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E interactionPlugin \u003Cspan class=\\\"hljs-keyword\\\"\u003Efrom\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;@fullcalendar\u002Finteraction&#x27;\u003C\u002Fspan\u003E;\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E dayGridPlugin \u003Cspan class=\\\"hljs-keyword\\\"\u003Efrom\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;@fullcalendar\u002Fdaygrid&#x27;\u003C\u002Fspan\u003E;\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E jaLocal \u003Cspan class=\\\"hljs-keyword\\\"\u003Efrom\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;@fullcalendar\u002Fcore\u002Flocales\u002Fja&#x27;\u003C\u002Fspan\u003E;\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E日本語対応する必要がなければjaLocalは必要ない。\u003C\u002Fp\u003E\\n\u003Ch4\u003ECSSをimportしていく\u003C\u002Fh4\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-js\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;@fullcalendar\u002Fcore\u002Fmain.min.css&#x27;\u003C\u002Fspan\u003E;\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eimport\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;@fullcalendar\u002Fdaygrid\u002Fmain.min.css&#x27;\u003C\u002Fspan\u003E;\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E上のCSSを追加しないとレイアウト崩れます。下はdaygrid使う場合のみ。\u003C\u002Fp\u003E\\n\u003Ch4\u003Eオプションを定義する\u003C\u002Fh4\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-js\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E options = {\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003Edroppable\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-literal\\\"\u003Etrue\u003C\u002Fspan\u003E,\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003Eeditable\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-literal\\\"\u003Etrue\u003C\u002Fspan\u003E,\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003EinitialView\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;dayGridMonth&#x27;\u003C\u002Fspan\u003E,\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003EheaderToolbar\u003C\u002Fspan\u003E: { \u003Cspan class=\\\"hljs-attr\\\"\u003Eleft\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;prevYear,prev,next,nextYear&#x27;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-attr\\\"\u003Ecenter\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;title&#x27;\u003C\u002Fspan\u003E, \u003Cspan class=\\\"hljs-attr\\\"\u003Eright\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;today&#x27;\u003C\u002Fspan\u003E },\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003Elocale\u003C\u002Fspan\u003E: jaLocal,\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003EbuttonText\u003C\u002Fspan\u003E: { \u003Cspan class=\\\"hljs-attr\\\"\u003Etoday\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-string\\\"\u003E&#x27;今月に戻る&#x27;\u003C\u002Fspan\u003E },\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003Eplugins\u003C\u002Fspan\u003E: [dayGridPlugin, interactionPlugin],\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003EdateClick\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-function\\\"\u003E(\u003Cspan class=\\\"hljs-params\\\"\u003Eevent\u003C\u002Fspan\u003E) =&gt;\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title function_\\\"\u003EhandleDateClick\u003C\u002Fspan\u003E(event),\\n};\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F ドラッグイベントなどdateClick以外のJSイベントも普通に動きます\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title function_\\\"\u003EhandleDateClick\u003C\u002Fspan\u003E = (\u003Cspan class=\\\"hljs-params\\\"\u003Eevent\u003C\u002Fspan\u003E) =&gt; {\\n  \u003Cspan class=\\\"hljs-variable language_\\\"\u003Econsole\u003C\u002Fspan\u003E.\u003Cspan class=\\\"hljs-title function_\\\"\u003Elog\u003C\u002Fspan\u003E(event);\\n};\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eここは純正のFullCalendarのオプション表記とほぼ同じです。buttonText,initialViewなどv5で表現の変更されたフラッグもありますのでご注意ください。\u003C\u002Fp\u003E\\n\u003Cp\u003E\u003Ca href=\\\"https:\u002F\u002Ffullcalendar.io\u002Fdocs\u002Fupgrading-from-v4\\\"\u003EFullCalendar v5 Release Notes\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\u003Ch4\u003E表示するだけ\u003C\u002Fh4\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-html\\\"\u003E\u003Cspan class=\\\"hljs-tag\\\"\u003E&lt;\u003Cspan class=\\\"hljs-name\\\"\u003Ediv\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-attr\\\"\u003Eclass\u003C\u002Fspan\u003E=\u003Cspan class=\\\"hljs-string\\\"\u003E&quot;Calendar&quot;\u003C\u002Fspan\u003E&gt;\u003C\u002Fspan\u003E\\n  \u003Cspan class=\\\"hljs-tag\\\"\u003E&lt;\u003Cspan class=\\\"hljs-name\\\"\u003EFullCalendar\u003C\u002Fspan\u003E {\u003Cspan class=\\\"hljs-attr\\\"\u003Eoptions\u003C\u002Fspan\u003E} \u002F&gt;\u003C\u002Fspan\u003E\\n\u003Cspan class=\\\"hljs-tag\\\"\u003E&lt;\u002F\u003Cspan class=\\\"hljs-name\\\"\u003Ediv\u003C\u002Fspan\u003E&gt;\u003C\u002Fspan\u003E\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eもちろん\u003Ccode\u003Eoptions = {options}\u003C\u002Fcode\u003Eと表記しても構いません。\u003C\u002Fp\u003E\\n\u003Ch2\u003E動作確認\u003C\u002Fh2\u003E\\n\u003Cpre\u003E\u003Ccode\u003Eyarn run dev\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E\u003Cimg src=\\\"https:\u002F\u002Fstorage.googleapis.com\u002Fzenn-user-upload\u002F5s7cvv3bg4rgtc03jzwdte5y9crm\\\" alt=\\\"\\\"\u003E\u003C\u002Fp\u003E\\n\u003Cp\u003E適当な日付をクリックすると…\u003C\u002Fp\u003E\\n\u003Cp\u003E\u003Cimg src=\\\"https:\u002F\u002Fstorage.googleapis.com\u002Fzenn-user-upload\u002Fu35t0wcn58zw0opsvnb5xaw6xit3\\\" alt=\\\"\\\"\u003E\u003C\u002Fp\u003E\\n\u003Cp\u003Eよき。\u003C\u002Fp\u003E\\n\u003Ch1\u003E終わりに\u003C\u002Fh1\u003E\\n\u003Cp\u003Esvelte-fullcalendarのリポジトリにサンプルも用意されていますのでそちらも参考になるかと思います。\u003C\u002Fp\u003E\\n\u003Cp\u003E\u003Ca href=\\\"https:\u002F\u002Fwww.dropbox.com\u002Fs\u002Fxtzcyry80hhmbcc\u002F%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202020-09-24%200.04.30.png?dl=0\\\"\u003Esvelte-fullcalendar\u002Fexamples\u002Fsvelte\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\u003Cp\u003Eまだまだ資料が少なくとっつきにくいSvelteですが、体感できるほどには高速なので一度試してると良いと思います。GitHubのIssueも飽和状態というわけではないので数日以内に返信来ると思います。\u003C\u002Fp\u003E\\n\u003Ch5\u003E参考\u003C\u002Fh5\u003E\\n\u003Cp\u003E\u003Ca href=\\\"https:\u002F\u002Fgithub.com\u002FYogliB\u002Fsvelte-fullcalendar\\\"\u003Esvelte-fullcalendar\u003C\u002Fa\u003E\u003Cbr\u003E\\n\u003Ca href=\\\"https:\u002F\u002Fsvelte.dev\u002Frepl\u002Fafa33232d6914c5f9fd25e332e167a7c?version=3.12.1\\\"\u003Esvelte-fullcalendarがWeb上で試せるやつ\u003C\u002Fa\u003E\u003Cbr\u003E\\n\u003Ca href=\\\"https:\u002F\u002Fwww.creative-tim.com\u002Flearning-lab\u002Fsvelte\u002Ffullcalendar\u002Fargon-dashboard\\\"\u003E唯一見つけた英語のsvelte-fullcalendarの記事\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\"}"}</script>
+		</div>
+	</body>
+</html>

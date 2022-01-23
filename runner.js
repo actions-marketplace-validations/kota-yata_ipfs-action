@@ -17,6 +17,8 @@ async function run() {
     const pinataPinName = core.getInput("pinataPinName");
     const timeout = core.getInput("timeout");
     const verbose = core.getInput("verbose") === "true";
+    const vercelDomain = core.getInput("vercelDomain");
+    const vercelToken = core.getInput("vercelToken");
 
     const options = {
       path,
@@ -31,6 +33,8 @@ async function run() {
       pinataPinName,
       timeout,
       verbose,
+      vercelDomain,
+      vercelToken
     };
     const result = await uploader.upload(options).catch((err) => {
       throw err;
@@ -39,6 +43,7 @@ async function run() {
     core.setOutput("cid", result.cid);
     core.setOutput("ipfs", result.ipfs);
     core.setOutput("ipns", result.ipns);
+    core.setOutput("vercel", result.vercel);
 
     if (verbose) {
       // Get the JSON webhook payload for the event that triggered the workflow

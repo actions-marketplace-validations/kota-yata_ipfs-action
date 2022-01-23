@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KOTA YATAGAI | 八谷航太</title>
+    <title>暗号モードまとめ</title><meta name="description" content="暗号を基礎から勉強しようの会" data-svelte="svelte-189on1m"><meta property="og:url" content="https://kota-yata.com" data-svelte="svelte-189on1m"><meta property="og:title" content="暗号モードまとめ" data-svelte="svelte-189on1m"><meta property="og:image" content="https://kota-yata.com/media/ctsenc.png" data-svelte="svelte-189on1m"><meta property="og:description" content="暗号を基礎から勉強しようの会" data-svelte="svelte-189on1m"><meta name="twitter:card" content="summary_large_image" data-svelte="svelte-189on1m"><meta name="twitter:site" content="@kota_yata" data-svelte="svelte-189on1m">
+
+		
+
+		<link rel="modulepreload" href="/_app/start-daaae108.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-495f2134.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-be316660.js">
+		<link rel="modulepreload" href="/_app/chunks/index-6747d163.js">
+		<link rel="modulepreload" href="/_app/pages/posts/_path_.svelte-2d94d26d.js">
+		<link rel="modulepreload" href="/_app/chunks/page-7b278a70.js">
+		<link rel="modulepreload" href="/_app/chunks/className-0b25377b.js">
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-0136ed43.css">
+		<link rel="stylesheet" href="/_app/assets/app-d7359544.css">
+		<link rel="stylesheet" href="/_app/assets/pages/posts/_path_.svelte-77f41461.css">
+		<link rel="stylesheet" href="/_app/assets/page-da0bc829.css">
+
+		<script type="module">
+			import { start } from "/_app/start-daaae108.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/pages/__layout.svelte-be316660.js"),
+						import("/_app/pages/posts/_path_.svelte-2d94d26d.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002Fposts\u002Fciphermode",
+						query: new URLSearchParams(""),
+						params: {path:"ciphermode"}
+					}
+				}
+			});
+		</script>
+    <meta name="keyword" content="kota,yatagai,kota yatagai,八谷航太">
+    <link rel="icon" href="/me.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link defer
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet">
+    <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+      integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/a11y-dark.min.css"
+      integrity="sha384-Mt8bPDNu0L2sVzon3+a8Rqtl4fmqaUmTPBEd/DTHiGFEQEFvf0fYLnU1DgK+ER2h" crossorigin="anonymous">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-gbfwkw"><div class="left svelte-gbfwkw"><a href="/" class="svelte-gbfwkw">KOTA YATAGAI</a></div>
+  <div class="right svelte-gbfwkw"><select name="language"><option value="JP">Japanese</option><option value="EN">English</option></select>
+    <a href="/trip" sveltekit:prefetch class="svelte-gbfwkw"><img alt="to trip page" src="/airplane.svg" width="30px" height="30px"></a></div></header>
+
+<main class="svelte-gbfwkw">
+  
+
+<div class="container svelte-izy1ym"><div class="profile svelte-izy1ym"><div class="container svelte-g32fgp"><img alt="myself" src="/me.webp" width="150px" height="150px" class="svelte-g32fgp">
+  <div class="bio svelte-g32fgp"><h4 class="svelte-g32fgp">八谷航太</h4>
+    <p class="svelte-g32fgp">18yo / ソフトウェア開発者</p></div>
+  <ul class="svelte-g32fgp"><li class="svelte-g32fgp"><a href="/" class="svelte-g32fgp">Home</a></li><li class="svelte-g32fgp"><a href="/about" class="svelte-g32fgp">About</a></li><li class="svelte-g32fgp"><a href="/works" class="svelte-g32fgp">Works</a></li><li class="svelte-g32fgp"><a href="/contacts" class="svelte-g32fgp">Contacts</a></li></ul>
+  <div class="icons svelte-g32fgp"><a href="https://github.com/kota-yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/github.svg" width="20px" height="20px"></a><a href="https://open.spotify.com/user/jgm80x9h1j84hnk4nv3hozlaf" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/spotify.svg" width="20px" height="20px"></a><a href="https://twitter.com/kota_yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/twitter.svg" width="20px" height="20px"></a><a href="https://speakerdeck.com/kota_yata/" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/speakerdeck.svg" width="20px" height="20px"></a></div>
+</div></div>
+  <div class="slot svelte-izy1ym"><div class="info svelte-hf3o4"><h1 class="info-title svelte-hf3o4">暗号モードまとめ</h1>
+    <span class="info-date svelte-hf3o4">2021-05-15</span>
+    <span class="info-category cryptography svelte-hf3o4">Cryptography</span></div>
+  <!-- HTML_TAG_START --><p>暗号モードというのはブロック暗号において、長い平文を暗号化するための前置き的な手順です。言い換えれば暗号アルゴリズムの入力の決め方みたいなもの。<br>
+僕自身で発展させた知見はないので<a href="https://scrapbox.io/chicken/">Scrapbox</a>の方に書こうかなとも思ったんだけど、見出し使うしある程度体系化されてるのでこっちに書きます。</p>
+<details>
+  <summary>目次</summary>
+  <ul>
+    <li>ECBモード</li>
+    <li>CBCモード</li>
+    <li>CTSモード</li>
+    <li>CFBモード</li>
+    <li>OFBモード</li>
+    <li>CTRモード</li>
+  </ul>
+</details>
+<h2>Electric CodeBlock (ECB)</h2>
+<p>ブロックに区切られた暗号文をそのまま順番に暗号化して暗号文ブロックをつなぎ合わせる方法。最も単純かつ最も脆弱。</p>
+<p><img src="/media/ecbenc.png" alt="ECBモードの暗号化"></p>
+<h3>ECBモードが脆弱な理由</h3>
+<p>ECBを使うべきでない理由は単に、暗号文を解読することなく平文を操作できるからです。取引データなど同じフォーマットで平文が繰り返されている場合、平文を読むことなく暗号文のパターンを把握し、その順番を入れ替えることで平文を操作できてしまうのです。他のモードであれば暗号文をいじれば平文のメッセージに意味がなくなる場合がほとんどですが、ECBでは意味の通る状態で平文を書き換えられるわけです。</p>
+<h2>Cipher Block Chaining (CBC)</h2>
+<p>CBCは一つ前の暗号文ブロックと平文ブロックのXORをとる方法。これをすることでECBの問題であった「平文のパターンがバレる」という問題は解決します。</p>
+<p><img src="/media/cbcenc.png" alt="CBCモードの暗号化"></p>
+<p>復号はこれを逆に実行すれば良いだけですが、ビットが破損した場合その平文と、破損した暗号文とXORを取る平文の二つの復号に影響が出ます。また暗号文のビットが欠落した場合、その後の暗号文ブロックが全てズレて復号してもわけが分からなくなります。</p>
+<p>図にあるように最初は「初期化ベクトル」なるランダムなビット列と平文でXORをとります。この初期化ベクトルがランダムでないと1ブロック目に同じ平文が来た時に同じ暗号文ブロックが出力されてしまうので、ECB同様攻撃者に情報を与えてしまうことになります。</p>
+<h3>CBCの弱点</h3>
+<p>初期化ベクトルをいじることができれば、最初の平文の1ビットごとの操作が可能になります。<a href="https://jvndb.jvn.jp/ja/contents/2011/JVNDB-2011-002305.html">TLS1.0では前回暗号化した最後のブロックを初期化ベクトルとして用いていた</a>のでこの攻撃が可能でしたが、先述の通り正しく実装されていれば初期化ベクトルはランダム生成なのでほとんどの場合不可能でしょう。</p>
+<p>また平文をブロックの整数倍に合わせる際のパディング内容を若干変化させながら暗号文を送信し、そのエラー文から平文情報を得る<strong>パディングオラクル攻撃</strong>の対象にもなります。パディングオラクル攻撃に関しては、デジタル署名なりで送り手を認証し、変な送信元だったら抽象的なエラーメッセージしか返さないことで対策できます。</p>
+<p>さらに、複数の暗号文ブロックをすり替えた時に最初の平文ブロック以外は正しく復号できてしまうので平文を書き換えることができてしまいます。これを<strong>再生攻撃</strong>と言います。</p>
+<p>セキュリティ以外で言えば、前の暗号文ブロックを利用するため並列処理ができない点は痛いですね。</p>
+<h2>Cipher Text Stealing (CTS)</h2>
+<p>パディングに前の暗号文ブロックの末尾を用いる方法。ECBモードやCBCモードと組み合わせて使うモードで、パディングに利用したブロックの部分は暗号文としては使用しません。CTSモードを使っていることが分かっていれば、末尾の特定のサイズはXORにかけずその前の暗号文の末尾として復号を進めれば良いので復号も問題なくできます。</p>
+<p><img src="/media/ctsenc.png" alt="CTSモードの暗号化"></p>
+<h2>Cipher-FeedBack (CFB)</h2>
+<p>一つ前の暗号文ブロックを暗号アルゴリズムの入力にし、それと平文のXORをとって暗号文ブロックとする方法。一見平文から暗号文ブロックを生成する間に暗号化がないので不安になりますが（少なくとも僕はなった）その後で暗号文ブロックを暗号化する処理があるので結果的には暗号アルゴリズムの恩恵を受けられる仕組みになっています。</p>
+<p><img src="/media/cfbenc.png" alt="CFBモードの暗号化"></p>
+<p>復号の際は同じように、前の暗号文ブロックを<strong>暗号化</strong>したビット列と暗号文のXORをとって平文を取得します。ここで、XORで同じ値を出力するには暗号化の際と同じ値が必要なため、前の暗号文ブロックを復号ではなく暗号化するのです。</p>
+<p>図を見るとわかる通り、平文から暗号文を導出する時はXORをとって1ビットずつ生成しています。なのでCFBモードはストリーム暗号を作っているとみなせるのです。</p>
+<h3>CFBの弱点</h3>
+<p>CBC同様に再生攻撃のリスクと、並列処理ができないという欠点があります。また、暗号文の1ビットを反転させると平文の1ビットも反転するという脆弱性があります。</p>
+<h2>Output-FeedBack (OFB)</h2>
+<p>前の暗号アルゴリズムの出力を入力として鍵ストリームを作成し、それと平文のXORをとって暗号文とする方法。先に鍵ストリームを作っておくことができ、そうすればあとはXORをとるだけなので非常に高速化かつ並列処理が可能になります。</p>
+<p><img src="/media/ofbenc.png" alt="OFBモードの暗号化"></p>
+<h3>OFBの弱点</h3>
+<p>再生攻撃などの弱点は克服していますが、暗号文のビット反転が平文のビットに影響するという弱点は変わりません。それに加えて、万が一前の鍵ストリームの暗号化結果が暗号化前と同じになってしまった場合、暗号アルゴリズムは常に同じなためそれ以降の鍵ストリームが全て同じになってしまうというリスクがあります。</p>
+<h2>CounTeR (CTR)</h2>
+<p>暗号化のたびに増加するカウンタを用いて鍵ストリームを生成する方法です。CFBやOFB同様、機能的にはストリーム暗号です。</p>
+<p>毎度nonceを生成し、その後にカウンタを挿入します。128bitsのブロック長だった場合、前半8bitsがnonce、後半8bitsがブロック番号になります。</p>
+<pre><code class="language-js"><span class="hljs-comment">// カウンタ初期値の例（カウント1の時）</span>
+6d 5f <span class="hljs-number">17</span> f1 <span class="hljs-number">24</span> c7 bb 4e <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">00</span> <span class="hljs-number">01</span>
+</code></pre>
+<p><img src="/media/ctrenc.png" alt="CTRモードの暗号化"></p>
+<p>CTRモードの長所としては、OFB同様に暗号化と復号の構造が全く同じなので実装が楽なことと、nonceとブロック番号からカウンタが求められるので暗号化の段階から並列処理が可能なことが挙げられます。また、OFBモードにあった鍵ストリームの暗号化結果によってはそれ以降の鍵ストリームが全て同じになるという脆弱性は、そもそも前の鍵ストリームを利用しないCTRモードには残っていません。</p>
+<h1>おわりに</h1>
+<p>これで暗号スイート見てもモードが何を意味してるのか分かるようになりました。万歳</p>
+<!-- HTML_TAG_END -->
+  <div class="share svelte-hf3o4"><a class="share-twitter svelte-hf3o4" target="blank"><img alt="Twitter share button" src="/twitter.svg" width="25px" height="25px"></a>
+    <a class="share-pocket svelte-hf3o4" target="blank"><img alt="Pocket share button" src="/pocket.svg" width="25px" height="25px"></a>
+    <a class="share-instapaper svelte-hf3o4" target="blank"><img alt="InstaPaper share button" src="/instapaper.svg" width="25px"></a></div></div>
+</div></main>
+
+<footer class="svelte-gbfwkw">@ 2021 Kota Yatagai</footer>
+
+
+
+			<script type="application/json" data-type="svelte-data" data-url="/posts/ciphermode.json">{"status":200,"statusText":"","headers":{"content-type":"application/json; charset=utf-8"},"body":"{\"meta\":{\"title\":\"暗号モードまとめ\",\"date\":\"2021-05-15\",\"category\":\"Cryptography\",\"description\":\"暗号を基礎から勉強しようの会\",\"ogp\":\"\u002Fmedia\u002Fctsenc.png\"},\"body\":\"\u003Cp\u003E暗号モードというのはブロック暗号において、長い平文を暗号化するための前置き的な手順です。言い換えれば暗号アルゴリズムの入力の決め方みたいなもの。\u003Cbr\u003E\\n僕自身で発展させた知見はないので\u003Ca href=\\\"https:\u002F\u002Fscrapbox.io\u002Fchicken\u002F\\\"\u003EScrapbox\u003C\u002Fa\u003Eの方に書こうかなとも思ったんだけど、見出し使うしある程度体系化されてるのでこっちに書きます。\u003C\u002Fp\u003E\\n\u003Cdetails\u003E\\n  \u003Csummary\u003E目次\u003C\u002Fsummary\u003E\\n  \u003Cul\u003E\\n    \u003Cli\u003EECBモード\u003C\u002Fli\u003E\\n    \u003Cli\u003ECBCモード\u003C\u002Fli\u003E\\n    \u003Cli\u003ECTSモード\u003C\u002Fli\u003E\\n    \u003Cli\u003ECFBモード\u003C\u002Fli\u003E\\n    \u003Cli\u003EOFBモード\u003C\u002Fli\u003E\\n    \u003Cli\u003ECTRモード\u003C\u002Fli\u003E\\n  \u003C\u002Ful\u003E\\n\u003C\u002Fdetails\u003E\\n\u003Ch2\u003EElectric CodeBlock (ECB)\u003C\u002Fh2\u003E\\n\u003Cp\u003Eブロックに区切られた暗号文をそのまま順番に暗号化して暗号文ブロックをつなぎ合わせる方法。最も単純かつ最も脆弱。\u003C\u002Fp\u003E\\n\u003Cp\u003E\u003Cimg src=\\\"\u002Fmedia\u002Fecbenc.png\\\" alt=\\\"ECBモードの暗号化\\\"\u003E\u003C\u002Fp\u003E\\n\u003Ch3\u003EECBモードが脆弱な理由\u003C\u002Fh3\u003E\\n\u003Cp\u003EECBを使うべきでない理由は単に、暗号文を解読することなく平文を操作できるからです。取引データなど同じフォーマットで平文が繰り返されている場合、平文を読むことなく暗号文のパターンを把握し、その順番を入れ替えることで平文を操作できてしまうのです。他のモードであれば暗号文をいじれば平文のメッセージに意味がなくなる場合がほとんどですが、ECBでは意味の通る状態で平文を書き換えられるわけです。\u003C\u002Fp\u003E\\n\u003Ch2\u003ECipher Block Chaining (CBC)\u003C\u002Fh2\u003E\\n\u003Cp\u003ECBCは一つ前の暗号文ブロックと平文ブロックのXORをとる方法。これをすることでECBの問題であった「平文のパターンがバレる」という問題は解決します。\u003C\u002Fp\u003E\\n\u003Cp\u003E\u003Cimg src=\\\"\u002Fmedia\u002Fcbcenc.png\\\" alt=\\\"CBCモードの暗号化\\\"\u003E\u003C\u002Fp\u003E\\n\u003Cp\u003E復号はこれを逆に実行すれば良いだけですが、ビットが破損した場合その平文と、破損した暗号文とXORを取る平文の二つの復号に影響が出ます。また暗号文のビットが欠落した場合、その後の暗号文ブロックが全てズレて復号してもわけが分からなくなります。\u003C\u002Fp\u003E\\n\u003Cp\u003E図にあるように最初は「初期化ベクトル」なるランダムなビット列と平文でXORをとります。この初期化ベクトルがランダムでないと1ブロック目に同じ平文が来た時に同じ暗号文ブロックが出力されてしまうので、ECB同様攻撃者に情報を与えてしまうことになります。\u003C\u002Fp\u003E\\n\u003Ch3\u003ECBCの弱点\u003C\u002Fh3\u003E\\n\u003Cp\u003E初期化ベクトルをいじることができれば、最初の平文の1ビットごとの操作が可能になります。\u003Ca href=\\\"https:\u002F\u002Fjvndb.jvn.jp\u002Fja\u002Fcontents\u002F2011\u002FJVNDB-2011-002305.html\\\"\u003ETLS1.0では前回暗号化した最後のブロックを初期化ベクトルとして用いていた\u003C\u002Fa\u003Eのでこの攻撃が可能でしたが、先述の通り正しく実装されていれば初期化ベクトルはランダム生成なのでほとんどの場合不可能でしょう。\u003C\u002Fp\u003E\\n\u003Cp\u003Eまた平文をブロックの整数倍に合わせる際のパディング内容を若干変化させながら暗号文を送信し、そのエラー文から平文情報を得る\u003Cstrong\u003Eパディングオラクル攻撃\u003C\u002Fstrong\u003Eの対象にもなります。パディングオラクル攻撃に関しては、デジタル署名なりで送り手を認証し、変な送信元だったら抽象的なエラーメッセージしか返さないことで対策できます。\u003C\u002Fp\u003E\\n\u003Cp\u003Eさらに、複数の暗号文ブロックをすり替えた時に最初の平文ブロック以外は正しく復号できてしまうので平文を書き換えることができてしまいます。これを\u003Cstrong\u003E再生攻撃\u003C\u002Fstrong\u003Eと言います。\u003C\u002Fp\u003E\\n\u003Cp\u003Eセキュリティ以外で言えば、前の暗号文ブロックを利用するため並列処理ができない点は痛いですね。\u003C\u002Fp\u003E\\n\u003Ch2\u003ECipher Text Stealing (CTS)\u003C\u002Fh2\u003E\\n\u003Cp\u003Eパディングに前の暗号文ブロックの末尾を用いる方法。ECBモードやCBCモードと組み合わせて使うモードで、パディングに利用したブロックの部分は暗号文としては使用しません。CTSモードを使っていることが分かっていれば、末尾の特定のサイズはXORにかけずその前の暗号文の末尾として復号を進めれば良いので復号も問題なくできます。\u003C\u002Fp\u003E\\n\u003Cp\u003E\u003Cimg src=\\\"\u002Fmedia\u002Fctsenc.png\\\" alt=\\\"CTSモードの暗号化\\\"\u003E\u003C\u002Fp\u003E\\n\u003Ch2\u003ECipher-FeedBack (CFB)\u003C\u002Fh2\u003E\\n\u003Cp\u003E一つ前の暗号文ブロックを暗号アルゴリズムの入力にし、それと平文のXORをとって暗号文ブロックとする方法。一見平文から暗号文ブロックを生成する間に暗号化がないので不安になりますが（少なくとも僕はなった）その後で暗号文ブロックを暗号化する処理があるので結果的には暗号アルゴリズムの恩恵を受けられる仕組みになっています。\u003C\u002Fp\u003E\\n\u003Cp\u003E\u003Cimg src=\\\"\u002Fmedia\u002Fcfbenc.png\\\" alt=\\\"CFBモードの暗号化\\\"\u003E\u003C\u002Fp\u003E\\n\u003Cp\u003E復号の際は同じように、前の暗号文ブロックを\u003Cstrong\u003E暗号化\u003C\u002Fstrong\u003Eしたビット列と暗号文のXORをとって平文を取得します。ここで、XORで同じ値を出力するには暗号化の際と同じ値が必要なため、前の暗号文ブロックを復号ではなく暗号化するのです。\u003C\u002Fp\u003E\\n\u003Cp\u003E図を見るとわかる通り、平文から暗号文を導出する時はXORをとって1ビットずつ生成しています。なのでCFBモードはストリーム暗号を作っているとみなせるのです。\u003C\u002Fp\u003E\\n\u003Ch3\u003ECFBの弱点\u003C\u002Fh3\u003E\\n\u003Cp\u003ECBC同様に再生攻撃のリスクと、並列処理ができないという欠点があります。また、暗号文の1ビットを反転させると平文の1ビットも反転するという脆弱性があります。\u003C\u002Fp\u003E\\n\u003Ch2\u003EOutput-FeedBack (OFB)\u003C\u002Fh2\u003E\\n\u003Cp\u003E前の暗号アルゴリズムの出力を入力として鍵ストリームを作成し、それと平文のXORをとって暗号文とする方法。先に鍵ストリームを作っておくことができ、そうすればあとはXORをとるだけなので非常に高速化かつ並列処理が可能になります。\u003C\u002Fp\u003E\\n\u003Cp\u003E\u003Cimg src=\\\"\u002Fmedia\u002Fofbenc.png\\\" alt=\\\"OFBモードの暗号化\\\"\u003E\u003C\u002Fp\u003E\\n\u003Ch3\u003EOFBの弱点\u003C\u002Fh3\u003E\\n\u003Cp\u003E再生攻撃などの弱点は克服していますが、暗号文のビット反転が平文のビットに影響するという弱点は変わりません。それに加えて、万が一前の鍵ストリームの暗号化結果が暗号化前と同じになってしまった場合、暗号アルゴリズムは常に同じなためそれ以降の鍵ストリームが全て同じになってしまうというリスクがあります。\u003C\u002Fp\u003E\\n\u003Ch2\u003ECounTeR (CTR)\u003C\u002Fh2\u003E\\n\u003Cp\u003E暗号化のたびに増加するカウンタを用いて鍵ストリームを生成する方法です。CFBやOFB同様、機能的にはストリーム暗号です。\u003C\u002Fp\u003E\\n\u003Cp\u003E毎度nonceを生成し、その後にカウンタを挿入します。128bitsのブロック長だった場合、前半8bitsがnonce、後半8bitsがブロック番号になります。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-js\\\"\u003E\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F カウンタ初期値の例（カウント1の時）\u003C\u002Fspan\u003E\\n6d 5f \u003Cspan class=\\\"hljs-number\\\"\u003E17\u003C\u002Fspan\u003E f1 \u003Cspan class=\\\"hljs-number\\\"\u003E24\u003C\u002Fspan\u003E c7 bb 4e \u003Cspan class=\\\"hljs-number\\\"\u003E00\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-number\\\"\u003E00\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-number\\\"\u003E00\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-number\\\"\u003E00\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-number\\\"\u003E00\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-number\\\"\u003E00\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-number\\\"\u003E00\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-number\\\"\u003E01\u003C\u002Fspan\u003E\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E\u003Cimg src=\\\"\u002Fmedia\u002Fctrenc.png\\\" alt=\\\"CTRモードの暗号化\\\"\u003E\u003C\u002Fp\u003E\\n\u003Cp\u003ECTRモードの長所としては、OFB同様に暗号化と復号の構造が全く同じなので実装が楽なことと、nonceとブロック番号からカウンタが求められるので暗号化の段階から並列処理が可能なことが挙げられます。また、OFBモードにあった鍵ストリームの暗号化結果によってはそれ以降の鍵ストリームが全て同じになるという脆弱性は、そもそも前の鍵ストリームを利用しないCTRモードには残っていません。\u003C\u002Fp\u003E\\n\u003Ch1\u003Eおわりに\u003C\u002Fh1\u003E\\n\u003Cp\u003Eこれで暗号スイート見てもモードが何を意味してるのか分かるようになりました。万歳\u003C\u002Fp\u003E\\n\"}"}</script>
+		</div>
+	</body>
+</html>

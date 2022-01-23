@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KOTA YATAGAI | 八谷航太</title>
+    <title>ブラウザでファイルの上書き保存ができるぞぉぉ</title><meta name="description" content="File System Access APIを使ってみる" data-svelte="svelte-189on1m"><meta property="og:url" content="https://kota-yata.com" data-svelte="svelte-189on1m"><meta property="og:title" content="ブラウザでファイルの上書き保存ができるぞぉぉ" data-svelte="svelte-189on1m"><meta property="og:image" content="https://kota-yata.com/media/fsaapi.webp" data-svelte="svelte-189on1m"><meta property="og:description" content="File System Access APIを使ってみる" data-svelte="svelte-189on1m"><meta name="twitter:card" content="summary_large_image" data-svelte="svelte-189on1m"><meta name="twitter:site" content="@kota_yata" data-svelte="svelte-189on1m">
+
+		
+
+		<link rel="modulepreload" href="/_app/start-daaae108.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-495f2134.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-be316660.js">
+		<link rel="modulepreload" href="/_app/chunks/index-6747d163.js">
+		<link rel="modulepreload" href="/_app/pages/posts/_path_.svelte-2d94d26d.js">
+		<link rel="modulepreload" href="/_app/chunks/page-7b278a70.js">
+		<link rel="modulepreload" href="/_app/chunks/className-0b25377b.js">
+		<link rel="stylesheet" href="/_app/assets/start-61d1577b.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-0136ed43.css">
+		<link rel="stylesheet" href="/_app/assets/app-d7359544.css">
+		<link rel="stylesheet" href="/_app/assets/pages/posts/_path_.svelte-77f41461.css">
+		<link rel="stylesheet" href="/_app/assets/page-da0bc829.css">
+
+		<script type="module">
+			import { start } from "/_app/start-daaae108.js";
+			start({
+				target: document.querySelector("#svelte"),
+				paths: {"base":"","assets":""},
+				session: {},
+				host: location.host,
+				route: true,
+				spa: false,
+				trailing_slash: "never",
+				hydrate: {
+					status: 200,
+					error: null,
+					nodes: [
+						import("/_app/pages/__layout.svelte-be316660.js"),
+						import("/_app/pages/posts/_path_.svelte-2d94d26d.js")
+					],
+					page: {
+						host: location.host, // TODO this is redundant
+						path: "\u002Fposts\u002Ffsaapi",
+						query: new URLSearchParams(""),
+						params: {path:"fsaapi"}
+					}
+				}
+			});
+		</script>
+    <meta name="keyword" content="kota,yatagai,kota yatagai,八谷航太">
+    <link rel="icon" href="/me.webp" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link defer
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet">
+    <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"
+      integrity="sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs" crossorigin="anonymous">
+    <link defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/a11y-dark.min.css"
+      integrity="sha384-Mt8bPDNu0L2sVzon3+a8Rqtl4fmqaUmTPBEd/DTHiGFEQEFvf0fYLnU1DgK+ER2h" crossorigin="anonymous">
+	</head>
+	<body>
+		<div id="svelte">
+
+
+<header class="svelte-gbfwkw"><div class="left svelte-gbfwkw"><a href="/" class="svelte-gbfwkw">KOTA YATAGAI</a></div>
+  <div class="right svelte-gbfwkw"><select name="language"><option value="JP">Japanese</option><option value="EN">English</option></select>
+    <a href="/trip" sveltekit:prefetch class="svelte-gbfwkw"><img alt="to trip page" src="/airplane.svg" width="30px" height="30px"></a></div></header>
+
+<main class="svelte-gbfwkw">
+  
+
+<div class="container svelte-izy1ym"><div class="profile svelte-izy1ym"><div class="container svelte-g32fgp"><img alt="myself" src="/me.webp" width="150px" height="150px" class="svelte-g32fgp">
+  <div class="bio svelte-g32fgp"><h4 class="svelte-g32fgp">八谷航太</h4>
+    <p class="svelte-g32fgp">18yo / ソフトウェア開発者</p></div>
+  <ul class="svelte-g32fgp"><li class="svelte-g32fgp"><a href="/" class="svelte-g32fgp">Home</a></li><li class="svelte-g32fgp"><a href="/about" class="svelte-g32fgp">About</a></li><li class="svelte-g32fgp"><a href="/works" class="svelte-g32fgp">Works</a></li><li class="svelte-g32fgp"><a href="/contacts" class="svelte-g32fgp">Contacts</a></li></ul>
+  <div class="icons svelte-g32fgp"><a href="https://github.com/kota-yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/github.svg" width="20px" height="20px"></a><a href="https://open.spotify.com/user/jgm80x9h1j84hnk4nv3hozlaf" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/spotify.svg" width="20px" height="20px"></a><a href="https://twitter.com/kota_yata" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/twitter.svg" width="20px" height="20px"></a><a href="https://speakerdeck.com/kota_yata/" sveltekit:prefetch class="svelte-g32fgp"><img alt="icon" src="/speakerdeck.svg" width="20px" height="20px"></a></div>
+</div></div>
+  <div class="slot svelte-izy1ym"><div class="info svelte-hf3o4"><h1 class="info-title svelte-hf3o4">ブラウザでファイルの上書き保存ができるぞぉぉ</h1>
+    <span class="info-date svelte-hf3o4">2020-11-07</span>
+    <span class="info-category programming svelte-hf3o4">Programming</span></div>
+  <!-- HTML_TAG_START --><div class="message">
+ほとんどのChromiumベースブラウザではこのAPIを使うことができますが、Braveではセキュリティの懸念より利用できない状態になっています。畜生め
+</div>
+<p>↑ <a href="https://github.com/brave/brave-browser/issues/11407">https://github.com/brave/brave-browser/issues/11407</a></p>
+<p>以前までChromeのOrigin TrialsにNative File System APIとして実装されていたローカルファイルへアクセスするAPIが、ついにChrome86から標準機能として搭載され、名前も実装もだいぶ変わっていたので記事に残しておきます。</p>
+<p><a href="https://caniuse.com/?search=file%20system%20access%20api">Can I Use</a>を確認した上での実装をお勧めします</p>
+<h1>File System Access API</h1>
+<p>File System Access APIは主にローカルファイルの読み取り、書き取りを目的としたAPIです。実はファイルだけでなくフォルダの読み取り/書き取りもできますが、今回はファイルの読み取り/書き取りの方法を紹介します。</p>
+<h2>ファイルを読み取る</h2>
+<p>これまでローカルファイルを読み取るには<a href="https://www.html5rocks.com/ja/tutorials/file/dndfiles//">この記事</a>みたいに自分でHTMLタグを足したり、ファイル内容を切ったり貼ったりする必要があり、かなり面倒くさい実装が不可欠でした。<br>
+一方File System Access APIではたった３行で読み込みが完了します。</p>
+<pre><code class="language-javascript">[fileHandle] = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">showOpenFilePicker</span>();
+<span class="hljs-keyword">const</span> file = <span class="hljs-keyword">await</span> fileHandle.<span class="hljs-title function_">getFile</span>();
+<span class="hljs-keyword">const</span> fileContents = <span class="hljs-keyword">await</span> file.<span class="hljs-title function_">text</span>();
+</code></pre>
+<p>このfileContentsをtextareaに代入すれば手軽にファイルの読み取りが完了します。</p>
+<h4>読み取りオプション</h4>
+<p>１行目の<code>showOpenFilePicker</code>は引数でオプションの設定も可能です。</p>
+<pre><code class="language-javascript"><span class="hljs-comment">// 複数ファイルの選択を可能にする</span>
+[fileHandle] = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">showOpenFilePicker</span>({<span class="hljs-attr">multiple</span>: <span class="hljs-literal">true</span>});
+<span class="hljs-comment">// 複数ファイルの選択を不可能にする</span>
+[fileHandle] = <span class="hljs-keyword">await</span> <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">showOpenFilePicker</span>({<span class="hljs-attr">multiple</span>: <span class="hljs-literal">false</span>});
+</code></pre>
+<p><a href="https://wicg.github.io/file-system-access/#api-showopenfilepicker">参考</a></p>
+<h4>fileHandleの中身</h4>
+<pre><code class="language-javascript">{
+  <span class="hljs-attr">lastModified</span>: <span class="hljs-number">1587625257478</span> <span class="hljs-comment">// ファイル最終更新日時(UNIXタイム)</span>
+  <span class="hljs-attr">lastModifiedDate</span>: <span class="hljs-title class_">Thu</span> <span class="hljs-title class_">Apr</span> <span class="hljs-number">23</span> <span class="hljs-number">2020</span> <span class="hljs-number">16</span>:<span class="hljs-number">00</span>:<span class="hljs-number">57</span> <span class="hljs-variable constant_">GMT</span>+<span class="hljs-number">0900</span> (日本標準時) {} <span class="hljs-comment">// ファイル最終更新日時</span>
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;sample.pdf&quot;</span> <span class="hljs-comment">// ファイル名</span>
+  <span class="hljs-attr">size</span>: <span class="hljs-number">85488</span> <span class="hljs-comment">// ファイルサイズ (単位はバイト)</span>
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;application/pdf&quot;</span> <span class="hljs-comment">// ファイルタイプ （記述のない場合もある）</span>
+  <span class="hljs-attr">webkitRelativePath</span>: <span class="hljs-string">&quot;&quot;</span> <span class="hljs-comment">// フォルダを選択した際に内部のファイル数などを表示できる</span>
+}
+</code></pre>
+<h2>ファイルに書き込む</h2>
+<p>従来のブラウザではそもそも上書きすることが不可能だったのですが、こちらもFile System Access APIでは簡単に書けちゃうんです。</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> writable = <span class="hljs-keyword">await</span> fileHandle.<span class="hljs-title function_">createWritable</span>();
+<span class="hljs-keyword">await</span> writable.<span class="hljs-title function_">write</span>(contents<span class="hljs-comment">/*⇦書き込む内容*/</span>);
+<span class="hljs-keyword">await</span> writable.<span class="hljs-title function_">close</span>();
+</code></pre>
+<p>さっきファイル情報を代入した<code>fileHandle</code>にcreateWritableメソッドで<a href="https://wicg.github.io/file-system-access/#api-filesystemwritablefilestream">FileSystemWritableFileStream</a>オブジェクトを呼び出します。その後書き込んで、終了するだけ。非常に簡潔な仕様です。</p>
+<p>この時ブラウザでは<br>
+<img src="https://user-images.githubusercontent.com/51294895/98450827-64c50d00-2183-11eb-8d55-e9eb95bcf73d.png" alt="image"><br>
+こんな感じのダイアログが表示され、「変更を保存」ボタンを押すとローカルファイルの上書きが完了します</p>
+<p>これ以降、新たなファイルを読み込むかリロードや手動でfileHandleをリセットするまでは上書き処理を行うと自動でこのファイルが上書きされます。便利な反面、実装を間違えると取り返しのつかないことになりますのでご注意ください。</p>
+<h2>その他の機能</h2>
+<p>FileSystemAccess APIは基本は読み取り/書き込みのみですが、深掘りしていけば色々応用できそうです。<a href="https://web.dev/file-system-access/">Chromeのブログ</a>にはBlob型（画像や音声を取り扱える）の読み取りと書き込みをHTTPリクエストで可能にする方法も少し書いてあるので興味のある方は見てみてください。他にも上書きするファイルを再度ファイルピッカーを起動して選ぶ方法もあったりします。</p>
+<h1>おわりに</h1>
+<p>このAPIはこれまで試験的機能だったこともあってまだ枯れていない段階です。実際、<a href="https://wicg.github.io/file-system-access/#drag-and-drop">ドラッグ&amp;ドロップ機能</a>なども実装はされていますが問題も多く議論が行われている最中です。</p>
+<p>APIの性質上セキュリティがおざなりになるとChromeの脆弱性になり得るので議論中の機能は使うべきではありませんが、今後の動向には注目していきたいです。</p>
+<h1>参考文献</h1>
+<p>WICG仕様書…<a href="https://wicg.github.io/file-system-access/">https://wicg.github.io/file-system-access/</a><br>
+WebDevチームブログ…<a href="https://web.dev/file-system-access/">https://web.dev/file-system-access/</a></p>
+<!-- HTML_TAG_END -->
+  <div class="share svelte-hf3o4"><a class="share-twitter svelte-hf3o4" target="blank"><img alt="Twitter share button" src="/twitter.svg" width="25px" height="25px"></a>
+    <a class="share-pocket svelte-hf3o4" target="blank"><img alt="Pocket share button" src="/pocket.svg" width="25px" height="25px"></a>
+    <a class="share-instapaper svelte-hf3o4" target="blank"><img alt="InstaPaper share button" src="/instapaper.svg" width="25px"></a></div></div>
+</div></main>
+
+<footer class="svelte-gbfwkw">@ 2021 Kota Yatagai</footer>
+
+
+
+			<script type="application/json" data-type="svelte-data" data-url="/posts/fsaapi.json">{"status":200,"statusText":"","headers":{"content-type":"application/json; charset=utf-8"},"body":"{\"meta\":{\"title\":\"ブラウザでファイルの上書き保存ができるぞぉぉ\",\"date\":\"2020-11-07\",\"category\":\"Programming\",\"description\":\"File System Access APIを使ってみる\",\"ogp\":\"\u002Fmedia\u002Ffsaapi.webp\"},\"body\":\"\u003Cdiv class=\\\"message\\\"\u003E\\nほとんどのChromiumベースブラウザではこのAPIを使うことができますが、Braveではセキュリティの懸念より利用できない状態になっています。畜生め\\n\u003C\u002Fdiv\u003E\\n\u003Cp\u003E↑ \u003Ca href=\\\"https:\u002F\u002Fgithub.com\u002Fbrave\u002Fbrave-browser\u002Fissues\u002F11407\\\"\u003Ehttps:\u002F\u002Fgithub.com\u002Fbrave\u002Fbrave-browser\u002Fissues\u002F11407\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\u003Cp\u003E以前までChromeのOrigin TrialsにNative File System APIとして実装されていたローカルファイルへアクセスするAPIが、ついにChrome86から標準機能として搭載され、名前も実装もだいぶ変わっていたので記事に残しておきます。\u003C\u002Fp\u003E\\n\u003Cp\u003E\u003Ca href=\\\"https:\u002F\u002Fcaniuse.com\u002F?search=file%20system%20access%20api\\\"\u003ECan I Use\u003C\u002Fa\u003Eを確認した上での実装をお勧めします\u003C\u002Fp\u003E\\n\u003Ch1\u003EFile System Access API\u003C\u002Fh1\u003E\\n\u003Cp\u003EFile System Access APIは主にローカルファイルの読み取り、書き取りを目的としたAPIです。実はファイルだけでなくフォルダの読み取り\u002F書き取りもできますが、今回はファイルの読み取り\u002F書き取りの方法を紹介します。\u003C\u002Fp\u003E\\n\u003Ch2\u003Eファイルを読み取る\u003C\u002Fh2\u003E\\n\u003Cp\u003Eこれまでローカルファイルを読み取るには\u003Ca href=\\\"https:\u002F\u002Fwww.html5rocks.com\u002Fja\u002Ftutorials\u002Ffile\u002Fdndfiles\u002F\u002F\\\"\u003Eこの記事\u003C\u002Fa\u003Eみたいに自分でHTMLタグを足したり、ファイル内容を切ったり貼ったりする必要があり、かなり面倒くさい実装が不可欠でした。\u003Cbr\u003E\\n一方File System Access APIではたった３行で読み込みが完了します。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-javascript\\\"\u003E[fileHandle] = \u003Cspan class=\\\"hljs-keyword\\\"\u003Eawait\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-variable language_\\\"\u003Ewindow\u003C\u002Fspan\u003E.\u003Cspan class=\\\"hljs-title function_\\\"\u003EshowOpenFilePicker\u003C\u002Fspan\u003E();\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E file = \u003Cspan class=\\\"hljs-keyword\\\"\u003Eawait\u003C\u002Fspan\u003E fileHandle.\u003Cspan class=\\\"hljs-title function_\\\"\u003EgetFile\u003C\u002Fspan\u003E();\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E fileContents = \u003Cspan class=\\\"hljs-keyword\\\"\u003Eawait\u003C\u002Fspan\u003E file.\u003Cspan class=\\\"hljs-title function_\\\"\u003Etext\u003C\u002Fspan\u003E();\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003EこのfileContentsをtextareaに代入すれば手軽にファイルの読み取りが完了します。\u003C\u002Fp\u003E\\n\u003Ch4\u003E読み取りオプション\u003C\u002Fh4\u003E\\n\u003Cp\u003E１行目の\u003Ccode\u003EshowOpenFilePicker\u003C\u002Fcode\u003Eは引数でオプションの設定も可能です。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-javascript\\\"\u003E\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 複数ファイルの選択を可能にする\u003C\u002Fspan\u003E\\n[fileHandle] = \u003Cspan class=\\\"hljs-keyword\\\"\u003Eawait\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-variable language_\\\"\u003Ewindow\u003C\u002Fspan\u003E.\u003Cspan class=\\\"hljs-title function_\\\"\u003EshowOpenFilePicker\u003C\u002Fspan\u003E({\u003Cspan class=\\\"hljs-attr\\\"\u003Emultiple\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-literal\\\"\u003Etrue\u003C\u002Fspan\u003E});\\n\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F 複数ファイルの選択を不可能にする\u003C\u002Fspan\u003E\\n[fileHandle] = \u003Cspan class=\\\"hljs-keyword\\\"\u003Eawait\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-variable language_\\\"\u003Ewindow\u003C\u002Fspan\u003E.\u003Cspan class=\\\"hljs-title function_\\\"\u003EshowOpenFilePicker\u003C\u002Fspan\u003E({\u003Cspan class=\\\"hljs-attr\\\"\u003Emultiple\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-literal\\\"\u003Efalse\u003C\u002Fspan\u003E});\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003E\u003Ca href=\\\"https:\u002F\u002Fwicg.github.io\u002Ffile-system-access\u002F#api-showopenfilepicker\\\"\u003E参考\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\u003Ch4\u003EfileHandleの中身\u003C\u002Fh4\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-javascript\\\"\u003E{\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003ElastModified\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-number\\\"\u003E1587625257478\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F ファイル最終更新日時(UNIXタイム)\u003C\u002Fspan\u003E\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003ElastModifiedDate\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-title class_\\\"\u003EThu\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-title class_\\\"\u003EApr\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-number\\\"\u003E23\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-number\\\"\u003E2020\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-number\\\"\u003E16\u003C\u002Fspan\u003E:\u003Cspan class=\\\"hljs-number\\\"\u003E00\u003C\u002Fspan\u003E:\u003Cspan class=\\\"hljs-number\\\"\u003E57\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-variable constant_\\\"\u003EGMT\u003C\u002Fspan\u003E+\u003Cspan class=\\\"hljs-number\\\"\u003E0900\u003C\u002Fspan\u003E (日本標準時) {} \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F ファイル最終更新日時\u003C\u002Fspan\u003E\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003Ename\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;sample.pdf&quot;\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F ファイル名\u003C\u002Fspan\u003E\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003Esize\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-number\\\"\u003E85488\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F ファイルサイズ (単位はバイト)\u003C\u002Fspan\u003E\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003Etype\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;application\u002Fpdf&quot;\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F ファイルタイプ （記述のない場合もある）\u003C\u002Fspan\u003E\\n  \u003Cspan class=\\\"hljs-attr\\\"\u003EwebkitRelativePath\u003C\u002Fspan\u003E: \u003Cspan class=\\\"hljs-string\\\"\u003E&quot;&quot;\u003C\u002Fspan\u003E \u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F\u002F フォルダを選択した際に内部のファイル数などを表示できる\u003C\u002Fspan\u003E\\n}\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Ch2\u003Eファイルに書き込む\u003C\u002Fh2\u003E\\n\u003Cp\u003E従来のブラウザではそもそも上書きすることが不可能だったのですが、こちらもFile System Access APIでは簡単に書けちゃうんです。\u003C\u002Fp\u003E\\n\u003Cpre\u003E\u003Ccode class=\\\"language-javascript\\\"\u003E\u003Cspan class=\\\"hljs-keyword\\\"\u003Econst\u003C\u002Fspan\u003E writable = \u003Cspan class=\\\"hljs-keyword\\\"\u003Eawait\u003C\u002Fspan\u003E fileHandle.\u003Cspan class=\\\"hljs-title function_\\\"\u003EcreateWritable\u003C\u002Fspan\u003E();\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eawait\u003C\u002Fspan\u003E writable.\u003Cspan class=\\\"hljs-title function_\\\"\u003Ewrite\u003C\u002Fspan\u003E(contents\u003Cspan class=\\\"hljs-comment\\\"\u003E\u002F*⇦書き込む内容*\u002F\u003C\u002Fspan\u003E);\\n\u003Cspan class=\\\"hljs-keyword\\\"\u003Eawait\u003C\u002Fspan\u003E writable.\u003Cspan class=\\\"hljs-title function_\\\"\u003Eclose\u003C\u002Fspan\u003E();\\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\\n\u003Cp\u003Eさっきファイル情報を代入した\u003Ccode\u003EfileHandle\u003C\u002Fcode\u003EにcreateWritableメソッドで\u003Ca href=\\\"https:\u002F\u002Fwicg.github.io\u002Ffile-system-access\u002F#api-filesystemwritablefilestream\\\"\u003EFileSystemWritableFileStream\u003C\u002Fa\u003Eオブジェクトを呼び出します。その後書き込んで、終了するだけ。非常に簡潔な仕様です。\u003C\u002Fp\u003E\\n\u003Cp\u003Eこの時ブラウザでは\u003Cbr\u003E\\n\u003Cimg src=\\\"https:\u002F\u002Fuser-images.githubusercontent.com\u002F51294895\u002F98450827-64c50d00-2183-11eb-8d55-e9eb95bcf73d.png\\\" alt=\\\"image\\\"\u003E\u003Cbr\u003E\\nこんな感じのダイアログが表示され、「変更を保存」ボタンを押すとローカルファイルの上書きが完了します\u003C\u002Fp\u003E\\n\u003Cp\u003Eこれ以降、新たなファイルを読み込むかリロードや手動でfileHandleをリセットするまでは上書き処理を行うと自動でこのファイルが上書きされます。便利な反面、実装を間違えると取り返しのつかないことになりますのでご注意ください。\u003C\u002Fp\u003E\\n\u003Ch2\u003Eその他の機能\u003C\u002Fh2\u003E\\n\u003Cp\u003EFileSystemAccess APIは基本は読み取り\u002F書き込みのみですが、深掘りしていけば色々応用できそうです。\u003Ca href=\\\"https:\u002F\u002Fweb.dev\u002Ffile-system-access\u002F\\\"\u003EChromeのブログ\u003C\u002Fa\u003EにはBlob型（画像や音声を取り扱える）の読み取りと書き込みをHTTPリクエストで可能にする方法も少し書いてあるので興味のある方は見てみてください。他にも上書きするファイルを再度ファイルピッカーを起動して選ぶ方法もあったりします。\u003C\u002Fp\u003E\\n\u003Ch1\u003Eおわりに\u003C\u002Fh1\u003E\\n\u003Cp\u003EこのAPIはこれまで試験的機能だったこともあってまだ枯れていない段階です。実際、\u003Ca href=\\\"https:\u002F\u002Fwicg.github.io\u002Ffile-system-access\u002F#drag-and-drop\\\"\u003Eドラッグ&amp;ドロップ機能\u003C\u002Fa\u003Eなども実装はされていますが問題も多く議論が行われている最中です。\u003C\u002Fp\u003E\\n\u003Cp\u003EAPIの性質上セキュリティがおざなりになるとChromeの脆弱性になり得るので議論中の機能は使うべきではありませんが、今後の動向には注目していきたいです。\u003C\u002Fp\u003E\\n\u003Ch1\u003E参考文献\u003C\u002Fh1\u003E\\n\u003Cp\u003EWICG仕様書…\u003Ca href=\\\"https:\u002F\u002Fwicg.github.io\u002Ffile-system-access\u002F\\\"\u003Ehttps:\u002F\u002Fwicg.github.io\u002Ffile-system-access\u002F\u003C\u002Fa\u003E\u003Cbr\u003E\\nWebDevチームブログ…\u003Ca href=\\\"https:\u002F\u002Fweb.dev\u002Ffile-system-access\u002F\\\"\u003Ehttps:\u002F\u002Fweb.dev\u002Ffile-system-access\u002F\u003C\u002Fa\u003E\u003C\u002Fp\u003E\\n\"}"}</script>
+		</div>
+	</body>
+</html>
