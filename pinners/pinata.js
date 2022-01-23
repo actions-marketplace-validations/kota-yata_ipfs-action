@@ -41,7 +41,7 @@ module.exports = {
       };
     }
 
-    return api.pinFromFS(source, pinataOptions).then((result) => {
+    return api.pinFromFS(source, pinataOptions).then(async (result) => {
       if (verbose) {
         console.log(result);
       }

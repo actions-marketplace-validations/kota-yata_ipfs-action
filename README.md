@@ -1,9 +1,5 @@
 # ipfs-action
-IPFS upload GitHub Action. It allows uploading DApps or content to IPFS in a GitHub pipeline.
-
-<p align="center">
-  <img width="400" src="assets/ipfs-action.png" alt="ipfs action">
-</p>
+GitHub Action for uploading files to IPFS. Supports Pinata for pinning service and Vercel DNS for publishing dnslink.
 
 ## Inputs
 Parameter       |Required |Description
@@ -20,6 +16,8 @@ Parameter       |Required |Description
 `pinataKey`     |No       |[pinata] Api Key. Required for pinata service.
 `pinataSecret`  |No       |[pinata] Secret Api Key. Required for pinata service.
 `pinataPinName` |No       |[pinata] Human name for pin.
+`vercelDomain`  |No       |[vercel] Domain name. Required for vercel dnslink update
+`vercelToken`   |No       |[vercel] Your vercel token. Required for vercel dnslink update
 
 ## Outputs
 
@@ -27,6 +25,7 @@ Parameter       |Required |Description
 - `cid` - IPFS CID
 - `ipfs` - IPFS CID
 - `ipns` - IPNS CID if applicable
+- `vercel uid` - Vercel DNS record uid if applicable
 
 ## Documentation
 Take a look [DApps Delivery Guide](https://dapps-delivery-guide.readthedocs.io/)
@@ -54,6 +53,16 @@ with:
 ```
 
 ### 3. Pinata starter
+```
+uses: aquiladev/ipfs-action@v1
+with:
+  path: ./build
+  service: pinata
+  pinataKey: ${{ secrets.PINATA_KEY }}
+  pinataSecret: ${{ secrets.PINATA_SECRET }}
+```
+
+### 4. Pinata and Vercel starter
 ```
 uses: aquiladev/ipfs-action@v1
 with:

@@ -1,5 +1,6 @@
 const core = require("@actions/core");
 const github = require("@actions/github");
+const Vercel = require("./vercel.js");
 
 const uploader = require("./uploader");
 
@@ -39,11 +40,17 @@ async function run() {
     const result = await uploader.upload(options).catch((err) => {
       throw err;
     });
+
+    let vercelUid;
+    if (vercelDomain && vercelToken) {
+      vercelUid = await Vercel.changeDNS(result.ipfs, vercelDomain, vercelToken);
+    }
+
     core.setOutput("hash", result.ipfs);
     core.setOutput("cid", result.cid);
     core.setOutput("ipfs", result.ipfs);
     core.setOutput("ipns", result.ipns);
-    core.setOutput("vercel", result.vercel);
+    core.setOutput("vercel uid", vercelUid);
 
     if (verbose) {
       // Get the JSON webhook payload for the event that triggered the workflow
