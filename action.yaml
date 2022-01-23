@@ -1,5 +1,5 @@
 name: 'IPFS-Pinning-DNSlink'
-description: 'GitHub Action for uploading files to IPFS. Supports Pinata, Infura pinning service, and dnslink publishing to Vercel DNS for options. Forked from aquiladev/ipfs-action'
+description: 'GitHub Action for uploading files to IPFS. Supports pinning services and dnslink publishing to Vercel DNS'
 branding:
   icon: 'box'
   color: 'yellow'
