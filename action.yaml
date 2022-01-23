@@ -47,6 +47,12 @@ inputs:
   pinataPinName:
     description: '[pinata] Human name for pin'
     required: false
+  vercelDomain:
+    description: '[vercel] Domain name. Required for vercel dnslink update'
+    required: false
+  vercelToken:
+    description: '[vercel] Your vercel token. Required for vercel dnslink update' 
+    required: false
 outputs:
   hash:
     description: 'IPFS CID'
@@ -56,6 +62,8 @@ outputs:
     description: 'IPFS CID'
   ipns:
     description: 'IPNS CID if applicable'
+  vercel:
+    description: 'Vercel'
 runs:
   using: 'node12'
   main: 'index.js'
